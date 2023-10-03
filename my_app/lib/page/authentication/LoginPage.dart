@@ -1,28 +1,59 @@
 // ignore: file_names
 // ignore_for_file: file_names, duplicate_ignore, unused_import
 
-import 'package:flutter/material.dart';
-import 'package:my_app/models/user.dart';
-import 'package:my_app/page/HomePage.dart';
+import 'dart:convert';
 import 'package:my_app/page/authentication/RegisterPage.dart';
-import 'package:my_app/page/navbar.dart';
+
+import '../navbar.dart';
+
+import '../../models/user.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'dart:async';
+import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
+  Future<User> webServiceLogin(String telephone, String password) async {
+    var response = await post(Uri.parse("http://10.0.2.2:8000/user/flu-login/"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({"email": telephone, "password": password}));
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> userData = jsonDecode(response.body);
+      User user = User(
+          datetime: userData["datetime"],
+          sessionId: userData["session-id"],
+          isCitizen: true,
+          email: userData["email"],
+          name: userData["name"]);
+
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('sessionId', userData["session-id"]);
+      prefs.setBool('isCitizen', userData["role_users"]);
+      prefs.setString('email', userData["email"]);
+      // prefs.setString('name', userData["name"]);
+
+      return user;
+    } else {
+      return Future.error("Incorrect Login");
+    }
+  }
 
   @override
   LoginPage createState() => LoginPage();
 }
 
 class LoginPage extends State<Login> {
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  bool loading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   automaticallyImplyLeading: false,
-        //   backgroundColor: Colors.white,
-        //   elevation: 0,
-        //   ),
         backgroundColor: const Color(0xFFECECEC),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(left: 30, right: 30),
@@ -55,8 +86,8 @@ class LoginPage extends State<Login> {
                 ),
                 SingleChildScrollView(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                       const Text(
                         'Email',
                         style: TextStyle(
@@ -68,6 +99,8 @@ class LoginPage extends State<Login> {
                         height: 8,
                       ),
                       TextFormField(
+                        key: Key("addEmail"),
+                        controller: _email,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius:
@@ -80,8 +113,8 @@ class LoginPage extends State<Login> {
                 ),
                 SingleChildScrollView(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                       const Text(
                         'Password',
                         style: TextStyle(
@@ -93,6 +126,9 @@ class LoginPage extends State<Login> {
                         height: 8,
                       ),
                       TextFormField(
+                        key: Key("addPassword"),
+                        controller: _password,
+                        obscureText: true,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius:
@@ -104,6 +140,7 @@ class LoginPage extends State<Login> {
                   height: 32,
                 ),
                 Container(
+                  key: Key("loginAccount"),
                   alignment: Alignment.center,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -113,11 +150,25 @@ class LoginPage extends State<Login> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24),
                         )),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Navbar()));
+                    onPressed: () async {
+                      setState(() {
+                        loading = true;
+                      });
+                      {
+                        User user = await widget.webServiceLogin(
+                            _email.text, _password.text);
+                        {
+                          SchedulerBinding.instance.addPostFrameCallback((_) {
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        Navbar()),
+                                (Route<dynamic> route) => false);
+                          });
+                        }
+                      }
+                      _email.clear();
+                      _password.clear();
                     },
                     child: const Text(
                       'Login',
@@ -133,8 +184,10 @@ class LoginPage extends State<Login> {
                   child: TextButton(
                     // <-- TextButton
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const Register()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Register()));
                     },
                     child: const Text(
                       "Don't have an account?",
