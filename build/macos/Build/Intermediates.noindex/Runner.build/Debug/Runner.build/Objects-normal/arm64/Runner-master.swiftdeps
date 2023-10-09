@@ -1,0 +1,9 @@
+version: "Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)"
+options: "f46abbcaac30413ddf88eb8999a38bed698432d48e46abd5696efd74947f9c78"
+build_start_time: [1693567554, 743000]
+build_end_time: [1693567554, 57000000]
+inputs:
+  ? "/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/macos/Flutter/GeneratedPluginRegistrant.swift"
+  : !private [1693567538, 357660481]
+  "/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/macos/Runner/AppDelegate.swift": !private [1663169498, 0]
+  "/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/macos/Runner/MainFlutterWindow.swift": !private [1692802626, 411729857]
