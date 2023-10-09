@@ -305,6 +305,7 @@ class HomePage extends State<HomeView> {
                                 image: DecorationImage(
                                   // ignore: prefer_interpolation_to_compose_strings
                                   image: NetworkImage(
+                                      // ignore: prefer_interpolation_to_compose_strings
                                       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                           jsonDecode(allpocket[itemIndex]
                                               ['newsletter_picture'])),
@@ -368,6 +369,7 @@ class HomePage extends State<HomeView> {
                                 image: DecorationImage(
                                   // ignore: prefer_interpolation_to_compose_strings
                                   image: NetworkImage(
+                                      // ignore: prefer_interpolation_to_compose_strings
                                       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                           jsonDecode(allAccom[itemIndex]
                                               ['accomodation_picture'])),
