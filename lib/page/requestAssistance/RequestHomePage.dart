@@ -19,34 +19,34 @@ class RequestHome extends State<Request> {
     return Scaffold(
         backgroundColor: const Color(0xFFECECEC),
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 15, right: 15),
+          padding: const EdgeInsets.only(left: 15, right: 15),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 50,),
-                Text("Request Assistance", style: TextStyle(fontFamily: 'Inter', fontSize: 20, fontWeight: FontWeight.w700),),
+                const SizedBox(height: 50,),
+                const Text("Request Assistance", style: TextStyle(fontFamily: 'Inter', fontSize: 20, fontWeight: FontWeight.w700),),
                 SingleChildScrollView(
                   child : Padding(
-                    padding: EdgeInsets.only(left :10, right: 10),
+                    padding: const EdgeInsets.only(left :10, right: 10),
                     child :Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children : [
-                      SizedBox(height: 30,),
-                      Text(
+                      const SizedBox(height: 30,),
+                      const Text(
                         'Available Assistance',
                         style: TextStyle(
                             fontFamily: 'Inter', color: Color(0xff16AC25),
                             fontSize: 12,
                             fontWeight: FontWeight.w700),
                         ),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         Padding(
-                          padding: EdgeInsets.only(top: 5, bottom: 5), 
+                          padding: const EdgeInsets.only(top: 5, bottom: 5), 
                           child :Container(
-                            padding: EdgeInsets.only(left : 15, right: 15),
+                            padding: const EdgeInsets.only(left : 15, right: 15),
                             width: 360,
                             height: 97,
-                            decoration:  BoxDecoration(
+                            decoration:  const BoxDecoration(
                             color: Color(0xfff9f9f9),
                             borderRadius: BorderRadius.all(Radius.circular(12))
                             ),
@@ -55,22 +55,22 @@ class RequestHome extends State<Request> {
                                 Container(
                                   width: 80.0,
                                   height: 80.0,
-                                  decoration:  BoxDecoration(
+                                  decoration:  const BoxDecoration(
                                   color: Color(0xffFF7D05),
                                   borderRadius: BorderRadius.all(Radius.circular(12))
                                   ),
                                 ),
-                                SizedBox(width: 15,),
-                                Text('Michael James', style: TextStyle(fontSize: 14, fontFamily: 'Inter', fontWeight: FontWeight.w700),),
-                                SizedBox(width: 100,),
+                                const SizedBox(width: 15,),
+                                const Text('Michael James', style: TextStyle(fontSize: 14, fontFamily: 'Inter', fontWeight: FontWeight.w700),),
+                                const SizedBox(width: 100,),
                                 Container(
                                   width: 28,
                                   height: 28,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Color(0xffF9F9F9),
                                     shape: BoxShape.circle,
                                   ),
-                                  child: Center(
+                                  child: const Center(
                                     child: Icon(
                                       Icons.arrow_forward,  // This is the arrow
                                       color: Color(0xffFF7D05),
@@ -80,12 +80,12 @@ class RequestHome extends State<Request> {
                               ]),
                           ),),
                           Padding(
-                          padding: EdgeInsets.only(top: 5, bottom: 5), 
+                          padding: const EdgeInsets.only(top: 5, bottom: 5), 
                           child :Container(
-                            padding: EdgeInsets.only(left : 15, right: 15),
+                            padding: const EdgeInsets.only(left : 15, right: 15),
                             width: 360,
                             height: 97,
-                            decoration:  BoxDecoration(
+                            decoration:  const BoxDecoration(
                             color: Color(0xfff9f9f9),
                             borderRadius: BorderRadius.all(Radius.circular(12))
                             ),
@@ -94,22 +94,22 @@ class RequestHome extends State<Request> {
                                 Container(
                                   width: 80.0,
                                   height: 80.0,
-                                  decoration:  BoxDecoration(
+                                  decoration:  const BoxDecoration(
                                   color: Color(0xffFF7D05),
                                   borderRadius: BorderRadius.all(Radius.circular(12))
                                   ),
                                 ),
-                                SizedBox(width: 15,),
-                                Text('Bryant tanujaya', style: TextStyle(fontSize: 14, fontFamily: 'Inter', fontWeight: FontWeight.w700),),
-                                SizedBox(width: 100,),
+                                const SizedBox(width: 15,),
+                                const Text('Bryant tanujaya', style: TextStyle(fontSize: 14, fontFamily: 'Inter', fontWeight: FontWeight.w700),),
+                                const SizedBox(width: 100,),
                                 Container(
                                   width: 28,
                                   height: 28,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Color(0xffF9F9F9),
                                     shape: BoxShape.circle,
                                   ),
-                                  child: Center(
+                                  child: const Center(
                                     child: Icon(
                                       Icons.arrow_forward,  // This is the arrow
                                       color: Color(0xffFF7D05),

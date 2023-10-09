@@ -56,7 +56,7 @@ class LoginPage extends State<Login> {
     return Scaffold(
         backgroundColor: const Color(0xFFECECEC),
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 30, right: 30),
+          padding: const EdgeInsets.only(left: 30, right: 30),
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -99,7 +99,7 @@ class LoginPage extends State<Login> {
                         height: 8,
                       ),
                       TextFormField(
-                        key: Key("addEmail"),
+                        key: const Key("addEmail"),
                         controller: _email,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(
@@ -126,7 +126,7 @@ class LoginPage extends State<Login> {
                         height: 8,
                       ),
                       TextFormField(
-                        key: Key("addPassword"),
+                        key: const Key("addPassword"),
                         controller: _password,
                         obscureText: true,
                         decoration: const InputDecoration(
@@ -140,7 +140,7 @@ class LoginPage extends State<Login> {
                   height: 32,
                 ),
                 Container(
-                  key: Key("loginAccount"),
+                  key: const Key("loginAccount"),
                   alignment: Alignment.center,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(

@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace, avoid_print, duplicate_ignore, file_names
+
 import 'package:flutter/material.dart';
 import 'package:my_app/page/stadium/Navigation.dart';
 
@@ -41,12 +43,12 @@ class SearchStadium extends State<SearchPage> {
       key: key,
       clearOnSubmit: false,
       suggestions: StadiumA.getSuggestions(),
-      style: TextStyle(color: Colors.black, fontSize: 16.0),
+      style: const TextStyle(color: Colors.black, fontSize: 16.0),
       decoration: InputDecoration(
         hintText: "Search Stadium",
-        hintStyle: TextStyle(color: Colors.black),
+        hintStyle: const TextStyle(color: Colors.black),
         filled: true,
-        fillColor: Color(0xffD9D9D9),
+        fillColor: const Color(0xffD9D9D9),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),
           borderSide: BorderSide.none,
@@ -69,9 +71,10 @@ class SearchStadium extends State<SearchPage> {
           }
         });
         if (item.stadiumName == 'Suncorp Stadium') {
-          await Future.delayed(Duration(milliseconds: 100));
+          await Future.delayed(const Duration(milliseconds: 100));
+          // ignore: use_build_context_synchronously
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => Navigation()));
+              MaterialPageRoute(builder: (context) => const Navigation()));
         }
       },
       itemBuilder: (context, item) {
@@ -103,36 +106,36 @@ class SearchStadium extends State<SearchPage> {
         
         backgroundColor: const Color(0xFFECECEC),
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 15, right: 15),
+          padding: const EdgeInsets.only(left: 15, right: 15),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children : [
-                SizedBox(height: 50,),
-                Text("Searching", style: TextStyle(fontFamily: 'Inter', fontSize: 24, fontWeight: FontWeight.w700),),
+                const SizedBox(height: 50,),
+                const Text("Searching", style: TextStyle(fontFamily: 'Inter', fontSize: 24, fontWeight: FontWeight.w700),),
                 SingleChildScrollView(
                   child: Padding(
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     child : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 30,),
+                        const SizedBox(height: 30,),
                         Container(
                           height: 60, // Set the height that you want
                           decoration: BoxDecoration(
-                            color: Color(0xffD9D9D9),
+                            color: const Color(0xffD9D9D9),
                             borderRadius: BorderRadius.circular(24),
                           ),
                           child: searchTextField, // Your AutoCompleteTextField widget
                         ),
-                        SizedBox(height: 35,),
-                        Text(
+                        const SizedBox(height: 35,),
+                        const Text(
                           'Recent Search',
                           style: TextStyle(
                               fontFamily: 'Inter',
                               fontSize: 16,
                               fontWeight: FontWeight.w700),
                         ),
-                        SizedBox(height: 25,),
+                        const SizedBox(height: 25,),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [ 
@@ -144,7 +147,7 @@ class SearchStadium extends State<SearchPage> {
                                   style: ElevatedButton.styleFrom(
                                     minimumSize: const Size.fromHeight(48),
                                     elevation: 0,
-                                    backgroundColor: Color(0xffD9D9D9),
+                                    backgroundColor: const Color(0xffD9D9D9),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(24),
                                     )),
@@ -153,10 +156,12 @@ class SearchStadium extends State<SearchPage> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    StadiumInfo()));
+                                                    const StadiumInfo()));
                                       }, 
                                   child: Row(
+                                    // ignore: duplicate_ignore, duplicate_ignore
                                     children: [
+                                      // ignore: sized_box_for_whitespace
                                       Container(
                                         width: 90.0,
                                         height: 90.0,
@@ -169,13 +174,13 @@ class SearchStadium extends State<SearchPage> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox( width: 50,),
-                                      Text('Suncorp Stadium', style: TextStyle(fontSize: 16, fontFamily: 'Inter', fontWeight: FontWeight.w700, color: Colors.black),)
+                                      const SizedBox( width: 50,),
+                                      const Text('Suncorp Stadium', style: TextStyle(fontSize: 16, fontFamily: 'Inter', fontWeight: FontWeight.w700, color: Colors.black),)
                                     ],
                                   )
                                 ),
                               ),
-                            SizedBox(height: 20,),
+                            const SizedBox(height: 20,),
                             Container(
                               width: 500,
                               height : 105,
@@ -184,7 +189,7 @@ class SearchStadium extends State<SearchPage> {
                                   style: ElevatedButton.styleFrom(
                                     minimumSize: const Size.fromHeight(48),
                                     elevation: 0,
-                                    backgroundColor: Color(0xffD9D9D9),
+                                    backgroundColor: const Color(0xffD9D9D9),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(24),
                                     )),
@@ -193,7 +198,7 @@ class SearchStadium extends State<SearchPage> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    StadiumInfo()));
+                                                    const StadiumInfo()));
                                       }, 
                                   child: Row(
                                     children: [
@@ -209,8 +214,8 @@ class SearchStadium extends State<SearchPage> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox( width: 50,),
-                                      Text('The Gabba', style: TextStyle(fontSize: 16, fontFamily: 'Inter', fontWeight: FontWeight.w700, color: Colors.black),)
+                                      const SizedBox( width: 50,),
+                                      const Text('The Gabba', style: TextStyle(fontSize: 16, fontFamily: 'Inter', fontWeight: FontWeight.w700, color: Colors.black),)
                                     ],
                                   )
                                 ),
