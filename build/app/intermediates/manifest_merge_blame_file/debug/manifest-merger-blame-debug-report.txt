@@ -13,22 +13,22 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/android/app/src/debug/AndroidManifest.xml:6:5-66
-15-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/android/app/src/debug/AndroidManifest.xml:6:22-64
+15-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/debug/AndroidManifest.xml:6:5-66
+15-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/debug/AndroidManifest.xml:6:22-64
 16    <!-- Add this line before the <application> tag -->
 17    <meta-data
-17-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/android/app/src/main/AndroidManifest.xml:4:3-117
+17-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/main/AndroidManifest.xml:4:3-117
 18        android:name="com.google.android.geo.API_KEY"
-18-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/android/app/src/main/AndroidManifest.xml:4:14-59
+18-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/main/AndroidManifest.xml:4:14-59
 19        android:value="AIzaSyBKswQXfpePGlOy2l_JrlE-0QLRxmalb1g" />
-19-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/android/app/src/main/AndroidManifest.xml:4:60-115
+19-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/main/AndroidManifest.xml:4:60-115
 20
 21    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-21-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/android/app/src/main/AndroidManifest.xml:5:5-79
-21-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/android/app/src/main/AndroidManifest.xml:5:22-76
+21-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/main/AndroidManifest.xml:5:5-79
+21-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/main/AndroidManifest.xml:5:22-76
 22    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include required permissions for Google Maps API to run. -->
-22-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/android/app/src/main/AndroidManifest.xml:6:5-81
-22-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/my_app/android/app/src/main/AndroidManifest.xml:6:22-78
+22-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/main/AndroidManifest.xml:6:5-81
+22-->/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/main/AndroidManifest.xml:6:22-78
 23    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 23-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:23:5-79
 23-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:23:22-76
