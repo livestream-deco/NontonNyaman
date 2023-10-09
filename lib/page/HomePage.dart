@@ -1,3 +1,14 @@
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
@@ -6,10 +17,7 @@ import 'package:my_app/models/user.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'dart:developer';
 
-import 'package:my_app/page/profile/profile.dart';
-import 'package:my_app/page/stadium/Navigation.dart';
 import 'package:my_app/page/stadium/StadiumInfo.dart';
 // import the package
 
@@ -102,7 +110,7 @@ class StadiumA {
 
 class HomeView extends StatefulWidget {
   final User user;
-  HomeView(this.user, {super.key});
+  const HomeView(this.user, {super.key});
 
   @override
   State<HomeView> createState() => HomePage();
@@ -123,10 +131,10 @@ class HomePage extends State<HomeView> {
       key: key,
       clearOnSubmit: false,
       suggestions: StadiumA.getSuggestions(),
-      style: TextStyle(color: Colors.black, fontSize: 16.0),
+      style: const TextStyle(color: Colors.black, fontSize: 16.0),
       decoration: InputDecoration(
         hintText: "Search Stadium",
-        hintStyle: TextStyle(color: Colors.black),
+        hintStyle: const TextStyle(color: Colors.black),
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(
@@ -143,7 +151,6 @@ class HomePage extends State<HomeView> {
         return a.stadiumName.compareTo(b.stadiumName);
       },
       itemSubmitted: (item) async {
-        print("Selected item: '${item.stadiumName}'");
         setState(() {
           if (searchTextField.textField != null &&
               searchTextField.textField!.controller != null) {
@@ -151,9 +158,10 @@ class HomePage extends State<HomeView> {
           }
         });
         if (item.stadiumName == 'Suncorp Stadium') {
-          await Future.delayed(Duration(milliseconds: 100));
+          await Future.delayed(const Duration(milliseconds: 100));
+          // ignore: use_build_context_synchronously
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => StadiumInfo()));
+              MaterialPageRoute(builder: (context) => const StadiumInfo()));
         }
       },
       itemBuilder: (context, item) {
@@ -195,7 +203,7 @@ class HomePage extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 20, right: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -206,7 +214,7 @@ class HomePage extends State<HomeView> {
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   begin: Alignment.bottomRight,
                   end: Alignment.topLeft,
                   colors: [
@@ -228,7 +236,7 @@ class HomePage extends State<HomeView> {
                           color: Colors.blue,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       const Text(
@@ -240,7 +248,7 @@ class HomePage extends State<HomeView> {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   const Text('Where do you want to go?',
@@ -248,7 +256,7 @@ class HomePage extends State<HomeView> {
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w700)),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
@@ -262,7 +270,7 @@ class HomePage extends State<HomeView> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             const Text(
@@ -270,16 +278,14 @@ class HomePage extends State<HomeView> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
             ),
-            Container(
-              child: const Divider(
-                color: Color(0xFFDBDBDB),
-                height: 20,
-                thickness: 1,
-                indent: 0,
-                endIndent: 0,
-              ),
+            const Divider(
+              color: Color(0xFFDBDBDB),
+              height: 20,
+              thickness: 1,
+              indent: 0,
+              endIndent: 0,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             FutureBuilder(
               future: _intializeData(),
               builder: (context, snapshot) {
@@ -296,17 +302,18 @@ class HomePage extends State<HomeView> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             image: DecorationImage(
+                              // ignore: prefer_interpolation_to_compose_strings
                               image: NetworkImage('http://10.0.2.2:8000' + jsonDecode(allpocket[itemIndex]['newsletter_picture'])),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         TextButton(
                           key: Key("title$itemIndex"),
                           child: Text(
                             allpocket[itemIndex]['newsletter_title'],
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
                                 color: Color(0xff090A0A)),
@@ -316,7 +323,7 @@ class HomePage extends State<HomeView> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        StadiumInfo()));
+                                        const StadiumInfo()));
                           },
                         ),
                         
@@ -325,7 +332,7 @@ class HomePage extends State<HomeView> {
                   },
                   options: CarouselOptions(
                     autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayInterval: const Duration(seconds: 3),
                     enlargeCenterPage: true,
                     aspectRatio: 1.0,
                     viewportFraction: 1.0,
@@ -335,7 +342,7 @@ class HomePage extends State<HomeView> {
                 );
               }
             ),
-            Divider(
+            const Divider(
               color: Color(0xFFDBDBDB),
               height: 20,
               thickness: 1,
@@ -359,17 +366,18 @@ class HomePage extends State<HomeView> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             image: DecorationImage(
+                              // ignore: prefer_interpolation_to_compose_strings
                               image: NetworkImage('http://10.0.2.2:8000' + jsonDecode(allAccom[itemIndex]['accomodation_picture'])),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         TextButton(
                           key: Key("title$itemIndex"),
                           child: Text(
                             allAccom[itemIndex]['accomodation_name'],
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
                                 color: Color(0xff090A0A)),
@@ -379,7 +387,7 @@ class HomePage extends State<HomeView> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        StadiumInfo()));
+                                        const StadiumInfo()));
                           },
                         ),
                       ]
@@ -387,7 +395,7 @@ class HomePage extends State<HomeView> {
                   },
                   options: CarouselOptions(
                     autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayInterval: const Duration(seconds: 3),
                     enlargeCenterPage: true,
                     aspectRatio: 1.0,
                     viewportFraction: 1.0,

@@ -1,3 +1,10 @@
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location_permissions/location_permissions.dart';
@@ -7,15 +14,17 @@ import 'dart:math' as math;
 import 'dart:async'; // import this for StreamSubscription
 
 class Navigation extends StatefulWidget {
+  const Navigation({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _NavigateStadium createState() => _NavigateStadium();
 }
 
 class _NavigateStadium extends State<Navigation> {
   Position? _currentPosition;
   final LatLng _destination =
-      LatLng(-27.466618, 153.009418); // updated destination
-  GoogleMapController? _mapController;
+      const LatLng(-27.466618, 153.009418); // updated destination
   StreamSubscription<Position>? _positionStreamSubscription;
 
   @override
@@ -46,16 +55,14 @@ class _NavigateStadium extends State<Navigation> {
         setState(() {
           _currentPosition = position;
         });
-        print('Current position: $_currentPosition');
       });
+    // ignore: empty_catches
     } catch (e) {
-      print('Error: $e');
     }
   }
 
   void onMapCreated(GoogleMapController controller) {
-    _mapController = controller;
-    print('Map created'); // Add print statement
+    // Add print statement
   }
 
   @override
@@ -71,7 +78,7 @@ class _NavigateStadium extends State<Navigation> {
               onPressed: () => Navigator.pop(context)),
       ),
       body: _currentPosition == null
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -79,12 +86,12 @@ class _NavigateStadium extends State<Navigation> {
                   Transform.rotate(
                     angle: calculateBearing(_currentPosition!,
                         _destination), // Calculate the bearing to the destination
-                    child: Icon(Icons.arrow_upward,
+                    child: const Icon(Icons.arrow_upward,
                         size: 100.0), // Show a large arrow icon
                   ),
                   Text(
                     '${calculateDistance(_currentPosition!, _destination)} km', // Calculate the distance to the destination
-                    style: TextStyle(fontSize: 24.0),
+                    style: const TextStyle(fontSize: 24.0),
                   ),
                 ],
               ),
@@ -116,7 +123,7 @@ class _NavigateStadium extends State<Navigation> {
         latlng.LatLng(currentPosition.latitude, currentPosition.longitude);
     final end = latlng.LatLng(destination.latitude, destination.longitude);
 
-    final distance = latlng.Distance().distance(start, end);
+    final distance = const latlng.Distance().distance(start, end);
 
     // Convert meters to kilometers
     return distance / 1000;

@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:my_app/models/user.dart';
 import 'package:my_app/page/authentication/LoginPage.dart';
-import 'package:my_app/page/navbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<User> registerUser(
@@ -51,7 +50,7 @@ Future<User> registerUser(
     prefs.setString('email', userData["email"]);
     prefs.setString('name', userData["name"]);
 
-    return Future.delayed(Duration(seconds: 0), () => user);
+    return Future.delayed(const Duration(seconds: 0), () => user);
   } else {
     return Future.error("internal");
   }
@@ -86,7 +85,7 @@ class RegisterPage extends State<Register> {
         //   ),
         backgroundColor: const Color(0xFFECECEC),
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 30, right: 30),
+          padding: const EdgeInsets.only(left: 30, right: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -131,7 +130,7 @@ class RegisterPage extends State<Register> {
                         height: 8,
                       ),
                       TextFormField(
-                        key: Key("addEmail"),
+                        key: const Key("addEmail"),
                         controller: _email,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(
@@ -158,7 +157,7 @@ class RegisterPage extends State<Register> {
                         height: 8,
                       ),
                       TextFormField(
-                        key: Key("addName"),
+                        key: const Key("addName"),
                         controller: _name,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(
@@ -182,7 +181,7 @@ class RegisterPage extends State<Register> {
                     fontWeight: FontWeight.w700)),
             const SizedBox(height: 8),
             TextField(
-              key: Key("addDate"),
+              key: const Key("addDate"),
               controller: dateinput,
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.calendar_today),
@@ -228,7 +227,7 @@ class RegisterPage extends State<Register> {
                         height: 8,
                       ),
                       TextFormField(
-                        key: Key("addPassword"),
+                        key: const Key("addPassword"),
                         controller: _password,
                         obscureText: true,
                         decoration: const InputDecoration(
@@ -243,7 +242,7 @@ class RegisterPage extends State<Register> {
                 Container(
                   alignment: Alignment.center,
                   child: ElevatedButton(
-                    key: Key("addAccount"),
+                    key: const Key("addAccount"),
                     style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(48),
                         elevation: 0,
@@ -264,7 +263,7 @@ class RegisterPage extends State<Register> {
                             // create User and then pushAndRemoveUntil(MyHomePage(user:uset))
                             Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute<void>(
-                                    builder: (BuildContext context) => Login()),
+                                    builder: (BuildContext context) => const Login()),
                                 (Route<dynamic> route) => false);
                           });
                         }
