@@ -34,7 +34,7 @@ class ProfilePage extends State<Profile> {
               ),
               SizedBox(height: 20,),
               Container(
-                width: 340,
+                width: 500,
                 height: 260,
                 decoration: BoxDecoration(
                   color: Colors.white,

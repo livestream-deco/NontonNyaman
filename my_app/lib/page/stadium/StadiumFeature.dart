@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/page/stadium/Navigation.dart';
 
 
 
@@ -21,7 +22,8 @@ class StadiumRequest extends State<Stadium> {
               mainAxisAlignment: MainAxisAlignment.start,
               children : [
                 SizedBox(height: 50,),
-                Text("Stadium Features", style: TextStyle(fontFamily: 'Inter', fontSize: 20, fontWeight: FontWeight.w700),),
+                Text("Stadium Features", style: TextStyle(fontFamily: 'Inter', fontSize: 24, fontWeight: FontWeight.w700),),
+                Text("Suncorp Stadium", style: TextStyle(fontFamily: 'Inter', fontSize: 20, fontWeight: FontWeight.w700)),
                 SingleChildScrollView(
                   child: Padding(
                     padding: EdgeInsets.all(5),
@@ -122,6 +124,91 @@ class StadiumRequest extends State<Stadium> {
                 ),
                 SizedBox(height: 20,),
                 Text('Navigation', style: TextStyle(fontFamily: 'Inter', fontSize: 14, fontWeight: FontWeight.w700),),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 30,), 
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(48),
+                        elevation: 0,
+                        backgroundColor: Color(0xFFECECEC),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        )),
+                      onPressed: () async {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Navigation()));
+                          }, 
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 80.0,
+                            height: 80.0,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white, // set this to your body background color
+                              border: Border.all(
+                                color: Colors.orange, // set border color
+                                width: 3.0, // set border width
+                              ),
+                            ),
+                            child: Image.asset(
+                              'assets/images/Group.png',
+                              width: 60,
+                              height: 60,
+                            ),
+                          ),
+                          SizedBox( width: 50,),
+                          Text('Toilet', style: TextStyle(fontSize: 16, fontFamily: 'Inter', fontWeight: FontWeight.w700, color: Colors.black),)
+                        ],
+                      )
+                    ),
+                    SizedBox(height: 30,),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(48),
+                        elevation: 0,
+                        backgroundColor: Color(0xFFECECEC),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        )),
+                      onPressed: () async {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Navigation()));
+                          }, 
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 80.0,
+                            height: 80.0,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white, // set this to your body background color
+                              border: Border.all(
+                                color: Colors.orange, // set border color
+                                width: 3.0, // set border width
+                              ),
+                            ),
+                            child: Image.asset(
+                              'assets/images/Group.png',
+                              width: 60,
+                              height: 60,
+                            ),
+                          ),
+                          SizedBox( width: 50,),
+                          Text('Toilet', style: TextStyle(fontSize: 16, fontFamily: 'Inter', fontWeight: FontWeight.w700, color: Colors.black),)
+                        ],
+                      )
+                    ),
+                  ],
+                )
                 ],
               )
             ),

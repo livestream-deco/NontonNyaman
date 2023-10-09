@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/models/user.dart';
 import 'package:my_app/page/HomePage.dart';
 import 'package:my_app/page/profile/profile.dart';
 import 'package:my_app/page/requestAssistance/RequestHomePage.dart';
+import 'package:my_app/page/stadium/Navigation.dart';
 import 'package:my_app/page/stadium/StadiumFeature.dart';
 import 'package:my_app/page/emergency/emergency.dart';
+import 'package:my_app/page/stadium/StadiumInfo.dart';
+import 'package:my_app/page/stadium/searchingPage.dart';
 
+// ignore: must_be_immutable
 class Navbar extends StatefulWidget {
-  const Navbar({Key? key}) : super(key: key);
+  final User user;
+  Navbar(this.user, {Key? key}) : super(key: key);
 
   @override
   _NavbarPage createState() => _NavbarPage();
@@ -15,11 +21,18 @@ class Navbar extends StatefulWidget {
 class _NavbarPage extends State<Navbar> {
   int currentIndex = 0;
 
-  final screen = [HomeView(), Stadium(),Emergency(), Request(), Profile()];
-  
   @override
-  Widget build(BuildContext context) => Scaffold(
-      body: screen[currentIndex],
+  Widget build(BuildContext context) {
+    final screens = [
+      HomeView(widget.user),
+      SearchPage(),
+      Emergency(),
+      Request(),
+      Profile()
+    ];
+
+    return Scaffold(
+      body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Color(0xffFF7D05),
@@ -28,14 +41,9 @@ class _NavbarPage extends State<Navbar> {
         onTap: (index) => setState(() => currentIndex = index),
         items: [
           BottomNavigationBarItem(
-            icon: InkResponse(
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              child: Container(
+            icon: Container(
               padding: const EdgeInsets.only(),
               child: const Icon(Icons.house_outlined),
-            ),
             ),
             label: 'Home',
           ),
@@ -76,6 +84,7 @@ class _NavbarPage extends State<Navbar> {
             label: 'Profile',
           ),
         ],
-      )
+      ),
     );
+  }
 }
