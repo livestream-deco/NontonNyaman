@@ -39,6 +39,11 @@ dependencies:
   autocomplete_textfield: ^2.0.1
   http: ^1.1.0
   shared_preferences: ^2.2.1
+  carousel_slider: ^4.2.1
+  geolocator: ^7.6.2
+  google_maps_flutter: ^2.0.10
+  location_permissions: ^4.0.0
+  latlong2: ^0.8.0
 
 dev_dependencies:
   flutter_test:

@@ -162,7 +162,7 @@ class LoginPage extends State<Login> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute<void>(
                                     builder: (BuildContext context) =>
-                                        Navbar()),
+                                        Navbar(user)),
                                 (Route<dynamic> route) => false);
                           });
                         }
