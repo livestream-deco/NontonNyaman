@@ -208,7 +208,7 @@ class HomePage extends State<HomeView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const SizedBox(
-              height: 40,
+              height: 60,
             ),
             Container(
               padding: const EdgeInsets.all(10),
