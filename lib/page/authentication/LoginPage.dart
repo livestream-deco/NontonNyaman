@@ -16,7 +16,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Login extends StatefulWidget {
   const Login({super.key});
   Future<User> webServiceLogin(String telephone, String password) async {
-    var response = await post(Uri.parse("http://10.0.2.2:8000/user/flu-login/"),
+    var response = await post(
+        Uri.parse(
+            "http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/flu-login/"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -56,7 +58,7 @@ class LoginPage extends State<Login> {
     return Scaffold(
         backgroundColor: const Color(0xFFECECEC),
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 30, right: 30),
+          padding: const EdgeInsets.only(left: 30, right: 30),
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -99,7 +101,7 @@ class LoginPage extends State<Login> {
                         height: 8,
                       ),
                       TextFormField(
-                        key: Key("addEmail"),
+                        key: const Key("addEmail"),
                         controller: _email,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(
@@ -126,7 +128,7 @@ class LoginPage extends State<Login> {
                         height: 8,
                       ),
                       TextFormField(
-                        key: Key("addPassword"),
+                        key: const Key("addPassword"),
                         controller: _password,
                         obscureText: true,
                         decoration: const InputDecoration(
@@ -140,7 +142,7 @@ class LoginPage extends State<Login> {
                   height: 32,
                 ),
                 Container(
-                  key: Key("loginAccount"),
+                  key: const Key("loginAccount"),
                   alignment: Alignment.center,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(

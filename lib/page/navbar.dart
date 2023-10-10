@@ -3,18 +3,16 @@ import 'package:my_app/models/user.dart';
 import 'package:my_app/page/HomePage.dart';
 import 'package:my_app/page/profile/profile.dart';
 import 'package:my_app/page/requestAssistance/RequestHomePage.dart';
-import 'package:my_app/page/stadium/Navigation.dart';
-import 'package:my_app/page/stadium/StadiumFeature.dart';
 import 'package:my_app/page/emergency/emergency.dart';
-import 'package:my_app/page/stadium/StadiumInfo.dart';
 import 'package:my_app/page/stadium/searchingPage.dart';
 
 // ignore: must_be_immutable
 class Navbar extends StatefulWidget {
   final User user;
-  Navbar(this.user, {Key? key}) : super(key: key);
+  const Navbar(this.user, {Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _NavbarPage createState() => _NavbarPage();
 }
 
@@ -25,17 +23,17 @@ class _NavbarPage extends State<Navbar> {
   Widget build(BuildContext context) {
     final screens = [
       HomeView(widget.user),
-      SearchPage(),
-      Emergency(),
-      Request(),
-      Profile()
+      const SearchPage(),
+      const Emergency(),
+      const Request(),
+      const Profile()
     ];
 
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Color(0xffFF7D05),
+        selectedItemColor: const Color(0xffFF7D05),
         unselectedItemColor: Colors.white,
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
@@ -57,7 +55,7 @@ class _NavbarPage extends State<Navbar> {
           BottomNavigationBarItem(
             icon: Container(
               padding: const EdgeInsets.only(),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Color(0xffFF7D05),
               ),

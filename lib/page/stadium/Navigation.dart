@@ -1,3 +1,10 @@
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location_permissions/location_permissions.dart';
@@ -7,15 +14,18 @@ import 'dart:math' as math;
 import 'dart:async'; // import this for StreamSubscription
 
 class Navigation extends StatefulWidget {
+  const Navigation({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _NavigateStadium createState() => _NavigateStadium();
 }
 
 class _NavigateStadium extends State<Navigation> {
+  // ignore: unused_field
   Position? _currentPosition;
   final LatLng _destination =
-      LatLng(-27.466618, 153.009418); // updated destination
-  GoogleMapController? _mapController;
+      const LatLng(-27.466618, 153.009418); // updated destination
   StreamSubscription<Position>? _positionStreamSubscription;
 
   @override
@@ -46,51 +56,64 @@ class _NavigateStadium extends State<Navigation> {
         setState(() {
           _currentPosition = position;
         });
-        print('Current position: $_currentPosition');
       });
+    // ignore: empty_catches
     } catch (e) {
-      print('Error: $e');
     }
   }
 
   void onMapCreated(GoogleMapController controller) {
-    _mapController = controller;
-    print('Map created'); // Add print statement
+    // Add print statement
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
-              onPressed: () => Navigator.pop(context)),
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: const Color(0xFFECECEC),
+    appBar: AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: const Color(0xFFECECEC),
+      elevation: 0,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back, color: Colors.black),
+        onPressed: () => Navigator.pop(context),
       ),
-      body: _currentPosition == null
-          ? Center(child: CircularProgressIndicator())
-          : Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Transform.rotate(
-                    angle: calculateBearing(_currentPosition!,
-                        _destination), // Calculate the bearing to the destination
-                    child: Icon(Icons.arrow_upward,
-                        size: 100.0), // Show a large arrow icon
+    ),
+    body: StreamBuilder<Position>(
+      stream: Geolocator.getPositionStream(
+        desiredAccuracy: LocationAccuracy.high,
+        distanceFilter: 10,
+      ),
+      builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
+        if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Transform.rotate(
+                    angle: calculateBearing(snapshot.data!, _destination),
+                    child: const Icon(
+                      Icons.arrow_upward,
+                      size: 150.0, // Make the icon bigger
+                      color: Colors.orange, // Change the color to orange
+                    ),
                   ),
-                  Text(
-                    '${calculateDistance(_currentPosition!, _destination)} km', // Calculate the distance to the destination
-                    style: TextStyle(fontSize: 24.0),
-                  ),
-                ],
-              ),
+                Text(
+                  calculateDistance(snapshot.data!, _destination),
+                  style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400, fontFamily: 'Inter'),
+                ),
+              ],
             ),
-    );
-  }
+          );
+        }
+      },
+    ),
+  );
+}
 
   double calculateBearing(Position currentPosition, LatLng destination) {
     final start = latlng.LatLng(currentPosition.latitude, currentPosition.longitude);
@@ -111,14 +134,19 @@ class _NavigateStadium extends State<Navigation> {
     return bearing * (math.pi / 180);
   }
 
-  double calculateDistance(Position currentPosition, LatLng destination) {
-    final start =
-        latlng.LatLng(currentPosition.latitude, currentPosition.longitude);
-    final end = latlng.LatLng(destination.latitude, destination.longitude);
+  String calculateDistance(Position currentPosition, LatLng destination) {
+  final start =
+      latlng.LatLng(currentPosition.latitude, currentPosition.longitude);
+  final end = latlng.LatLng(destination.latitude, destination.longitude);
 
-    final distance = latlng.Distance().distance(start, end);
+  final distance = const latlng.Distance().distance(start, end);
 
-    // Convert meters to kilometers
-    return distance / 1000;
+  // Convert meters to kilometers and return as string with units
+  if (distance < 1000) {
+    return '${distance.toStringAsFixed(2)} m'; // Show the distance in meters
+  } else {
+    return '${(distance / 1000).toStringAsFixed(2)} km'; // Show the distance in kilometers
   }
+}
+
 }
