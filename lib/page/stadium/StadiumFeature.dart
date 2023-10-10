@@ -23,7 +23,10 @@ class StadiumRequest extends State<Stadium> {
         backgroundColor: const Color(0xFFECECEC),
         body: SingleChildScrollView(
           padding: const EdgeInsets.only(left: 15, right: 15),
-          child: Column(
+          child: 
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children : [
                 const SizedBox(height: 50,),
@@ -219,6 +222,8 @@ class StadiumRequest extends State<Stadium> {
             ),
           )]   
           ),
-        ));
+        )
+      )
+    );
   }
 }
