@@ -7,7 +7,7 @@
 // ignore: file_names
 // ignore: file_names
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore
+// ignore_for_file: file_names, duplicate_ignore, unused_import
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +16,7 @@ import 'package:my_app/models/user.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:my_app/page/profile/profile.dart';
 import 'dart:async';
 
 import 'package:my_app/page/stadium/StadiumInfo.dart';
@@ -161,7 +162,7 @@ class HomePage extends State<HomeView> {
           await Future.delayed(const Duration(milliseconds: 100));
           // ignore: use_build_context_synchronously
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const StadiumInfo()));
+              MaterialPageRoute(builder: (context) => const Profile()));
         }
       },
       itemBuilder: (context, item) {
@@ -328,7 +329,7 @@ class HomePage extends State<HomeView> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const StadiumInfo()));
+                                            const Profile()));
                               },
                             ),
                           ]);
@@ -392,7 +393,7 @@ class HomePage extends State<HomeView> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const StadiumInfo()));
+                                            const Profile()));
                               },
                             ),
                           ]);
