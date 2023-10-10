@@ -1,4 +1,4 @@
-#Tue Oct 10 01:53:42 AEST 2023
+#Tue Oct 10 02:42:43 AEST 2023
 base.0=/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
