@@ -5,10 +5,10 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart' as latlng;
 import 'dart:math' as math;
 import 'dart:async';
-import 'package:sensors/sensors.dart';
+import 'package:flutter_compass/flutter_compass.dart';
 
 class Navigation extends StatefulWidget {
-  const Navigation({Key? key}): super(key: key);
+  const Navigation({Key? key}) : super(key: key);
 
   @override
   _NavigateStadium createState() => _NavigateStadium();
@@ -18,28 +18,28 @@ class _NavigateStadium extends State<Navigation> {
   Position? _currentPosition;
   final LatLng _destination = const LatLng(-27.466618, 153.009418);
   StreamSubscription<Position>? _positionStreamSubscription;
-  double _gyroscopeValues = 0;
-  List<StreamSubscription<dynamic>> _streamSubscriptions =
-    <StreamSubscription<dynamic>>[];
+  double _compassHeading = 0;
+  StreamSubscription<CompassEvent>? _compassStreamSubscription;
 
   @override
   void initState() {
     super.initState();
     requestPermission();
 
-    _streamSubscriptions.add(gyroscopeEvents.listen((GyroscopeEvent event) {
-      setState(() {
-        _gyroscopeValues = event.y;
+    if (FlutterCompass.events != null) {
+      _compassStreamSubscription =
+          FlutterCompass.events!.listen((CompassEvent event) {
+        setState(() {
+          _compassHeading = event.heading ?? _compassHeading;
+        });
       });
-    }));
+    }
   }
 
   @override
   void dispose() {
     _positionStreamSubscription?.cancel();
-    for (var subscription in _streamSubscriptions) {
-      subscription.cancel();
-    }
+    _compassStreamSubscription?.cancel();
     super.dispose();
   }
 
@@ -79,10 +79,16 @@ class _NavigateStadium extends State<Navigation> {
     return resultDegree;
   }
 
-  void onMapCreated(GoogleMapController controller) {}
-
   @override
   Widget build(BuildContext context) {
+    double? bearing;
+    if (_currentPosition != null) {
+      bearing = calculateBearing(
+        LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
+        _destination,
+      );
+    }
+
     return Scaffold(
       backgroundColor: const Color(0xFFECECEC),
       appBar: AppBar(
@@ -105,7 +111,8 @@ class _NavigateStadium extends State<Navigation> {
           } else if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           } else {
-            _currentPosition = snapshot.data; // update the current position here
+            _currentPosition =
+                snapshot.data; // update the current position here
 
             return Center(
               child: Column(
@@ -113,7 +120,7 @@ class _NavigateStadium extends State<Navigation> {
                 children: <Widget>[
                   if (_currentPosition != null) ...[
                     Transform.rotate(
-                      angle: _gyroscopeValues,
+                      angle: ((_compassHeading - bearing!) / 180) * math.pi,
                       child: const Icon(
                         Icons.arrow_upward,
                         size: 150.0,
