@@ -16,8 +16,8 @@ class _NavigationArrowState extends State<NavigationArrow> {
   double? _arrowRotation;
   Position? _currentPosition;
   
-  final double destinationLatitude = -27.466618; // Put your destination coordinates here
-  final double destinationLongitude = 153.009418;
+  final double destinationLatitude = -27.472596928988683; // Put your destination coordinates here
+  final double destinationLongitude = 153.02713258868744;
 
   @override
   void initState() {
