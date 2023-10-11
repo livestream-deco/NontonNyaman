@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field, file_names, library_private_types_in_public_api, empty_catches
+// ignore_for_file: unused_field, file_names, library_private_types_in_public_api, empty_catches, prefer_interpolation_to_compose_strings
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -153,7 +153,7 @@ class _NavigateStadium extends State<Navigation> {
   }
 
   String calculateDistance(Position currentPosition, LatLng destination) {
-    latlng.Distance distance = new latlng.Distance();
+    latlng.Distance distance = const latlng.Distance();
     double meter = distance(
       latlng.LatLng(currentPosition.latitude, currentPosition.longitude),
       latlng.LatLng(destination.latitude, destination.longitude),
