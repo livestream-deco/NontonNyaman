@@ -1,5 +1,3 @@
-// ignore_for_file: unused_field, file_names, library_private_types_in_public_api, empty_catches, prefer_interpolation_to_compose_strings
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location_permissions/location_permissions.dart';
@@ -7,10 +5,10 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart' as latlng;
 import 'dart:math' as math;
 import 'dart:async';
-import 'package:flutter_compass/flutter_compass.dart'; // import the flutter_compass package
+import 'package:flutter_compass/flutter_compass.dart';
 
 class Navigation extends StatefulWidget {
-  const Navigation({super.key});
+  const Navigation({Key? key}): super(key: key);
 
   @override
   _NavigateStadium createState() => _NavigateStadium();
@@ -95,6 +93,8 @@ class _NavigateStadium extends State<Navigation> {
           } else if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           } else {
+            _currentPosition = snapshot.data; // update the current position here
+
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -106,11 +106,10 @@ class _NavigateStadium extends State<Navigation> {
                         double? compassHeading = snapshot.data?.heading;
                         if (compassHeading == null) {
                           return const Center(
-                              child: Text(
-                                  'Device does not have sensors to capture compass reading.'));
-                        }
-                        if (compassHeading < 0) {
-                          compassHeading += 360;
+                            child: Text(
+                              'Device does not have sensors to capture compass reading.'
+                            )
+                          );
                         }
                         if (_currentPosition != null) {
                           final bearing = calculateBearing(
@@ -129,19 +128,23 @@ class _NavigateStadium extends State<Navigation> {
                           );
                         } else {
                           return const Center(
-                              child: CircularProgressIndicator());
+                            child: CircularProgressIndicator()
+                          );
                         }
                       } else {
-                        return const Center(child: CircularProgressIndicator());
+                        return const Center(
+                          child: CircularProgressIndicator()
+                        );
                       }
                     },
                   ),
                   Text(
-                    calculateDistance(snapshot.data!, _destination),
+                    calculateDistance(_currentPosition!, _destination),
                     style: const TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Inter'),
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Inter'
+                    ),
                   ),
                 ],
               ),
@@ -153,12 +156,10 @@ class _NavigateStadium extends State<Navigation> {
   }
 
   String calculateDistance(Position currentPosition, LatLng destination) {
-    latlng.Distance distance = const latlng.Distance();
-    double meter = distance(
-      latlng.LatLng(currentPosition.latitude, currentPosition.longitude),
-      latlng.LatLng(destination.latitude, destination.longitude),
-    );
-    double km = meter / 1000;
-    return km.toStringAsFixed(2) + ' km';
+  final start =
+      latlng.LatLng(currentPosition.latitude, currentPosition.longitude);
+  final end = latlng.LatLng(destination.latitude, destination.longitude);
+  final distance = latlng.Distance().distance(start, end);
+  return "Distance: ${(distance / 1000).toStringAsFixed(2)} km";
   }
 }
