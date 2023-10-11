@@ -3,7 +3,7 @@
 // ignore: file_names
 // ignore: file_names
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore
+// ignore_for_file: file_names, duplicate_ignore, prefer_interpolation_to_compose_strings
 
 import 'dart:convert';
 
@@ -12,7 +12,7 @@ import 'package:my_app/page/stadium/StadiumFeature.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> fetchStadium(int id) async {
-  String url = 'http://10.0.2.2:8000/stadium/view-detail-stadium/?input_id=$id';
+  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-detail-stadium/?input_id=$id';
 
   try {
     Map<String, String> headers = {
@@ -88,22 +88,23 @@ class StadiumInformation extends State<StadiumInfo> {
                             height: 410.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
-                              image: const DecorationImage(
-                                image: AssetImage(
-                                    'assets/images/stadiumSuncorp.png'),
-                                fit: BoxFit.cover,
-                              ),
+                            ),
+                            child: Image.network(
+                              'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                  jsonDecode(allStadium[0]['stadium_picture']),
+                              fit: BoxFit
+                                  .cover, // You can use different BoxFit property as per your requirement
                             ),
                           ),
-                          const Positioned(
+                          Positioned(
                             top: 320.0, // Adjust this as needed
                             left: 20.0, // Adjust this as needed
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Suncorp Stadium',
-                                  style: TextStyle(
+                                  allStadium[0]['stadium_name'],
+                                  style: const TextStyle(
                                     color: Colors
                                         .white, // Choose a color that contrasts with your image
                                     fontSize: 24.0,
@@ -111,8 +112,8 @@ class StadiumInformation extends State<StadiumInfo> {
                                   ),
                                 ),
                                 Text(
-                                  'Milton, Queensland',
-                                  style: TextStyle(
+                                  allStadium[0]['stadium_location'],
+                                  style: const TextStyle(
                                     color: Colors
                                         .white, // Choose a color that contrasts with your image
                                     fontSize: 18.0, // Adjust the size as needed
@@ -161,9 +162,9 @@ class StadiumInformation extends State<StadiumInfo> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                const Text(
-                                  'Lang Park, nicknamed "The Cauldron", also known as Brisbane Stadium and by the sponsored name Suncorp Stadium, is a multi-purpose stadium in Brisbane, Queensland, Australia, located in the suburb of Milton. The current facility comprises a three-tiered rectangular sporting stadium with a capacity of 52,500 people.',
-                                  style: TextStyle(
+                                Text(
+                                  allStadium[0]['stadium_text'],
+                                  style: const TextStyle(
                                       fontFamily: 'Inter',
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal),
@@ -187,11 +188,12 @@ class StadiumInformation extends State<StadiumInfo> {
                                   height: 180.0,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(25),
-                                    image: const DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/stadiummapSuncorp.png'),
-                                      fit: BoxFit.cover,
-                                    ),
+                                  ),
+                                  child: Image.network(
+                                    'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                        jsonDecode(allStadium[0]['stadium_map_picture']),
+                                    fit: BoxFit
+                                        .cover, // You can use different BoxFit property as per your requirement
                                   ),
                                 ),
                                 const SizedBox(

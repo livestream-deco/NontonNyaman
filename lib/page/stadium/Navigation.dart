@@ -53,6 +53,19 @@ class _NavigateStadium extends State<Navigation> {
     } catch (e) {}
   }
 
+  double calculateBearing(LatLng start, LatLng destination) {
+    double startLatitude = start.latitude;
+    double startLongitude = start.longitude;
+    double endLatitude = destination.latitude;
+    double endLongitude = destination.longitude;
+
+    double longitudeDifference = endLongitude - startLongitude;
+    double y = math.sin(longitudeDifference) * math.cos(endLatitude);
+    double x = math.cos(startLatitude) * math.sin(endLatitude) - math.sin(startLatitude) * math.cos(endLatitude) * math.cos(longitudeDifference);
+    double resultDegree = (math.atan2(y, x) * 180.0 / math.pi + 360.0) % 360.0;
+    return resultDegree;
+  }
+
   void onMapCreated(GoogleMapController controller) {}
 
   @override
@@ -88,11 +101,18 @@ class _NavigateStadium extends State<Navigation> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         double? direction = snapshot.data?.heading;
-
                         if (direction == null) {
                           return const Center(
                               child: Text(
                                   'Device does not have sensors to capture compass reading.'));
+                        }
+
+                        if (_currentPosition != null) {
+                          final bearing = calculateBearing(
+                            LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
+                            _destination,
+                          );
+                          direction = bearing - direction;
                         }
 
                         return Transform.rotate(
