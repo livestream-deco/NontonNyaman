@@ -1,5 +1,3 @@
-// ignore_for_file: file_names, library_private_types_in_public_api, empty_catches, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location_permissions/location_permissions.dart';
@@ -7,7 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart' as latlng;
 import 'dart:math' as math;
 import 'dart:async';
-import 'package:flutter_compass/flutter_compass.dart';
+import 'package:sensors/sensors.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}): super(key: key);
@@ -20,16 +18,28 @@ class _NavigateStadium extends State<Navigation> {
   Position? _currentPosition;
   final LatLng _destination = const LatLng(-27.466618, 153.009418);
   StreamSubscription<Position>? _positionStreamSubscription;
+  double _gyroscopeValues = 0;
+  List<StreamSubscription<dynamic>> _streamSubscriptions =
+    <StreamSubscription<dynamic>>[];
 
   @override
   void initState() {
     super.initState();
     requestPermission();
+
+    _streamSubscriptions.add(gyroscopeEvents.listen((GyroscopeEvent event) {
+      setState(() {
+        _gyroscopeValues = event.y;
+      });
+    }));
   }
 
   @override
   void dispose() {
     _positionStreamSubscription?.cancel();
+    for (var subscription in _streamSubscriptions) {
+      subscription.cancel();
+    }
     super.dispose();
   }
 
@@ -101,53 +111,28 @@ class _NavigateStadium extends State<Navigation> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  StreamBuilder<CompassEvent>(
-                    stream: FlutterCompass.events,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        double? compassHeading = snapshot.data?.heading;
-                        if (compassHeading == null) {
-                          return const Center(
-                            child: Text(
-                              'Device does not have sensors to capture compass reading.'
-                            )
-                          );
-                        }
-                        if (_currentPosition != null) {
-                          final bearing = calculateBearing(
-                            LatLng(_currentPosition!.latitude,
-                                _currentPosition!.longitude),
-                            _destination,
-                          );
-                          final direction = bearing - compassHeading;
-                          return Transform.rotate(
-                            angle: (direction * (math.pi / 180) * -1),
-                            child: const Icon(
-                              Icons.arrow_upward,
-                              size: 150.0,
-                              color: Colors.orange,
-                            ),
-                          );
-                        } else {
-                          return const Center(
-                            child: CircularProgressIndicator()
-                          );
-                        }
-                      } else {
-                        return const Center(
-                          child: CircularProgressIndicator()
-                        );
-                      }
-                    },
-                  ),
-                  Text(
-                    calculateDistance(_currentPosition!, _destination),
-                    style: const TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'Inter'
+                  if (_currentPosition != null) ...[
+                    Transform.rotate(
+                      angle: _gyroscopeValues,
+                      child: const Icon(
+                        Icons.arrow_upward,
+                        size: 150.0,
+                        color: Colors.orange,
+                      ),
                     ),
-                  ),
+                    Text(
+                      calculateDistance(_currentPosition!, _destination),
+                      style: const TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'Inter',
+                      ),
+                    ),
+                  ] else ...[
+                    const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ],
                 ],
               ),
             );
@@ -158,10 +143,10 @@ class _NavigateStadium extends State<Navigation> {
   }
 
   String calculateDistance(Position currentPosition, LatLng destination) {
-  final start =
-      latlng.LatLng(currentPosition.latitude, currentPosition.longitude);
-  final end = latlng.LatLng(destination.latitude, destination.longitude);
-  final distance = latlng.Distance().distance(start, end);
-  return "Distance: ${(distance / 1000).toStringAsFixed(2)} km";
+    final start =
+        latlng.LatLng(currentPosition.latitude, currentPosition.longitude);
+    final end = latlng.LatLng(destination.latitude, destination.longitude);
+    final distance = latlng.Distance().distance(start, end);
+    return "Distance: ${(distance / 1000).toStringAsFixed(2)} km";
   }
 }
