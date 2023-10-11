@@ -107,7 +107,7 @@ class SearchStadium extends State<SearchPage> {
           await Future.delayed(const Duration(milliseconds: 100));
           // ignore: use_build_context_synchronously
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const Navigation()));
+              MaterialPageRoute(builder: (context) =>  NavigationArrow()));
         }
       },
       itemBuilder: (context, item) {

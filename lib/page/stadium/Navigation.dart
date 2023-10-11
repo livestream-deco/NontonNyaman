@@ -1,161 +1,132 @@
-// ignore_for_file: file_names, library_private_types_in_public_api, empty_catches, prefer_const_constructors
+// ignore_for_file: file_names, library_private_types_in_public_api, empty_catches, prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location_permissions/location_permissions.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:latlong2/latlong.dart' as latlng;
-import 'dart:math' as math;
-import 'dart:async';
 import 'package:flutter_compass/flutter_compass.dart';
+import 'dart:math';
 
-class Navigation extends StatefulWidget {
-  const Navigation({Key? key}) : super(key: key);
+class NavigationArrow extends StatefulWidget {
+  const NavigationArrow({super.key});
 
   @override
-  _NavigateStadium createState() => _NavigateStadium();
+  _NavigationArrowState createState() => _NavigationArrowState();
 }
 
-class _NavigateStadium extends State<Navigation> {
+class _NavigationArrowState extends State<NavigationArrow> {
+  double? _arrowRotation;
   Position? _currentPosition;
-  final LatLng _destination = const LatLng(-27.466618, 153.009418);
-  StreamSubscription<Position>? _positionStreamSubscription;
-  double _compassHeading = 0;
-  StreamSubscription<CompassEvent>? _compassStreamSubscription;
+  
+  final double destinationLatitude = -27.466618; // Put your destination coordinates here
+  final double destinationLongitude = 153.009418;
 
   @override
   void initState() {
     super.initState();
-    requestPermission();
-
-    if (FlutterCompass.events != null) {
-      _compassStreamSubscription =
-          FlutterCompass.events!.listen((CompassEvent event) {
-        setState(() {
-          _compassHeading = event.heading ?? _compassHeading;
-        });
+    _getCurrentLocation();
+    FlutterCompass.events!.listen((CompassEvent event) {
+      setState(() {
+        _arrowRotation = _calculateArrowRotation(event.heading);
       });
-    }
+    });
   }
 
-  @override
-  void dispose() {
-    _positionStreamSubscription?.cancel();
-    _compassStreamSubscription?.cancel();
-    super.dispose();
-  }
-
-  Future<void> requestPermission() async {
-    final permission = await LocationPermissions().requestPermissions();
-    if (permission == PermissionStatus.granted) {
-      getCurrentLocation();
-    }
-  }
-
-  Future<void> getCurrentLocation() async {
-    try {
-      _positionStreamSubscription = Geolocator.getPositionStream(
-        desiredAccuracy: LocationAccuracy.high,
-        distanceFilter: 10,
-      ).listen((Position position) {
+  void _getCurrentLocation() {
+    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+      .then((Position position) {
         setState(() {
           _currentPosition = position;
         });
+      }).catchError((e) {
+        print(e);
       });
-    } catch (e) {}
   }
 
-  double calculateBearing(LatLng start, LatLng destination) {
-    double startLatitude = start.latitude;
-    double startLongitude = start.longitude;
-    double endLatitude = destination.latitude;
-    double endLongitude = destination.longitude;
+  double _calculateArrowRotation(double? heading) {
+    if (_currentPosition == null || heading == null) {
+      return 0;
+    }
 
-    double longitudeDifference = endLongitude - startLongitude;
-    double y = math.sin(longitudeDifference) * math.cos(endLatitude);
-    double x = math.cos(startLatitude) * math.sin(endLatitude) -
-        math.sin(startLatitude) *
-            math.cos(endLatitude) *
-            math.cos(longitudeDifference);
-    double resultDegree = (math.atan2(y, x) * 180.0 / math.pi + 360.0) % 360.0;
-    return resultDegree;
+    double bearingToDestination = _calculateBearing(_currentPosition!.latitude, _currentPosition!.longitude, destinationLatitude, destinationLongitude);
+    double rotation = bearingToDestination - heading;
+  
+    // Ensure rotation is within -180 to +180 degrees
+    if (rotation > 180) {
+      rotation -= 360;
+    } else if (rotation < -180) {
+      rotation += 360;
+    }
+
+    return rotation;
+  }
+
+  double _calculateBearing(double lat1, double lon1, double lat2, double lon2) {
+    lat1 = _degreesToRadians(lat1);
+    lon1 = _degreesToRadians(lon1);
+    lat2 = _degreesToRadians(lat2);
+    lon2 = _degreesToRadians(lon2);
+
+    double dLon = (lon2 - lon1);
+
+    double y = sin(dLon) * cos(lat2);
+    double x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
+
+    double bearing = (atan2(y, x));
+
+    // Convert from radians to degrees
+    bearing = _radiansToDegrees(bearing);
+
+    // Normalize to 0-360
+    bearing = (bearing + 360) % 360;
+
+    return bearing;
+  }
+
+  double _degreesToRadians(double degrees) {
+    return degrees * pi / 180;
+  }
+
+  double _radiansToDegrees(double radians) {
+    return radians * 180 / pi;
+  }
+
+  // Calculate the distance between the current location and the destination
+  String _calculateDistance() {
+    if (_currentPosition == null) {
+      return 'Calculating...';
+    }
+
+    double distanceInMeters = Geolocator.distanceBetween(
+      _currentPosition!.latitude,
+      _currentPosition!.longitude,
+      destinationLatitude, 
+      destinationLongitude
+    );
+
+    if (distanceInMeters < 1000) {
+      return '${distanceInMeters.toStringAsFixed(0)} m';
+    } else {
+      return '${(distanceInMeters / 1000).toStringAsFixed(2)} km';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    double? bearing;
-    if (_currentPosition != null) {
-      bearing = calculateBearing(
-        LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
-        _destination,
-      );
-    }
-
     return Scaffold(
-      backgroundColor: const Color(0xFFECECEC),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFFECECEC),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Transform.rotate(
+              angle: ((_arrowRotation ?? 0) * pi) / 180,
+              child: Icon(Icons.arrow_upward, size: 100),
+            ),
+            Text(
+              _calculateDistance(),
+              style: TextStyle(fontSize: 20),
+            ),
+          ],
         ),
-      ),
-      body: StreamBuilder<Position>(
-        stream: Geolocator.getPositionStream(
-          desiredAccuracy: LocationAccuracy.high,
-          distanceFilter: 10,
-        ),
-        builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            _currentPosition =
-                snapshot.data; // update the current position here
-
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  if (_currentPosition != null) ...[
-                    Transform.rotate(
-                      angle: ((_compassHeading - bearing!) / 180) * math.pi,
-                      child: const Icon(
-                        Icons.arrow_upward,
-                        size: 150.0,
-                        color: Colors.orange,
-                      ),
-                    ),
-                    Text(
-                      calculateDistance(_currentPosition!, _destination),
-                      style: const TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Inter',
-                      ),
-                    ),
-                  ] else ...[
-                    const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  ],
-                ],
-              ),
-            );
-          }
-        },
       ),
     );
-  }
-
-  String calculateDistance(Position currentPosition, LatLng destination) {
-    final start =
-        latlng.LatLng(currentPosition.latitude, currentPosition.longitude);
-    final end = latlng.LatLng(destination.latitude, destination.longitude);
-    final distance = latlng.Distance().distance(start, end);
-    return "Distance: ${(distance / 1000).toStringAsFixed(2)} km";
   }
 }
