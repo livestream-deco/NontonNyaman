@@ -7,7 +7,7 @@
 // ignore: file_names
 // ignore: file_names
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore
+// ignore_for_file: file_names, duplicate_ignore, unused_import, override_on_non_overriding_member, annotate_overrides, use_build_context_synchronously, prefer_const_constructors
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +16,7 @@ import 'package:my_app/models/user.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:my_app/page/profile/profile.dart';
 import 'dart:async';
 
 import 'package:my_app/page/stadium/StadiumInfo.dart';
@@ -95,18 +96,51 @@ Future<Map<String, dynamic>> fetchAccommodation() async {
   }
 }
 
+Future<Map<String, dynamic>> fetchStadiums() async {
+  String url = 'http://10.0.2.2:8000/stadium/view-all-stadium/';
+
+  try {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+    Map<String, dynamic> body = {};
+
+    final response = await http.post(
+      Uri.parse(url),
+      headers: headers,
+      body: jsonEncode(body),
+    );
+
+    List<dynamic> extractedData = jsonDecode(response.body);
+
+    // await Future.delayed(Duration(seconds: 10));
+    if (response.statusCode == 200) {
+      return {"isSuccessful": true, "data": extractedData, "error": null};
+    } else {
+      return {
+        "isSuccessful": false,
+        "data": extractedData,
+        "error": "An error has occurred"
+      };
+    }
+  } catch (error) {
+    return {
+      "isSuccessful": false,
+      "data": [],
+      "error": "Our web service is down."
+    };
+  }
+}
+
 class StadiumA {
   final String stadiumName;
 
   StadiumA({required this.stadiumName});
 
-  static List<StadiumA> getSuggestions() {
-    // return a list of Stadium objects
-    return [
-      StadiumA(stadiumName: "Suncorp Stadium"),
-      StadiumA(stadiumName: "The Gabba"),
-      StadiumA(stadiumName: "QUT Kelvin Groove"),
-    ];
+  static List<StadiumA> fromJsonList(List<dynamic> list) {
+    return list
+        .map((item) => StadiumA(stadiumName: item['stadium_name']))
+        .toList();
   }
 }
 
@@ -119,6 +153,7 @@ class HomeView extends StatefulWidget {
 }
 
 class HomePage extends State<HomeView> {
+  List<dynamic> allStadiums = [];
   List<dynamic> allpocket = [];
   List<dynamic> allAccom = [];
   Map<String, dynamic> response = {};
@@ -127,12 +162,19 @@ class HomePage extends State<HomeView> {
   int selectedIndex = 0;
 
   @override
+  Future<void> _intializeData2() async {
+    response = await fetchStadiums();
+    if (response["isSuccessful"]) {
+      allStadiums = response["data"];
+    }
+  }
+
   void initState() {
     super.initState();
     searchTextField = AutoCompleteTextField<StadiumA>(
       key: key,
       clearOnSubmit: false,
-      suggestions: StadiumA.getSuggestions(),
+      suggestions: StadiumA.fromJsonList(allStadiums),
       style: const TextStyle(color: Colors.black, fontSize: 16.0),
       decoration: InputDecoration(
         hintText: "Search Stadium",
@@ -160,8 +202,8 @@ class HomePage extends State<HomeView> {
         if (item.stadiumName == 'Suncorp Stadium') {
           await Future.delayed(const Duration(milliseconds: 100));
           // ignore: use_build_context_synchronously
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const StadiumInfo()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => const Profile()));
         }
       },
       itemBuilder: (context, item) {
@@ -259,33 +301,67 @@ class HomePage extends State<HomeView> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    height: 48, // Set the height that you want
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    child: searchTextField, // Your AutoCompleteTextField widget
-                  ),
+                  FutureBuilder(
+                    future: _intializeData2(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return AutoCompleteTextField<StadiumA>(
+                          key: key,
+                          clearOnSubmit: false,
+                          suggestions: StadiumA.fromJsonList(allStadiums),
+                          style: const TextStyle(color: Colors.black, fontSize: 16.0),
+                          decoration: InputDecoration(
+                            hintText: "Search Stadium",
+                            hintStyle: const TextStyle(color: Colors.black),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(24),
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                          itemFilter: (item, query) {
+                            return item.stadiumName.toLowerCase().startsWith(query.toLowerCase());
+                          },
+                          itemSorter: (a, b) {
+                            return a.stadiumName.compareTo(b.stadiumName);
+                          },
+                          itemSubmitted: (item) async {
+                            setState(() {
+                              if (searchTextField.textField != null && searchTextField.textField!.controller != null) {
+                                searchTextField.textField!.controller!.text = item.stadiumName;
+                              }
+                            });
+
+                            // Find the stadium that matches the selected name
+                            var selectedStadium = allStadiums.firstWhere((stadium) => stadium['stadium_name'] == item.stadiumName, orElse: () => null);
+
+                            // If a matching stadium is found, navigate to the StadiumInfo page
+                            if (selectedStadium != null) {
+                              await Future.delayed(const Duration(milliseconds: 100));
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => StadiumInfo(selectedStadium['stadium_id'])));
+                            }
+                          },
+                          itemBuilder: (context, item) {
+                            return row(item);
+                          },
+                        );
+                      } else {
+                        return CircularProgressIndicator();
+                      }
+                    },
+                  )
                 ],
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             const Text(
               'Live News Update ',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
             ),
-            const Divider(
-              color: Color(0xFFDBDBDB),
-              height: 20,
-              thickness: 1,
-              indent: 0,
-              endIndent: 0,
-            ),
-            const SizedBox(height: 10),
             FutureBuilder(
                 future: _intializeData(),
                 builder: (context, snapshot) {
@@ -297,6 +373,8 @@ class HomePage extends State<HomeView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Stack(
+                              children: [
                             Container(
                               width: 500.0,
                               height: 185.0,
@@ -313,7 +391,10 @@ class HomePage extends State<HomeView> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 5),
+                            Positioned(
+                              bottom: 10,
+                              left: 10,
+                              child: 
                             TextButton(
                               key: Key("title$itemIndex"),
                               child: Text(
@@ -321,17 +402,16 @@ class HomePage extends State<HomeView> {
                                 style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
-                                    color: Color(0xff090A0A)),
+                                    color: Colors.white),
                               ),
                               onPressed: () async {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const StadiumInfo()));
+                                        builder: (context) => const Profile()));
                               },
-                            ),
-                          ]);
+                            ),)
+                          ])]);
                     },
                     options: CarouselOptions(
                       autoPlay: true,
@@ -339,16 +419,14 @@ class HomePage extends State<HomeView> {
                       enlargeCenterPage: true,
                       aspectRatio: 1.0,
                       viewportFraction: 1.0,
-                      height: 275,
+                      height: 220,
                     ),
                   );
                 }),
-            const Divider(
-              color: Color(0xFFDBDBDB),
-              height: 20,
-              thickness: 1,
-              indent: 0,
-              endIndent: 0,
+            const Text(
+              'Accommodation Sugestion ',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
             ),
             FutureBuilder(
                 future: _intializeData1(),
@@ -361,6 +439,8 @@ class HomePage extends State<HomeView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Stack(
+                              children: [
                             Container(
                               width: 500.0,
                               height: 185.0,
@@ -377,7 +457,10 @@ class HomePage extends State<HomeView> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 5),
+                            Positioned(
+                              bottom: 10,
+                              left: 10,
+                              child:
                             TextButton(
                               key: Key("title$itemIndex"),
                               child: Text(
@@ -385,17 +468,17 @@ class HomePage extends State<HomeView> {
                                 style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
-                                    color: Color(0xff090A0A)),
+                                    color: Colors.white),
                               ),
                               onPressed: () async {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const StadiumInfo()));
+                                        builder: (context) => const Profile()));
                               },
                             ),
-                          ]);
+                      )])
+                      ]);
                     },
                     options: CarouselOptions(
                       autoPlay: true,
@@ -403,7 +486,7 @@ class HomePage extends State<HomeView> {
                       enlargeCenterPage: true,
                       aspectRatio: 1.0,
                       viewportFraction: 1.0,
-                      height: 275,
+                      height: 220,
                     ),
                   );
                 }),
