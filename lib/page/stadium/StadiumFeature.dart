@@ -149,7 +149,7 @@ class StadiumRequest extends State<Stadium> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const Navigation()));
+                                        const NavigationArrow()));
                           }, 
                       child: Row(
                         children: [
@@ -189,7 +189,7 @@ class StadiumRequest extends State<Stadium> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const Navigation()));
+                                        const NavigationArrow()));
                           }, 
                       child: Row(
                         children: [
