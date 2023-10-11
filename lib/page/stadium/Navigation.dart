@@ -61,7 +61,10 @@ class _NavigateStadium extends State<Navigation> {
 
     double longitudeDifference = endLongitude - startLongitude;
     double y = math.sin(longitudeDifference) * math.cos(endLatitude);
-    double x = math.cos(startLatitude) * math.sin(endLatitude) - math.sin(startLatitude) * math.cos(endLatitude) * math.cos(longitudeDifference);
+    double x = math.cos(startLatitude) * math.sin(endLatitude) -
+        math.sin(startLatitude) *
+            math.cos(endLatitude) *
+            math.cos(longitudeDifference);
     double resultDegree = (math.atan2(y, x) * 180.0 / math.pi + 360.0) % 360.0;
     return resultDegree;
   }
@@ -100,29 +103,31 @@ class _NavigateStadium extends State<Navigation> {
                     stream: FlutterCompass.events,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        double? direction = snapshot.data?.heading;
-                        if (direction == null) {
+                        double? compassHeading = snapshot.data?.heading;
+                        if (compassHeading == null) {
                           return const Center(
                               child: Text(
                                   'Device does not have sensors to capture compass reading.'));
                         }
-
                         if (_currentPosition != null) {
                           final bearing = calculateBearing(
-                            LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
+                            LatLng(_currentPosition!.latitude,
+                                _currentPosition!.longitude),
                             _destination,
                           );
-                          direction = bearing - direction;
+                          final direction = bearing - compassHeading;
+                          return Transform.rotate(
+                            angle: (direction * (math.pi / 180) * -1),
+                            child: const Icon(
+                              Icons.arrow_upward,
+                              size: 150.0,
+                              color: Colors.orange,
+                            ),
+                          );
+                        } else {
+                          return const Center(
+                              child: CircularProgressIndicator());
                         }
-
-                        return Transform.rotate(
-                          angle: ((direction) * (math.pi / 180) * -1),
-                          child: const Icon(
-                            Icons.arrow_upward,
-                            size: 150.0,
-                            color: Colors.orange,
-                          ),
-                        );
                       } else {
                         return const Center(child: CircularProgressIndicator());
                       }
