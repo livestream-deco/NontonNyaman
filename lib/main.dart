@@ -24,9 +24,8 @@ class NavigationArrow extends StatefulWidget {
 class _NavigationArrowState extends State<NavigationArrow> {
   double? _arrowRotation;
   Position? _currentPosition;
-
-  final double destinationLatitude =
-      -27.466618; // Put your destination coordinates here
+  
+  final double destinationLatitude = -27.466618; // Put your destination coordinates here
   final double destinationLongitude = 153.009418;
 
   @override
@@ -42,13 +41,13 @@ class _NavigationArrowState extends State<NavigationArrow> {
 
   void _getCurrentLocation() {
     Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-        .then((Position position) {
-      setState(() {
-        _currentPosition = position;
+      .then((Position position) {
+        setState(() {
+          _currentPosition = position;
+        });
+      }).catchError((e) {
+        print(e);
       });
-    }).catchError((e) {
-      print(e);
-    });
   }
 
   double _calculateArrowRotation(double? heading) {
@@ -56,9 +55,17 @@ class _NavigationArrowState extends State<NavigationArrow> {
       return 0;
     }
 
-    double bearingToDestination = _calculateBearing(_currentPosition!.latitude,
-        _currentPosition!.longitude, destinationLatitude, destinationLongitude);
-    return bearingToDestination - heading;
+    double bearingToDestination = _calculateBearing(_currentPosition!.latitude, _currentPosition!.longitude, destinationLatitude, destinationLongitude);
+    double rotation = bearingToDestination - heading;
+  
+    // Ensure rotation is within -180 to +180 degrees
+    if (rotation > 180) {
+      rotation -= 360;
+    } else if (rotation < -180) {
+      rotation += 360;
+    }
+
+    return rotation;
   }
 
   double _calculateBearing(double lat1, double lon1, double lat2, double lon2) {
@@ -96,7 +103,7 @@ class _NavigationArrowState extends State<NavigationArrow> {
     return Scaffold(
       body: Center(
         child: Transform.rotate(
-          angle: _arrowRotation ?? 0,
+          angle: ((_arrowRotation ?? 0) * pi) / 180,
           child: Icon(Icons.arrow_upward, size: 100),
         ),
       ),
