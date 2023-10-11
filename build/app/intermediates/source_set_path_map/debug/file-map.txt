@@ -5,16 +5,17 @@ com.example.my_app-jetified-play-services-base-18.0.1-3 /Users/reynaldi/.gradle/
 com.example.my_app-jetified-window-java-1.0.0-beta04-4 /Users/reynaldi/.gradle/caches/transforms-3/ae81e06d24c799147c26814497a2a305/transformed/jetified-window-java-1.0.0-beta04/res
 com.example.my_app-jetified-play-services-maps-18.1.0-5 /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/res
 com.example.my_app-jetified-play-services-basement-18.0.0-6 /Users/reynaldi/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/res
-com.example.my_app-debug-7 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/debug/res
-com.example.my_app-main-8 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/main/res
-com.example.my_app-pngs-9 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/app/generated/res/pngs/debug
-com.example.my_app-resValues-10 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/app/generated/res/resValues/debug
-com.example.my_app-rs-11 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/app/generated/res/rs/debug
-com.example.my_app-mergeDebugResources-12 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/app/intermediates/incremental/debug/mergeDebugResources/merged.dir
-com.example.my_app-mergeDebugResources-13 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/app/intermediates/incremental/debug/mergeDebugResources/stripped.dir
-com.example.my_app-merged_res-14 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/app/intermediates/merged_res/debug
-com.example.my_app-packaged_res-15 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/flutter_plugin_android_lifecycle/intermediates/packaged_res/debug
-com.example.my_app-packaged_res-16 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/geolocator_android/intermediates/packaged_res/debug
-com.example.my_app-packaged_res-17 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/google_maps_flutter_android/intermediates/packaged_res/debug
-com.example.my_app-packaged_res-18 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/location_permissions/intermediates/packaged_res/debug
-com.example.my_app-packaged_res-19 /Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/build/shared_preferences_android/intermediates/packaged_res/debug
+com.example.my_app-debug-7 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/android/app/src/debug/res
+com.example.my_app-main-8 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/android/app/src/main/res
+com.example.my_app-pngs-9 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/app/generated/res/pngs/debug
+com.example.my_app-resValues-10 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/app/generated/res/resValues/debug
+com.example.my_app-rs-11 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/app/generated/res/rs/debug
+com.example.my_app-mergeDebugResources-12 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/app/intermediates/incremental/debug/mergeDebugResources/merged.dir
+com.example.my_app-mergeDebugResources-13 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/app/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+com.example.my_app-merged_res-14 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/app/intermediates/merged_res/debug
+com.example.my_app-packaged_res-15 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/flutter_compass/intermediates/packaged_res/debug
+com.example.my_app-packaged_res-16 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/flutter_plugin_android_lifecycle/intermediates/packaged_res/debug
+com.example.my_app-packaged_res-17 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/geolocator_android/intermediates/packaged_res/debug
+com.example.my_app-packaged_res-18 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/google_maps_flutter_android/intermediates/packaged_res/debug
+com.example.my_app-packaged_res-19 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/location_permissions/intermediates/packaged_res/debug
+com.example.my_app-packaged_res-20 /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/shared_preferences_android/intermediates/packaged_res/debug
