@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace, avoid_print, duplicate_ignore, file_names, prefer_interpolation_to_compose_strings, prefer_const_constructors
+// ignore_for_file: sized_box_for_whitespace, avoid_print, duplicate_ignore, file_names, prefer_interpolation_to_compose_strings, prefer_const_constructors, use_build_context_synchronously
 
 import 'dart:convert';
 
@@ -10,7 +10,7 @@ import 'package:my_app/page/stadium/StadiumInfo.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> fetchStadiums() async {
-  String url = 'http://10.0.2.2:8000/stadium/view-all-stadium/';
+  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-all-stadium/';
 
   try {
     Map<String, String> headers = {
@@ -50,13 +50,10 @@ class StadiumA {
 
   StadiumA({required this.stadiumName});
 
-  static List<StadiumA> getSuggestions() {
-    // return a list of Stadium objects
-    return [
-      StadiumA(stadiumName: "Suncorp Stadium"),
-      StadiumA(stadiumName: "The Gabba"),
-      StadiumA(stadiumName: "QUT Kelvin Groove"),
-    ];
+  static List<StadiumA> fromJsonList(List<dynamic> list) {
+    return list
+        .map((item) => StadiumA(stadiumName: item['stadium_name']))
+        .toList();
   }
 }
 
@@ -80,7 +77,7 @@ class SearchStadium extends State<SearchPage> {
     searchTextField = AutoCompleteTextField<StadiumA>(
       key: key,
       clearOnSubmit: false,
-      suggestions: StadiumA.getSuggestions(),
+      suggestions: StadiumA.fromJsonList(allStadiums),
       style: const TextStyle(color: Colors.black, fontSize: 16.0),
       decoration: InputDecoration(
         hintText: "Search Stadium",
@@ -167,14 +164,69 @@ class SearchStadium extends State<SearchPage> {
                       const SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        height: 60, // Set the height that you want
-                        decoration: BoxDecoration(
-                          color: const Color(0xffD9D9D9),
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child:
-                            searchTextField, // Your AutoCompleteTextField widget
+                      FutureBuilder(
+                        future: _intializeData(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            return AutoCompleteTextField<StadiumA>(
+                              key: key,
+                              clearOnSubmit: false,
+                              suggestions: StadiumA.fromJsonList(allStadiums),
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 16.0),
+                              decoration: InputDecoration(
+                                hintText: "Search Stadium",
+                                hintStyle: const TextStyle(color: Colors.black),
+                                filled: true,
+                                fillColor: Colors.white,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(24),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              itemFilter: (item, query) {
+                                return item.stadiumName
+                                    .toLowerCase()
+                                    .startsWith(query.toLowerCase());
+                              },
+                              itemSorter: (a, b) {
+                                return a.stadiumName.compareTo(b.stadiumName);
+                              },
+                              itemSubmitted: (item) async {
+                                setState(() {
+                                  if (searchTextField.textField != null &&
+                                      searchTextField.textField!.controller !=
+                                          null) {
+                                    searchTextField.textField!.controller!
+                                        .text = item.stadiumName;
+                                  }
+                                });
+
+                                // Find the stadium that matches the selected name
+                                var selectedStadium = allStadiums.firstWhere(
+                                    (stadium) =>
+                                        stadium['stadium_name'] ==
+                                        item.stadiumName,
+                                    orElse: () => null);
+
+                                // If a matching stadium is found, navigate to the StadiumInfo page
+                                if (selectedStadium != null) {
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 100));
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => StadiumInfo(
+                                          selectedStadium['stadium_id'])));
+                                }
+                              },
+                              itemBuilder: (context, item) {
+                                return row(item);
+                              },
+                            );
+                          } else {
+                            return CircularProgressIndicator();
+                          }
+                        },
                       ),
                       const SizedBox(
                         height: 35,
@@ -196,10 +248,12 @@ class SearchStadium extends State<SearchPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 for (int i = 0; i < allStadiums.length; i++)
-                                  Container(
-                                    width: 500,
-                                    height: 105,
-                                    child: ElevatedButton(
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 10),
+                                    child: Container(
+                                      width: 500,
+                                      height: 105,
+                                      child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             minimumSize:
                                                 const Size.fromHeight(48),
@@ -216,7 +270,7 @@ class SearchStadium extends State<SearchPage> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       StadiumInfo(allStadiums[i]
-                                                          ['newsletter_id'])));
+                                                          ['stadium_id'])));
                                         },
                                         child: Row(
                                           // ignore: duplicate_ignore, duplicate_ignore
@@ -229,7 +283,7 @@ class SearchStadium extends State<SearchPage> {
                                                 borderRadius:
                                                     BorderRadius.circular(24),
                                                 child: Image.network(
-                                                  'http://10.0.2.2:8000' +
+                                                  'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                                       jsonDecode(allStadiums[i]
                                                           ['stadium_picture']),
                                                   fit: BoxFit
@@ -238,7 +292,7 @@ class SearchStadium extends State<SearchPage> {
                                               ),
                                             ),
                                             const SizedBox(
-                                              width: 50,
+                                              width: 35,
                                             ),
                                             Text(
                                               allStadiums[i]['stadium_name'],
@@ -249,11 +303,10 @@ class SearchStadium extends State<SearchPage> {
                                                   color: Colors.black),
                                             )
                                           ],
-                                        )),
-                                  ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
                               ],
                             );
                           })

@@ -33,8 +33,8 @@ class _NavbarPage extends State<Navbar> {
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color(0xffFF7D05),
-        unselectedItemColor: Colors.white,
+        selectedItemColor: const Color(0xffFF7D09),
+        unselectedItemColor: const Color(0xffFF7D05),
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
         items: [
