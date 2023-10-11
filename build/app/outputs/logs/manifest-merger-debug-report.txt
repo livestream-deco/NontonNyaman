@@ -33,6 +33,7 @@ MERGED from [:shared_preferences_android] /Users/reynaldi/Documents/DECO/nontonn
 MERGED from [:google_maps_flutter_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/google_maps_flutter_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:flutter_plugin_android_lifecycle] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:geolocator_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:sensors] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/sensors/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:flutter_compass] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/flutter_compass/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:location_permissions] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/location_permissions/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/ae81e06d24c799147c26814497a2a305/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
@@ -101,6 +102,8 @@ MERGED from [:flutter_plugin_android_lifecycle] /Users/reynaldi/Documents/DECO/n
 MERGED from [:flutter_plugin_android_lifecycle] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:geolocator_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:geolocator_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:sensors] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/sensors/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:sensors] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/sensors/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_compass] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/flutter_compass/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_compass] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/flutter_compass/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:location_permissions] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/location_permissions/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41

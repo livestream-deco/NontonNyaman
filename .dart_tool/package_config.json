@@ -290,6 +290,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "sensors",
+      "rootUri": "file:///Users/reynaldi/.pub-cache/hosted/pub.dev/sensors-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "shared_preferences",
       "rootUri": "file:///Users/reynaldi/.pub-cache/hosted/pub.dev/shared_preferences-2.2.1",
       "packageUri": "lib/",
@@ -416,7 +422,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-10-10T08:09:13.873940Z",
+  "generated": "2023-10-11T12:25:18.875692Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }
