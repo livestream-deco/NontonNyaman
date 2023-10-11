@@ -4,7 +4,7 @@
             "outputFile": "com.example.my_app-mergeDebugResources-12:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/reynaldi/Documents/UQ/Semester 2/DECO3801/fork-nontonNyaman/NontonNyaman/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/Users/reynaldi/Documents/DECO/nontonnyaman-fe/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

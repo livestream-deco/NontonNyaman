@@ -109,6 +109,9 @@ class _NavigateStadium extends State<Navigation> {
                               child: Text(
                                   'Device does not have sensors to capture compass reading.'));
                         }
+                        if (compassHeading < 0) {
+                          compassHeading += 360;
+                        }
                         if (_currentPosition != null) {
                           final bearing = calculateBearing(
                             LatLng(_currentPosition!.latitude,
@@ -150,16 +153,12 @@ class _NavigateStadium extends State<Navigation> {
   }
 
   String calculateDistance(Position currentPosition, LatLng destination) {
-    final start =
-        latlng.LatLng(currentPosition.latitude, currentPosition.longitude);
-    final end = latlng.LatLng(destination.latitude, destination.longitude);
-
-    final distance = const latlng.Distance().distance(start, end);
-
-    if (distance < 1000) {
-      return '${distance.toStringAsFixed(2)} m';
-    } else {
-      return '${(distance / 1000).toStringAsFixed(2)} km';
-    }
+    latlng.Distance distance = new latlng.Distance();
+    double meter = distance(
+      latlng.LatLng(currentPosition.latitude, currentPosition.longitude),
+      latlng.LatLng(destination.latitude, destination.longitude),
+    );
+    double km = meter / 1000;
+    return km.toStringAsFixed(2) + ' km';
   }
 }
