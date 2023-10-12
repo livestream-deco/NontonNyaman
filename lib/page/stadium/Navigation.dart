@@ -5,8 +5,16 @@ import 'package:geolocator/geolocator.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'dart:math';
 
+
+
+
+
 class NavigationArrow extends StatefulWidget {
-  const NavigationArrow({super.key});
+  final double latitude;
+  final double longitude;
+
+  const NavigationArrow({required this.latitude, required this.longitude, Key? key})
+      : super(key: key);
 
   @override
   _NavigationArrowState createState() => _NavigationArrowState();
@@ -16,8 +24,7 @@ class _NavigationArrowState extends State<NavigationArrow> {
   double? _arrowRotation;
   Position? _currentPosition;
   
-  final double destinationLatitude = -27.472596928988683; // Put your destination coordinates here
-  final double destinationLongitude = 153.02713258868744;
+ 
 
   @override
   void initState() {
@@ -46,7 +53,7 @@ class _NavigationArrowState extends State<NavigationArrow> {
       return 0;
     }
 
-    double bearingToDestination = _calculateBearing(_currentPosition!.latitude, _currentPosition!.longitude, destinationLatitude, destinationLongitude);
+    double bearingToDestination = _calculateBearing(_currentPosition!.latitude, _currentPosition!.longitude, widget.latitude, widget.longitude);
     double rotation = bearingToDestination - heading;
   
     // Ensure rotation is within -180 to +180 degrees
@@ -98,8 +105,8 @@ class _NavigationArrowState extends State<NavigationArrow> {
     double distanceInMeters = Geolocator.distanceBetween(
       _currentPosition!.latitude,
       _currentPosition!.longitude,
-      destinationLatitude, 
-      destinationLongitude
+      widget.latitude, 
+      widget.longitude
     );
 
     if (distanceInMeters < 1000) {
