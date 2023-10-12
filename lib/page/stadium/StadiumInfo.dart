@@ -12,10 +12,9 @@ import 'package:my_app/page/stadium/StadiumFeature.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/link.dart';
 
-
-
 Future<Map<String, dynamic>> fetchStadium(int id) async {
-  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-detail-stadium/?input_id=$id';
+  String url =
+      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-detail-stadium/?input_id=$id';
 
   try {
     Map<String, String> headers = {
@@ -68,7 +67,6 @@ class StadiumInformation extends State<StadiumInfo> {
       allStadium = response["data"];
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -190,8 +188,11 @@ class StadiumInformation extends State<StadiumInfo> {
                                   height: 20,
                                 ),
                                 Link(
-                                  uri: Uri.parse('https://www.google.com/maps/search/?api=1&query=$formattedStadiumName'),
-                                  builder: (BuildContext context, FollowLink? followLink) => GestureDetector(
+                                  uri: Uri.parse(
+                                      'https://www.google.com/maps/search/?api=1&query=$formattedStadiumName'),
+                                  builder: (BuildContext context,
+                                          FollowLink? followLink) =>
+                                      GestureDetector(
                                     onTap: followLink,
                                     child: Container(
                                       width: 400.0,
@@ -201,7 +202,8 @@ class StadiumInformation extends State<StadiumInfo> {
                                       ),
                                       child: Image.network(
                                         'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
-                                            jsonDecode(allStadium[0]['stadium_map_picture']),
+                                            jsonDecode(allStadium[0]
+                                                ['stadium_map_picture']),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -225,8 +227,8 @@ class StadiumInformation extends State<StadiumInfo> {
                                         )),
                                     onPressed: () => Navigator.of(context).push(
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Stadium())),
+                                            builder: (context) => Stadium(
+                                                allStadium[0]['stadium_id']))),
                                     child: const Text(
                                       'Navigate',
                                       style: TextStyle(

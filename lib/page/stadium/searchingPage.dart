@@ -3,7 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:my_app/page/stadium/Navigation.dart';
+import 'package:my_app/page/profile/profile.dart';
 
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:my_app/page/stadium/StadiumInfo.dart';
@@ -107,7 +107,7 @@ class SearchStadium extends State<SearchPage> {
           await Future.delayed(const Duration(milliseconds: 100));
           // ignore: use_build_context_synchronously
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) =>  NavigationArrow()));
+              MaterialPageRoute(builder: (context) =>  Profile()));
         }
       },
       itemBuilder: (context, item) {
