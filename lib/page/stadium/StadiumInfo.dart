@@ -10,6 +10,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:my_app/page/stadium/StadiumFeature.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/link.dart';
+
+
 
 Future<Map<String, dynamic>> fetchStadium(int id) async {
   String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-detail-stadium/?input_id=$id';
@@ -66,6 +69,7 @@ class StadiumInformation extends State<StadiumInfo> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +79,8 @@ class StadiumInformation extends State<StadiumInfo> {
             child: FutureBuilder(
               future: _intializeData(),
               builder: (context, snapshot) {
+                String stadiumName = allStadium[0]['stadium_name'];
+                String formattedStadiumName = stadiumName.replaceAll(' ', '+');
                 return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -183,17 +189,22 @@ class StadiumInformation extends State<StadiumInfo> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                Container(
-                                  width: 400.0,
-                                  height: 180.0,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  child: Image.network(
-                                    'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
-                                        jsonDecode(allStadium[0]['stadium_map_picture']),
-                                    fit: BoxFit
-                                        .cover, // You can use different BoxFit property as per your requirement
+                                Link(
+                                  uri: Uri.parse('https://www.google.com/maps/search/?api=1&query=$formattedStadiumName'),
+                                  builder: (BuildContext context, FollowLink? followLink) => GestureDetector(
+                                    onTap: followLink,
+                                    child: Container(
+                                      width: 400.0,
+                                      height: 180.0,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                      child: Image.network(
+                                        'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                            jsonDecode(allStadium[0]['stadium_map_picture']),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(

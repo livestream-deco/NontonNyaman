@@ -4,6 +4,7 @@
   <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBKswQXfpePGlOy2l_JrlE-0QLRxmalb1g"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <application
         android:label="my_app"
         android:name="${applicationName}"
