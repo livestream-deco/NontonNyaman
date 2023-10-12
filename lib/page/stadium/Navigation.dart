@@ -112,17 +112,26 @@ class _NavigationArrowState extends State<NavigationArrow> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFECECEC),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Color(0xFFECECEC),
+        elevation: 0,
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.of(context).pop()),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Transform.rotate(
               angle: ((_arrowRotation ?? 0) * pi) / 180,
-              child: Icon(Icons.arrow_upward, size: 100),
+              child: Icon(Icons.arrow_upward, color:  Color(0XFFFF5C00), size: 200),
             ),
             Text(
               _calculateDistance(),
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 24, fontFamily: 'Inter', fontWeight: FontWeight.w400),
             ),
           ],
         ),
