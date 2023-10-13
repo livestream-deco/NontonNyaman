@@ -23,7 +23,7 @@ import 'package:my_app/page/stadium/StadiumInfo.dart';
 // import the package
 
 Future<Map<String, dynamic>> fetchNews() async {
-  String url = 'http://10.0.2.2:8000/newsletter/view-all-newsletter/';
+  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/newsletter/view-all-newsletter/';
 
   try {
     Map<String, String> headers = {
@@ -59,7 +59,7 @@ Future<Map<String, dynamic>> fetchNews() async {
 }
 
 Future<Map<String, dynamic>> fetchAccommodation() async {
-  String url = 'http://10.0.2.2:8000/accomodationsuggestion/view-accomodation/';
+  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/accomodationsuggestion/view-accomodation/';
 
   try {
     Map<String, String> headers = {
@@ -95,7 +95,7 @@ Future<Map<String, dynamic>> fetchAccommodation() async {
 }
 
 Future<Map<String, dynamic>> fetchStadiums() async {
-  String url = 'http://10.0.2.2:8000/stadium/view-all-stadium/';
+  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-all-stadium/';
 
   try {
     Map<String, String> headers = {
@@ -393,7 +393,7 @@ class HomePage extends State<HomeView> {
                                     // ignore: prefer_interpolation_to_compose_strings
                                     image: NetworkImage(
                                         // ignore: prefer_interpolation_to_compose_strings
-                                        'http://10.0.2.2:8000' +
+                                        'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                             jsonDecode(allpocket[itemIndex]
                                                 ['newsletter_picture'])),
                                     fit: BoxFit.cover,
@@ -460,7 +460,7 @@ class HomePage extends State<HomeView> {
                                     // ignore: prefer_interpolation_to_compose_strings
                                     image: NetworkImage(
                                         // ignore: prefer_interpolation_to_compose_strings
-                                        'http://10.0.2.2:8000' +
+                                        'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                             jsonDecode(allAccom[itemIndex]
                                                 ['accomodation_picture'])),
                                     fit: BoxFit.cover,

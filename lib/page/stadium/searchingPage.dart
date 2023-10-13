@@ -10,7 +10,7 @@ import 'package:my_app/page/stadium/StadiumInfo.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> fetchStadiums() async {
-  String url = 'http://10.0.2.2:8000/stadium/view-all-stadium/';
+  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-all-stadium/';
 
   try {
     Map<String, String> headers = {
@@ -283,7 +283,7 @@ class SearchStadium extends State<SearchPage> {
                                                 borderRadius:
                                                     BorderRadius.circular(24),
                                                 child: Image.network(
-                                                  'http://10.0.2.2:8000' +
+                                                  'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                                       jsonDecode(allStadiums[i][
                                                           'stadium_map_picture']),
                                                   fit: BoxFit

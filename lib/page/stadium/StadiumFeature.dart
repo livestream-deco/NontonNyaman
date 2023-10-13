@@ -13,7 +13,7 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/link.dart';
 
 Future<Map<String, dynamic>> fetchStadium(int id) async {
-  String url = 'http://10.0.2.2:8000/stadium/view-detail-stadium/?input_id=$id';
+  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-detail-stadium/?input_id=$id';
 
   try {
     Map<String, String> headers = {
@@ -232,7 +232,7 @@ class StadiumFeature extends State<Stadium> {
                                                 BorderRadius.circular(25),
                                           ),
                                           child: Image.network(
-                                            'http://10.0.2.2:8000' +
+                                            'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                                 jsonDecode(allStadium[0]
                                                     ['stadium_map_picture']),
                                             fit: BoxFit.cover,
