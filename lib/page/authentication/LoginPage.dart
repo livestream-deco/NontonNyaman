@@ -16,7 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Login extends StatefulWidget {
   const Login({super.key});
   Future<User> webServiceLogin(String telephone, String password) async {
-    var response = await post(Uri.parse("http://10.0.2.2:8000/user/flu-login/"),
+    var response = await post(Uri.parse("http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/flu-login/"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
