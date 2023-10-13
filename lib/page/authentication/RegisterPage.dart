@@ -19,18 +19,17 @@ Future<User> registerUser(
 ) async {
   Response response;
   try {
-    response = await post(
-        Uri.parse(
-            "http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/flu-register-user/"),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode({
-          "email": email,
-          "password": password,
-          "name": name,
-          "datetime": datetime,
-        }));
+    response =
+        await post(Uri.parse("http://10.0.2.2:8000/user/flu-register-user/"),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode({
+              "email": email,
+              "password": password,
+              "name": name,
+              "datetime": datetime,
+            }));
   } catch (e) {
     return Future.error("offline");
   }

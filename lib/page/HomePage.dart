@@ -23,8 +23,7 @@ import 'package:my_app/page/stadium/StadiumInfo.dart';
 // import the package
 
 Future<Map<String, dynamic>> fetchNews() async {
-  String url =
-      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/newsletter/view-all-newsletter/';
+  String url = 'http://10.0.2.2:8000/newsletter/view-all-newsletter/';
 
   try {
     Map<String, String> headers = {
@@ -60,8 +59,7 @@ Future<Map<String, dynamic>> fetchNews() async {
 }
 
 Future<Map<String, dynamic>> fetchAccommodation() async {
-  String url =
-      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/accomodationsuggestion/view-accomodation/';
+  String url = 'http://10.0.2.2:8000/accomodationsuggestion/view-accomodation/';
 
   try {
     Map<String, String> headers = {
@@ -309,7 +307,8 @@ class HomePage extends State<HomeView> {
                           key: key,
                           clearOnSubmit: false,
                           suggestions: StadiumA.fromJsonList(allStadiums),
-                          style: const TextStyle(color: Colors.black, fontSize: 16.0),
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 16.0),
                           decoration: InputDecoration(
                             hintText: "Search Stadium",
                             hintStyle: const TextStyle(color: Colors.black),
@@ -321,25 +320,36 @@ class HomePage extends State<HomeView> {
                             ),
                           ),
                           itemFilter: (item, query) {
-                            return item.stadiumName.toLowerCase().startsWith(query.toLowerCase());
+                            return item.stadiumName
+                                .toLowerCase()
+                                .startsWith(query.toLowerCase());
                           },
                           itemSorter: (a, b) {
                             return a.stadiumName.compareTo(b.stadiumName);
                           },
                           itemSubmitted: (item) async {
                             setState(() {
-                              if (searchTextField.textField != null && searchTextField.textField!.controller != null) {
-                                searchTextField.textField!.controller!.text = item.stadiumName;
+                              if (searchTextField.textField != null &&
+                                  searchTextField.textField!.controller !=
+                                      null) {
+                                searchTextField.textField!.controller!.text =
+                                    item.stadiumName;
                               }
                             });
 
                             // Find the stadium that matches the selected name
-                            var selectedStadium = allStadiums.firstWhere((stadium) => stadium['stadium_name'] == item.stadiumName, orElse: () => null);
+                            var selectedStadium = allStadiums.firstWhere(
+                                (stadium) =>
+                                    stadium['stadium_name'] == item.stadiumName,
+                                orElse: () => null);
 
                             // If a matching stadium is found, navigate to the StadiumInfo page
                             if (selectedStadium != null) {
-                              await Future.delayed(const Duration(milliseconds: 100));
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => StadiumInfo(selectedStadium['stadium_id'])));
+                              await Future.delayed(
+                                  const Duration(milliseconds: 100));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => StadiumInfo(
+                                      selectedStadium['stadium_id'])));
                             }
                           },
                           itemBuilder: (context, item) {
@@ -373,45 +383,46 @@ class HomePage extends State<HomeView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Stack(
-                              children: [
-                            Container(
-                              width: 500.0,
-                              height: 185.0,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                image: DecorationImage(
-                                  // ignore: prefer_interpolation_to_compose_strings
-                                  image: NetworkImage(
-                                      // ignore: prefer_interpolation_to_compose_strings
-                                      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
-                                          jsonDecode(allpocket[itemIndex]
-                                              ['newsletter_picture'])),
-                                  fit: BoxFit.cover,
+                            Stack(children: [
+                              Container(
+                                width: 500.0,
+                                height: 185.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  image: DecorationImage(
+                                    // ignore: prefer_interpolation_to_compose_strings
+                                    image: NetworkImage(
+                                        // ignore: prefer_interpolation_to_compose_strings
+                                        'http://10.0.2.2:8000' +
+                                            jsonDecode(allpocket[itemIndex]
+                                                ['newsletter_picture'])),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 10,
-                              left: 10,
-                              child: 
-                            TextButton(
-                              key: Key("title$itemIndex"),
-                              child: Text(
-                                allpocket[itemIndex]['newsletter_title'],
-                                style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white),
-                              ),
-                              onPressed: () async {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Profile()));
-                              },
-                            ),)
-                          ])]);
+                              Positioned(
+                                bottom: 10,
+                                left: 10,
+                                child: TextButton(
+                                  key: Key("title$itemIndex"),
+                                  child: Text(
+                                    allpocket[itemIndex]['newsletter_title'],
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white),
+                                  ),
+                                  onPressed: () async {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const Profile()));
+                                  },
+                                ),
+                              )
+                            ])
+                          ]);
                     },
                     options: CarouselOptions(
                       autoPlay: true,
@@ -439,46 +450,46 @@ class HomePage extends State<HomeView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Stack(
-                              children: [
-                            Container(
-                              width: 500.0,
-                              height: 185.0,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                image: DecorationImage(
-                                  // ignore: prefer_interpolation_to_compose_strings
-                                  image: NetworkImage(
-                                      // ignore: prefer_interpolation_to_compose_strings
-                                      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
-                                          jsonDecode(allAccom[itemIndex]
-                                              ['accomodation_picture'])),
-                                  fit: BoxFit.cover,
+                            Stack(children: [
+                              Container(
+                                width: 500.0,
+                                height: 185.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  image: DecorationImage(
+                                    // ignore: prefer_interpolation_to_compose_strings
+                                    image: NetworkImage(
+                                        // ignore: prefer_interpolation_to_compose_strings
+                                        'http://10.0.2.2:8000' +
+                                            jsonDecode(allAccom[itemIndex]
+                                                ['accomodation_picture'])),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 10,
-                              left: 10,
-                              child:
-                            TextButton(
-                              key: Key("title$itemIndex"),
-                              child: Text(
-                                allAccom[itemIndex]['accomodation_name'],
-                                style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white),
-                              ),
-                              onPressed: () async {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Profile()));
-                              },
-                            ),
-                      )])
-                      ]);
+                              Positioned(
+                                bottom: 10,
+                                left: 10,
+                                child: TextButton(
+                                  key: Key("title$itemIndex"),
+                                  child: Text(
+                                    allAccom[itemIndex]['accomodation_name'],
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white),
+                                  ),
+                                  onPressed: () async {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const Profile()));
+                                  },
+                                ),
+                              )
+                            ])
+                          ]);
                     },
                     options: CarouselOptions(
                       autoPlay: true,

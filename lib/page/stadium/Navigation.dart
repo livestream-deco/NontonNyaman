@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, library_private_types_in_public_api, empty_catches, prefer_const_constructors, avoid_print
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_compass/flutter_compass.dart';
@@ -21,6 +23,7 @@ class NavigationArrow extends StatefulWidget {
 }
 
 class _NavigationArrowState extends State<NavigationArrow> {
+  StreamSubscription<Position>? _positionStreamSubscription;
   double? _arrowRotation;
   Position? _currentPosition;
   
@@ -38,15 +41,21 @@ class _NavigationArrowState extends State<NavigationArrow> {
   }
 
   void _getCurrentLocation() {
-    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-      .then((Position position) {
+  Stream<Position> positionStream = Geolocator.getPositionStream(
+    desiredAccuracy: LocationAccuracy.high
+  );
+
+  _positionStreamSubscription = positionStream.listen(
+    (Position position) {
+      if (_currentPosition == null ||
+          Geolocator.distanceBetween(_currentPosition!.latitude, _currentPosition!.longitude, position.latitude, position.longitude) > 10) {
         setState(() {
           _currentPosition = position;
         });
-      }).catchError((e) {
-        print(e);
-      });
-  }
+      }
+    }
+  );
+}
 
   double _calculateArrowRotation(double? heading) {
     if (_currentPosition == null || heading == null) {
@@ -116,6 +125,12 @@ class _NavigationArrowState extends State<NavigationArrow> {
     }
   }
 
+  @override
+  void dispose() {
+    _positionStreamSubscription?.cancel();
+    super.dispose();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

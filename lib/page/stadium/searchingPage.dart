@@ -10,7 +10,7 @@ import 'package:my_app/page/stadium/StadiumInfo.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> fetchStadiums() async {
-  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-all-stadium/';
+  String url = 'http://10.0.2.2:8000/stadium/view-all-stadium/';
 
   try {
     Map<String, String> headers = {
@@ -106,8 +106,8 @@ class SearchStadium extends State<SearchPage> {
         if (item.stadiumName == 'Suncorp Stadium') {
           await Future.delayed(const Duration(milliseconds: 100));
           // ignore: use_build_context_synchronously
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) =>  Profile()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Profile()));
         }
       },
       itemBuilder: (context, item) {
@@ -283,9 +283,9 @@ class SearchStadium extends State<SearchPage> {
                                                 borderRadius:
                                                     BorderRadius.circular(24),
                                                 child: Image.network(
-                                                  'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
-                                                      jsonDecode(allStadiums[i]
-                                                          ['stadium_picture']),
+                                                  'http://10.0.2.2:8000' +
+                                                      jsonDecode(allStadiums[i][
+                                                          'stadium_map_picture']),
                                                   fit: BoxFit
                                                       .cover, // You can use different BoxFit property as per your requirement
                                                 ),
