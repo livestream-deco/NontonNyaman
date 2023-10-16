@@ -355,8 +355,7 @@ class ChooseStadium extends State<ChoosePage> {
                                                                   Request(
                                                                       widget
                                                                           .user,
-                                                                      allStadiums[
-                                                                              i]
+                                                                      allStadiums[i]
                                                                           [
                                                                           'stadium_id'])));
                                                     },
@@ -379,7 +378,7 @@ class ChooseStadium extends State<ChoosePage> {
                                                                       allStadiums[
                                                                               i]
                                                                           [
-                                                                          'stadium_map_picture']),
+                                                                          'stadium_picture']),
                                                               fit: BoxFit
                                                                   .cover, // You can use different BoxFit property as per your requirement
                                                             ),
