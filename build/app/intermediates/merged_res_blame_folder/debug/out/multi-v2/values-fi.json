@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.my_app-mergeDebugResources-14:/values-fi/values-fi.xml",
+            "outputFile": "com.example.my_app-mergeDebugResources-25:/values-fi/values-fi.xml",
             "map": [
                 {
                     "source": "/Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/res/values-fi/values.xml",
@@ -30,11 +30,11 @@
                         "endOffsets": "153,254,363,462"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
+                        "startLines": "27,37,38,39",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "2960,3063,3164,3273",
+                        "startOffsets": "2960,3720,3821,3930",
                         "endColumns": "102,100,108,98",
-                        "endOffsets": "3058,3159,3268,3367"
+                        "endOffsets": "3058,3816,3925,4024"
                     }
                 },
                 {
@@ -47,11 +47,11 @@
                         "endOffsets": "146,248,346,451,556,668,784,885"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,31",
+                        "startLines": "2,3,4,5,6,7,8,40",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,151,253,351,456,561,673,3372",
+                        "startOffsets": "55,151,253,351,456,561,673,4029",
                         "endColumns": "95,101,97,104,104,111,115,100",
-                        "endOffsets": "146,248,346,451,556,668,784,3468"
+                        "endOffsets": "146,248,346,451,556,668,784,4125"
                     }
                 },
                 {
@@ -69,6 +69,23 @@
                         "startOffsets": "1782",
                         "endColumns": "149",
                         "endOffsets": "1927"
+                    }
+                },
+                {
+                    "source": "/Users/reynaldi/.gradle/caches/transforms-3/e255c6ce9910a673f2619b479a7d74a8/transformed/jetified-exoplayer-core-2.18.7/res/values-fi/values-fi.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,120,179,241,308,385,455,549,641",
+                        "endColumns": "64,58,61,66,76,69,93,91,70",
+                        "endOffsets": "115,174,236,303,380,450,544,636,707"
+                    },
+                    "to": {
+                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3063,3128,3187,3249,3316,3393,3463,3557,3649",
+                        "endColumns": "64,58,61,66,76,69,93,91,70",
+                        "endOffsets": "3123,3182,3244,3311,3388,3458,3552,3644,3715"
                     }
                 }
             ]

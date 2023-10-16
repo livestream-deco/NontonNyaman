@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.my_app-mergeDebugResources-14:/values-fr-rCA/values-fr-rCA.xml",
+            "outputFile": "com.example.my_app-mergeDebugResources-25:/values-fr-rCA/values-fr-rCA.xml",
             "map": [
                 {
                     "source": "/Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/res/values-fr-rCA/values-fr-rCA.xml",
@@ -13,11 +13,11 @@
                         "endOffsets": "148,250,349,451,555,659,773,874"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,31",
+                        "startLines": "2,3,4,5,6,7,8,40",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,255,354,456,560,664,3623",
+                        "startOffsets": "55,153,255,354,456,560,664,4353",
                         "endColumns": "97,101,98,101,103,103,113,100",
-                        "endOffsets": "148,250,349,451,555,659,773,3719"
+                        "endOffsets": "148,250,349,451,555,659,773,4449"
                     }
                 },
                 {
@@ -30,11 +30,11 @@
                         "endOffsets": "157,259,378,483"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
+                        "startLines": "27,37,38,39",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "3190,3297,3399,3518",
+                        "startOffsets": "3190,4027,4129,4248",
                         "endColumns": "106,101,118,104",
-                        "endOffsets": "3292,3394,3513,3618"
+                        "endOffsets": "3292,4124,4243,4348"
                     }
                 },
                 {
@@ -52,6 +52,23 @@
                         "startOffsets": "1841",
                         "endColumns": "160",
                         "endOffsets": "1997"
+                    }
+                },
+                {
+                    "source": "/Users/reynaldi/.gradle/caches/transforms-3/e255c6ce9910a673f2619b479a7d74a8/transformed/jetified-exoplayer-core-2.18.7/res/values-fr-rCA/values-fr-rCA.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,129,194,272,344,427,503,600,693",
+                        "endColumns": "73,64,77,71,82,75,96,92,91",
+                        "endOffsets": "124,189,267,339,422,498,595,688,780"
+                    },
+                    "to": {
+                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3297,3371,3436,3514,3586,3669,3745,3842,3935",
+                        "endColumns": "73,64,77,71,82,75,96,92,91",
+                        "endOffsets": "3366,3431,3509,3581,3664,3740,3837,3930,4022"
                     }
                 },
                 {

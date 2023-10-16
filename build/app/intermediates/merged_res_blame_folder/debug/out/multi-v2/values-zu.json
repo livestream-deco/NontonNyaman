@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.my_app-mergeDebugResources-14:/values-zu/values-zu.xml",
+            "outputFile": "com.example.my_app-mergeDebugResources-25:/values-zu/values-zu.xml",
             "map": [
                 {
                     "source": "/Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/res/values-zu/values.xml",
@@ -30,11 +30,28 @@
                         "endOffsets": "162,270,382,494"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
+                        "startLines": "27,37,38,39",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "3070,3182,3290,3402",
+                        "startOffsets": "3070,3837,3945,4057",
                         "endColumns": "111,107,111,111",
-                        "endOffsets": "3177,3285,3397,3509"
+                        "endOffsets": "3177,3940,4052,4164"
+                    }
+                },
+                {
+                    "source": "/Users/reynaldi/.gradle/caches/transforms-3/e255c6ce9910a673f2619b479a7d74a8/transformed/jetified-exoplayer-core-2.18.7/res/values-zu/values-zu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,183,245,314,391,471,560,641",
+                        "endColumns": "68,58,61,68,76,79,88,80,68",
+                        "endOffsets": "119,178,240,309,386,466,555,636,705"
+                    },
+                    "to": {
+                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3182,3251,3310,3372,3441,3518,3598,3687,3768",
+                        "endColumns": "68,58,61,68,76,79,88,80,68",
+                        "endOffsets": "3246,3305,3367,3436,3513,3593,3682,3763,3832"
                     }
                 },
                 {
@@ -47,11 +64,11 @@
                         "endOffsets": "148,252,351,454,560,667,780,881"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,31",
+                        "startLines": "2,3,4,5,6,7,8,40",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,257,356,459,565,672,3514",
+                        "startOffsets": "55,153,257,356,459,565,672,4169",
                         "endColumns": "97,103,98,102,105,106,112,100",
-                        "endOffsets": "148,252,351,454,560,667,780,3610"
+                        "endOffsets": "148,252,351,454,560,667,780,4265"
                     }
                 },
                 {

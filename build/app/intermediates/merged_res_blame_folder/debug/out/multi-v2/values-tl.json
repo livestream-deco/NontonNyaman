@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.my_app-mergeDebugResources-14:/values-tl/values-tl.xml",
+            "outputFile": "com.example.my_app-mergeDebugResources-25:/values-tl/values-tl.xml",
             "map": [
                 {
                     "source": "/Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/res/values-tl/values.xml",
@@ -47,11 +47,11 @@
                         "endOffsets": "153,258,369,474"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
+                        "startLines": "27,37,38,39",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "3151,3254,3359,3470",
+                        "startOffsets": "3151,3963,4068,4179",
                         "endColumns": "102,104,110,104",
-                        "endOffsets": "3249,3354,3465,3570"
+                        "endOffsets": "3249,4063,4174,4279"
                     }
                 },
                 {
@@ -64,11 +64,28 @@
                         "endOffsets": "147,249,350,447,554,662,784,885"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,31",
+                        "startLines": "2,3,4,5,6,7,8,40",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,152,254,355,452,559,667,3575",
+                        "startOffsets": "55,152,254,355,452,559,667,4284",
                         "endColumns": "96,101,100,96,106,107,121,100",
-                        "endOffsets": "147,249,350,447,554,662,784,3671"
+                        "endOffsets": "147,249,350,447,554,662,784,4380"
+                    }
+                },
+                {
+                    "source": "/Users/reynaldi/.gradle/caches/transforms-3/e255c6ce9910a673f2619b479a7d74a8/transformed/jetified-exoplayer-core-2.18.7/res/values-tl/values-tl.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,132,196,264,330,410,488,588,686",
+                        "endColumns": "76,63,67,65,79,77,99,97,77",
+                        "endOffsets": "127,191,259,325,405,483,583,681,759"
+                    },
+                    "to": {
+                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3254,3331,3395,3463,3529,3609,3687,3787,3885",
+                        "endColumns": "76,63,67,65,79,77,99,97,77",
+                        "endOffsets": "3326,3390,3458,3524,3604,3682,3782,3880,3958"
                     }
                 }
             ]

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.my_app-mergeDebugResources-14:/values-nl/values-nl.xml",
+            "outputFile": "com.example.my_app-mergeDebugResources-25:/values-nl/values-nl.xml",
             "map": [
                 {
                     "source": "/Users/reynaldi/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/res/values-nl/values.xml",
@@ -30,11 +30,11 @@
                         "endOffsets": "153,254,365,464"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
+                        "startLines": "27,37,38,39",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "3091,3194,3295,3406",
+                        "startOffsets": "3091,3850,3951,4062",
                         "endColumns": "102,100,110,98",
-                        "endOffsets": "3189,3290,3401,3500"
+                        "endOffsets": "3189,3946,4057,4156"
                     }
                 },
                 {
@@ -47,11 +47,28 @@
                         "endOffsets": "152,254,354,454,561,665,784,885"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,31",
+                        "startLines": "2,3,4,5,6,7,8,40",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,157,259,359,459,566,670,3505",
+                        "startOffsets": "55,157,259,359,459,566,670,4161",
                         "endColumns": "101,101,99,99,106,103,118,100",
-                        "endOffsets": "152,254,354,454,561,665,784,3601"
+                        "endOffsets": "152,254,354,454,561,665,784,4257"
+                    }
+                },
+                {
+                    "source": "/Users/reynaldi/.gradle/caches/transforms-3/e255c6ce9910a673f2619b479a7d74a8/transformed/jetified-exoplayer-core-2.18.7/res/values-nl/values-nl.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,126,190,254,321,398,467,556,639",
+                        "endColumns": "70,63,63,66,76,68,88,82,71",
+                        "endOffsets": "121,185,249,316,393,462,551,634,706"
+                    },
+                    "to": {
+                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3194,3265,3329,3393,3460,3537,3606,3695,3778",
+                        "endColumns": "70,63,63,66,76,68,88,82,71",
+                        "endOffsets": "3260,3324,3388,3455,3532,3601,3690,3773,3845"
                     }
                 },
                 {

@@ -29,123 +29,201 @@
 22    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 22-->/Users/reynaldi/Documents/DECO/nontonnyaman-fe/android/app/src/main/AndroidManifest.xml:6:5-81
 22-->/Users/reynaldi/Documents/DECO/nontonnyaman-fe/android/app/src/main/AndroidManifest.xml:6:22-78
-23    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- Include required permissions for Google Maps API to run. -->
+23    <uses-permission android:name="android.permission.CALL_PHONE" />
 23-->/Users/reynaldi/Documents/DECO/nontonnyaman-fe/android/app/src/main/AndroidManifest.xml:7:5-69
 23-->/Users/reynaldi/Documents/DECO/nontonnyaman-fe/android/app/src/main/AndroidManifest.xml:7:22-66
-24    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-24-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:23:5-79
-24-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:23:22-76
-25
-26    <uses-feature
-26-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:26:5-28:35
-27        android:glEsVersion="0x00020000"
-27-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:27:9-41
-28        android:required="true" />
-28-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:28:9-32
-29
-30    <queries>
-30-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:30:5-34:15
+24    <uses-permission android:name="android.permission.CAMERA" />
+24-->/Users/reynaldi/Documents/DECO/nontonnyaman-fe/android/app/src/main/AndroidManifest.xml:8:5-65
+24-->/Users/reynaldi/Documents/DECO/nontonnyaman-fe/android/app/src/main/AndroidManifest.xml:8:22-62
+25    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Include required permissions for Google Maps API to run. -->
+25-->/Users/reynaldi/Documents/DECO/nontonnyaman-fe/android/app/src/main/AndroidManifest.xml:9:5-80
+25-->/Users/reynaldi/Documents/DECO/nontonnyaman-fe/android/app/src/main/AndroidManifest.xml:9:22-78
+26    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+26-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:23:5-79
+26-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:23:22-76
+27
+28    <uses-feature
+28-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:26:5-28:35
+29        android:glEsVersion="0x00020000"
+29-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:27:9-41
+30        android:required="true" />
+30-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:28:9-32
 31
-32        <!-- Needs to be explicitly declared on Android R+ -->
-33        <package android:name="com.google.android.apps.maps" />
-33-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:33:9-64
-33-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:33:18-61
-34    </queries>
-35
-36    <permission
-36-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
-37        android:name="com.example.my_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-37-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
-38        android:protectionLevel="signature" />
-38-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
-39
-40    <uses-permission android:name="com.example.my_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-40-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
-40-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:26:22-94
+32    <queries>
+32-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:30:5-34:15
+33
+34        <!-- Needs to be explicitly declared on Android R+ -->
+35        <package android:name="com.google.android.apps.maps" />
+35-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:33:9-64
+35-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:33:18-61
+36    </queries>
+37
+38    <permission
+38-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
+39        android:name="com.example.my_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+39-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
+40        android:protectionLevel="signature" />
+40-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
 41
-42    <application
-43        android:name="android.app.Application"
-44        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-44-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:28:18-86
-45        android:debuggable="true"
-46        android:icon="@mipmap/ic_launcher"
-47        android:label="my_app" >
-48        <activity
-49            android:name="com.example.my_app.MainActivity"
-50            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-51            android:exported="true"
-52            android:hardwareAccelerated="true"
-53            android:launchMode="singleTop"
-54            android:theme="@style/LaunchTheme"
-55            android:windowSoftInputMode="adjustResize" >
-56
-57            <!--
-58                 Specifies an Android theme to apply to this Activity as soon as
-59                 the Android process has started. This theme is visible to the user
-60                 while the Flutter UI initializes. After that, this theme continues
-61                 to determine the Window background behind the Flutter UI.
-62            -->
-63            <meta-data
-64                android:name="io.flutter.embedding.android.NormalTheme"
-65                android:resource="@style/NormalTheme" />
-66
-67            <intent-filter>
-68                <action android:name="android.intent.action.MAIN" />
-69
-70                <category android:name="android.intent.category.LAUNCHER" />
-71            </intent-filter>
-72        </activity>
-73        <!--
-74             Don't delete the meta-data below.
-75             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-76        -->
-77        <meta-data
-78            android:name="flutterEmbedding"
-79            android:value="2" />
-80
-81        <activity
-81-->[:url_launcher_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-13:74
-82            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-82-->[:url_launcher_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
-83            android:exported="false"
-83-->[:url_launcher_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-37
-84            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-84-->[:url_launcher_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-71
-85
-86        <uses-library
-86-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
-87            android:name="androidx.window.extensions"
-87-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
-88            android:required="false" />
-88-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
-89        <uses-library
-89-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
-90            android:name="androidx.window.sidecar"
-90-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
-91            android:required="false" /> <!-- Needs to be explicitly declared on P+ -->
-91-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
-92        <uses-library
-92-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:39:9-41:40
-93            android:name="org.apache.http.legacy"
-93-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:40:13-50
-94            android:required="false" />
-94-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:41:13-37
-95
-96        <activity
-96-->[com.google.android.gms:play-services-base:18.0.1] /Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-97            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-97-->[com.google.android.gms:play-services-base:18.0.1] /Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-98            android:exported="false"
-98-->[com.google.android.gms:play-services-base:18.0.1] /Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-99            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-99-->[com.google.android.gms:play-services-base:18.0.1] /Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+42    <uses-permission android:name="com.example.my_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+42-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
+42-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:26:22-94
+43
+44    <application
+45        android:name="io.flutter.app.FlutterMultiDexApplication"
+46        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+46-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:28:18-86
+47        android:debuggable="true"
+48        android:icon="@mipmap/ic_launcher"
+49        android:label="my_app" >
+50        <activity
+51            android:name="com.example.my_app.MainActivity"
+52            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+53            android:exported="true"
+54            android:hardwareAccelerated="true"
+55            android:launchMode="singleTop"
+56            android:theme="@style/LaunchTheme"
+57            android:windowSoftInputMode="adjustResize" >
+58
+59            <!--
+60                 Specifies an Android theme to apply to this Activity as soon as
+61                 the Android process has started. This theme is visible to the user
+62                 while the Flutter UI initializes. After that, this theme continues
+63                 to determine the Window background behind the Flutter UI.
+64            -->
+65            <meta-data
+66                android:name="io.flutter.embedding.android.NormalTheme"
+67                android:resource="@style/NormalTheme" />
+68
+69            <intent-filter>
+70                <action android:name="android.intent.action.MAIN" />
+71
+72                <category android:name="android.intent.category.LAUNCHER" />
+73            </intent-filter>
+74        </activity>
+75        <!--
+76             Don't delete the meta-data below.
+77             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+78        -->
+79        <meta-data
+80            android:name="flutterEmbedding"
+81            android:value="2" />
+82
+83        <provider
+83-->[:image_picker_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-18:20
+84            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+84-->[:image_picker_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-82
+85            android:authorities="com.example.my_app.flutter.image_provider"
+85-->[:image_picker_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-74
+86            android:exported="false"
+86-->[:image_picker_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+87            android:grantUriPermissions="true" >
+87-->[:image_picker_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-47
+88            <meta-data
+88-->[:image_picker_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:75
+89                android:name="android.support.FILE_PROVIDER_PATHS"
+89-->[:image_picker_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-67
+90                android:resource="@xml/flutter_image_picker_file_paths" />
+90-->[:image_picker_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-72
+91        </provider>
+92
+93        <activity
+93-->[:url_launcher_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-13:74
+94            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+94-->[:url_launcher_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
+95            android:exported="false"
+95-->[:url_launcher_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-37
+96            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" /> <!-- Needs to be explicitly declared on P+ -->
+96-->[:url_launcher_android] /Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-71
+97        <uses-library
+97-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:39:9-41:40
+98            android:name="org.apache.http.legacy"
+98-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:40:13-50
+99            android:required="false" />
+99-->[com.google.android.gms:play-services-maps:18.1.0] /Users/reynaldi/.gradle/caches/transforms-3/d7f7973f000d5c8945a05a4db1417b66/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:41:13-37
 100
-101        <meta-data
-101-->[com.google.android.gms:play-services-basement:18.0.0] /Users/reynaldi/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
-102            android:name="com.google.android.gms.version"
-102-->[com.google.android.gms:play-services-basement:18.0.0] /Users/reynaldi/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
-103            android:value="@integer/google_play_services_version" />
-103-->[com.google.android.gms:play-services-basement:18.0.0] /Users/reynaldi/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
-104    </application>
+101        <activity
+101-->[com.google.android.gms:play-services-base:18.0.1] /Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+102            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+102-->[com.google.android.gms:play-services-base:18.0.1] /Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+103            android:exported="false"
+103-->[com.google.android.gms:play-services-base:18.0.1] /Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+104            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+104-->[com.google.android.gms:play-services-base:18.0.1] /Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
 105
-106</manifest>
+106        <meta-data
+106-->[com.google.android.gms:play-services-basement:18.0.0] /Users/reynaldi/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+107            android:name="com.google.android.gms.version"
+107-->[com.google.android.gms:play-services-basement:18.0.0] /Users/reynaldi/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+108            android:value="@integer/google_play_services_version" />
+108-->[com.google.android.gms:play-services-basement:18.0.0] /Users/reynaldi/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+109
+110        <uses-library
+110-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+111            android:name="androidx.window.extensions"
+111-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+112            android:required="false" />
+112-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+113        <uses-library
+113-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+114            android:name="androidx.window.sidecar"
+114-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+115            android:required="false" />
+115-->[androidx.window:window:1.0.0-beta04] /Users/reynaldi/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+116
+117        <provider
+117-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+118            android:name="androidx.startup.InitializationProvider"
+118-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:25:13-67
+119            android:authorities="com.example.my_app.androidx-startup"
+119-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:26:13-68
+120            android:exported="false" >
+120-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:27:13-37
+121            <meta-data
+121-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+122                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+122-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+123                android:value="androidx.startup" />
+123-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+124        </provider>
+125
+126        <receiver
+126-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+127            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+127-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+128            android:directBootAware="false"
+128-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+129            android:enabled="true"
+129-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+130            android:exported="true"
+130-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+131            android:permission="android.permission.DUMP" >
+131-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+132            <intent-filter>
+132-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+133                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+133-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+133-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+134            </intent-filter>
+135            <intent-filter>
+135-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+136                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+136-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+136-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+137            </intent-filter>
+138            <intent-filter>
+138-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+139                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+139-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+139-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+140            </intent-filter>
+141            <intent-filter>
+141-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+142                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/reynaldi/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+143            </intent-filter>
+144        </receiver>
+145    </application>
+146
+147</manifest>

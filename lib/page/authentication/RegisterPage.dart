@@ -4,54 +4,68 @@
 // ignore_for_file: file_names, unused_local_variable, duplicate_ignore
 
 import 'dart:convert';
+import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:my_app/models/user.dart';
 import 'package:my_app/page/authentication/LoginPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:image_picker/image_picker.dart';
 
 Future<User> registerUser(
   String email,
   String password,
   String name,
   String datetime,
+  String disability,
+  File imageFile,
 ) async {
-  Response response;
   try {
-    response =
-        await post(Uri.parse("http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/flu-register-user/"),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode({
-              "email": email,
-              "password": password,
-              "name": name,
-              "datetime": datetime,
-            }));
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse(
+          "http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/flu-register-user/"),
+    );
+
+    request.fields['email'] = email;
+    request.fields['password'] = password;
+    request.fields['name'] = name;
+    request.fields['datetime'] = datetime;
+    request.fields['disability'] = disability;
+
+    String fieldName = 'image'; // Field name for the image on the server.
+    request.files
+        .add(await http.MultipartFile.fromPath(fieldName, imageFile.path));
+
+    var response = await request.send();
+    var responseData = await response.stream.toBytes();
+    var responseString = String.fromCharCodes(responseData);
+
+    if (response.statusCode == 200) {
+      Map userData = jsonDecode(responseString);
+      User user = User(
+          datetime: userData["datetime"],
+          sessionId: userData["session-id"],
+          isCitizen: userData["role_users"],
+          email: userData["email"],
+          isStaff: false,
+          name: userData["name"],
+          disability: userData["disability"]);
+
+      final prefs = await SharedPreferences.getInstance();
+
+      prefs.setString('sessionId', userData["session-id"]);
+      prefs.setString('email', userData["email"]);
+      prefs.setString('name', userData["name"]);
+      prefs.setString('disability', userData["disability"]);
+
+      return user; // Return the user object on success
+    } else {
+      return Future.error("internal");
+    }
   } catch (e) {
     return Future.error("offline");
-  }
-  if (response.statusCode == 200) {
-    Map userData = jsonDecode(response.body);
-    User user = User(
-        datetime: userData["datetime"],
-        sessionId: userData["session-id"],
-        isCitizen: true,
-        email: userData["email"],
-        name: userData["name"]);
-
-    final prefs = await SharedPreferences.getInstance();
-
-    prefs.setString('sessionId', userData["session-id"]);
-    prefs.setBool('isCitizen', userData["role_users"]);
-    prefs.setString('email', userData["email"]);
-    prefs.setString('name', userData["name"]);
-
-    return Future.delayed(const Duration(seconds: 0), () => user);
-  } else {
-    return Future.error("internal");
   }
 }
 
@@ -64,16 +78,31 @@ class Register extends StatefulWidget {
 
 class RegisterPage extends State<Register> {
   TextEditingController dateinput = TextEditingController();
+  File? _selectedImage;
+  final ImagePicker _picker = ImagePicker();
+
   @override
   void initState() {
     dateinput.text = ""; //set the initial value of text field
     super.initState();
   }
 
+  Future<File?> pickImage() async {
+    // ignore: deprecated_member_use
+    final pickedFile = await _picker.getImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      return File(pickedFile.path);
+    } else {
+      return null;
+    }
+  }
+
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _datetime = TextEditingController();
+  final TextEditingController _disability = TextEditingController();
   bool submitting = false;
   @override
   Widget build(BuildContext context) {
@@ -171,6 +200,49 @@ class RegisterPage extends State<Register> {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                      const Text(
+                        'Disability',
+                        style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      TextFormField(
+                        key: const Key("addDisability"),
+                        controller: _disability,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12))),
+                            hintText: 'Insert disability..'),
+                      ),
+                    ])),
+                const SizedBox(
+                  height: 32,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    File? image = await pickImage();
+                    setState(() {
+                      _selectedImage = image;
+                    });
+                  },
+                  child: const Text('Select Profile Picture'),
+                ),
+                if (_selectedImage != null)
+                  Image.file(_selectedImage!)
+                else
+                  const Text('No image selected.'),
+                const SizedBox(
+                  height: 20,
+                ),
+                SingleChildScrollView(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                       const Text('Date of Birth',
                           style: TextStyle(
                               fontFamily: 'Inter',
@@ -244,38 +316,74 @@ class RegisterPage extends State<Register> {
                   alignment: Alignment.center,
                   child: ElevatedButton(
                     key: const Key("addAccount"),
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(48),
-                        elevation: 0,
-                        backgroundColor: const Color(0XFFFF5C00),
-                        shape: RoundedRectangleBorder(
+                    style: ButtonStyle(
+                      minimumSize:
+                          MaterialStateProperty.all(const Size.fromHeight(48)),
+                      elevation: MaterialStateProperty.all(0),
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.disabled)) {
+                            return const Color(
+                                0XFFFF5C00); // use the same color even when the button is disabled
+                          }
+                          return const Color(0XFFFF5C00); // default color
+                        },
+                      ),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24),
-                        )),
-                    onPressed: submitting
+                        ),
+                      ),
+                    ),
+                    onPressed: submitting || _selectedImage == null
                         ? null
                         : () async {
                             setState(() {
                               submitting = true;
                             });
-                            {
-                              await registerUser(_email.text, _password.text,
-                                      _name.text, _datetime.text)
-                                  .then((user) {
-                                // create User and then pushAndRemoveUntil(MyHomePage(user:uset))
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute<void>(
-                                        builder: (BuildContext context) =>
-                                            const Login()),
-                                    (Route<dynamic> route) => false);
+
+                            try {
+                              User user = await registerUser(
+                                _email.text,
+                                _password.text,
+                                _name.text,
+                                _datetime.text,
+                                _disability.text,
+                                _selectedImage!,
+                              );
+
+                              // After the user is registered, navigate to the login page and remove
+                              // all previous routes from the stack.
+                              // ignore: use_build_context_synchronously
+                              Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      const Login(),
+                                ),
+                                (Route<dynamic> route) => false,
+                              );
+                            } catch (e) {
+                              // Show error message using a SnackBar
+                              // ignore: use_build_context_synchronously
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                      'An error occurred: Email or Password does not exist'),
+                                ),
+                              );
+                            } finally {
+                              setState(() {
+                                submitting = false;
                               });
                             }
                           },
                     child: const Text(
                       'Register',
                       style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 22,
-                          fontWeight: FontWeight.w700),
+                        fontFamily: 'Inter',
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
