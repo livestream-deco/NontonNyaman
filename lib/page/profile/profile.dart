@@ -7,6 +7,7 @@ import 'package:my_app/main.dart';
 import 'package:my_app/models/user.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:my_app/page/profile/editProfile.dart';
 
 Future<Map<String, dynamic>> fetchUser(User user) async {
   String url =
@@ -126,19 +127,25 @@ class ProfilePage extends State<Profile> {
                         Positioned(
                           right: 0,
                           bottom: 0,
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color(
-                                  0XFFFF5C00), // Change this to the color you want for the background of the circle.
-                            ),
-                            alignment: Alignment.center,
-                            child: const Icon(
-                              Icons.edit, // Change this to the icon you want.
-                              color: Colors
-                                  .black, // Change this to the color you want for the icon.
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => EditProfile(widget.user)), // Change NewPage to your target page
+                              );
+                            },
+                            child: Container(
+                              width: 40,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0XFFFF5C00), // Change this to the color you want for the background of the circle.
+                              ),
+                              alignment: Alignment.center,
+                              child: const Icon(
+                                Icons.edit, // Change this to the icon you want.
+                                color: Colors.black, // Change this to the color you want for the icon.
+                              ),
                             ),
                           ),
                         ),
