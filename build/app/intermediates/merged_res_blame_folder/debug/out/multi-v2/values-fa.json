@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.my_app-mergeDebugResources-14:/values-fa/values-fa.xml",
+            "outputFile": "com.example.my_app-mergeDebugResources-25:/values-fa/values-fa.xml",
             "map": [
                 {
                     "source": "/Users/reynaldi/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/res/values-fa/values.xml",
@@ -30,11 +30,11 @@
                         "endOffsets": "149,251,350,450,551,657,774,875"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,31",
+                        "startLines": "2,3,4,5,6,7,8,40",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,154,256,355,455,556,662,3415",
+                        "startOffsets": "55,154,256,355,455,556,662,4065",
                         "endColumns": "98,101,98,99,100,105,116,100",
-                        "endOffsets": "149,251,350,450,551,657,774,3511"
+                        "endOffsets": "149,251,350,450,551,657,774,4161"
                     }
                 },
                 {
@@ -64,11 +64,28 @@
                         "endOffsets": "149,246,357,460"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
+                        "startLines": "27,37,38,39",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "3005,3104,3201,3312",
+                        "startOffsets": "3005,3754,3851,3962",
                         "endColumns": "98,96,110,102",
-                        "endOffsets": "3099,3196,3307,3410"
+                        "endOffsets": "3099,3846,3957,4060"
+                    }
+                },
+                {
+                    "source": "/Users/reynaldi/.gradle/caches/transforms-3/e255c6ce9910a673f2619b479a7d74a8/transformed/jetified-exoplayer-core-2.18.7/res/values-fa/values-fa.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,122,183,250,310,388,463,552,640",
+                        "endColumns": "66,60,66,59,77,74,88,87,64",
+                        "endOffsets": "117,178,245,305,383,458,547,635,700"
+                    },
+                    "to": {
+                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3104,3171,3232,3299,3359,3437,3512,3601,3689",
+                        "endColumns": "66,60,66,59,77,74,88,87,64",
+                        "endOffsets": "3166,3227,3294,3354,3432,3507,3596,3684,3749"
                     }
                 }
             ]

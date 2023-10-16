@@ -7,7 +7,7 @@
 // ignore: file_names
 // ignore: file_names
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore, unused_import, override_on_non_overriding_member, annotate_overrides, use_build_context_synchronously, prefer_const_constructors
+// ignore_for_file: file_names, duplicate_ignore, unused_import, override_on_non_overriding_member, annotate_overrides, use_build_context_synchronously, prefer_const_constructors, prefer_adjacent_string_concatenation, avoid_print
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +16,8 @@ import 'package:my_app/models/user.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:my_app/page/navbar.dart';
+import 'package:my_app/page/newsletter/newsletter.dart';
 import 'package:my_app/page/profile/profile.dart';
 import 'dart:async';
 
@@ -23,7 +25,8 @@ import 'package:my_app/page/stadium/StadiumInfo.dart';
 // import the package
 
 Future<Map<String, dynamic>> fetchNews() async {
-  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/newsletter/view-all-newsletter/';
+  String url =
+      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/newsletter/view-all-newsletter/';
 
   try {
     Map<String, String> headers = {
@@ -59,7 +62,8 @@ Future<Map<String, dynamic>> fetchNews() async {
 }
 
 Future<Map<String, dynamic>> fetchAccommodation() async {
-  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/accomodationsuggestion/view-accomodation/';
+  String url =
+      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/accomodationsuggestion/view-accomodation/';
 
   try {
     Map<String, String> headers = {
@@ -95,7 +99,8 @@ Future<Map<String, dynamic>> fetchAccommodation() async {
 }
 
 Future<Map<String, dynamic>> fetchStadiums() async {
-  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-all-stadium/';
+  String url =
+      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-all-stadium/';
 
   try {
     Map<String, String> headers = {
@@ -118,6 +123,43 @@ Future<Map<String, dynamic>> fetchStadiums() async {
       return {
         "isSuccessful": false,
         "data": extractedData,
+        "error": "An error has occurred"
+      };
+    }
+  } catch (error) {
+    return {
+      "isSuccessful": false,
+      "data": [],
+      "error": "Our web service is down."
+    };
+  }
+}
+
+Future<Map<String, dynamic>> getUserInfo(User user) async {
+  String url2 =
+      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/user_info/?session_id=${user.sessionId}';
+
+  try {
+    Map<String, String> headers = {
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+    Map<String, dynamic> body = {'session_id': user.sessionId};
+
+    final response2 = await http.post(
+      Uri.parse(url2),
+      headers: headers,
+      body: jsonEncode(body),
+    );
+
+    Map<String, dynamic> extractedData2 = jsonDecode(response2.body);
+
+    // await Future.delayed(Duration(seconds: 10));
+    if (response2.statusCode == 200) {
+      return {"isSuccessful": true, "data": extractedData2, "error": null};
+    } else {
+      return {
+        "isSuccessful": false,
+        "data": extractedData2,
         "error": "An error has occurred"
       };
     }
@@ -155,6 +197,9 @@ class HomePage extends State<HomeView> {
   List<dynamic> allpocket = [];
   List<dynamic> allAccom = [];
   Map<String, dynamic> response = {};
+  Map<String, dynamic> response1 = {};
+  Map<String, dynamic> response2 = {};
+  Map<String, dynamic> thedata = {};
   late AutoCompleteTextField<StadiumA> searchTextField;
   GlobalKey<AutoCompleteTextFieldState<StadiumA>> key = GlobalKey();
   int selectedIndex = 0;
@@ -200,8 +245,8 @@ class HomePage extends State<HomeView> {
         if (item.stadiumName == 'Suncorp Stadium') {
           await Future.delayed(const Duration(milliseconds: 100));
           // ignore: use_build_context_synchronously
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => const Profile()));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => Navbar(widget.user)));
         }
       },
       itemBuilder: (context, item) {
@@ -215,12 +260,14 @@ class HomePage extends State<HomeView> {
     if (response["isSuccessful"]) {
       allpocket = response["data"];
     }
-  }
-
-  Future<void> _intializeData1() async {
-    response = await fetchAccommodation();
-    if (response["isSuccessful"]) {
-      allAccom = response["data"];
+    response1 = await fetchAccommodation();
+    if (response1["isSuccessful"]) {
+      allAccom = response1["data"];
+    }
+    response2 = await getUserInfo(widget.user);
+    if (response2["isSuccessful"]) {
+      thedata = response2["data"];
+      print(thedata);
     }
   }
 
@@ -279,13 +326,17 @@ class HomePage extends State<HomeView> {
                       const SizedBox(
                         width: 10,
                       ),
-                      const Text(
-                        "G'day Mate",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700),
-                      )
+                      FutureBuilder(
+                          future: _intializeData(),
+                          builder: (context, snapshot) {
+                            return Text(
+                              "G'Day " + '${thedata["name"]}',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w700),
+                            );
+                          }),
                     ],
                   ),
                   const SizedBox(
@@ -416,8 +467,9 @@ class HomePage extends State<HomeView> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Profile()));
+                                            builder: (context) => Newsletters(
+                                                allpocket[itemIndex]
+                                                    ['newsletter_id'])));
                                   },
                                 ),
                               )
@@ -440,7 +492,7 @@ class HomePage extends State<HomeView> {
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
             ),
             FutureBuilder(
-                future: _intializeData1(),
+                future: _intializeData(),
                 builder: (context, snapshot) {
                   return CarouselSlider.builder(
                     itemCount: allAccom.length,
@@ -484,7 +536,7 @@ class HomePage extends State<HomeView> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const Profile()));
+                                                Profile(widget.user)));
                                   },
                                 ),
                               )

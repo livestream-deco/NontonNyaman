@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.my_app-mergeDebugResources-14:/values-ne/values-ne.xml",
+            "outputFile": "com.example.my_app-mergeDebugResources-25:/values-ne/values-ne.xml",
             "map": [
                 {
                     "source": "/Users/reynaldi/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/res/values-ne/values.xml",
@@ -30,11 +30,11 @@
                         "endOffsets": "153,256,358,464,562,662,770,871"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,31",
+                        "startLines": "2,3,4,5,6,7,8,40",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,158,261,363,469,567,667,3547",
+                        "startOffsets": "55,158,261,363,469,567,667,4244",
                         "endColumns": "102,102,101,105,97,99,107,100",
-                        "endOffsets": "153,256,358,464,562,662,770,3643"
+                        "endOffsets": "153,256,358,464,562,662,770,4340"
                     }
                 },
                 {
@@ -47,11 +47,28 @@
                         "endOffsets": "157,269,383,491"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
+                        "startLines": "27,37,38,39",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "3106,3213,3325,3439",
+                        "startOffsets": "3106,3910,4022,4136",
                         "endColumns": "106,111,113,107",
-                        "endOffsets": "3208,3320,3434,3542"
+                        "endOffsets": "3208,4017,4131,4239"
+                    }
+                },
+                {
+                    "source": "/Users/reynaldi/.gradle/caches/transforms-3/e255c6ce9910a673f2619b479a7d74a8/transformed/jetified-exoplayer-core-2.18.7/res/values-ne/values-ne.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,126,197,267,334,412,489,589,683",
+                        "endColumns": "70,70,69,66,77,76,99,93,68",
+                        "endOffsets": "121,192,262,329,407,484,584,678,747"
+                    },
+                    "to": {
+                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3213,3284,3355,3425,3492,3570,3647,3747,3841",
+                        "endColumns": "70,70,69,66,77,76,99,93,68",
+                        "endOffsets": "3279,3350,3420,3487,3565,3642,3742,3836,3905"
                     }
                 },
                 {

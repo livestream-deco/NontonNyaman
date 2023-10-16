@@ -3,14 +3,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:my_app/page/profile/profile.dart';
 
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:my_app/page/stadium/StadiumInfo.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> fetchStadiums() async {
-  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-all-stadium/';
+  String url =
+      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-all-stadium/';
 
   try {
     Map<String, String> headers = {
@@ -107,7 +107,7 @@ class SearchStadium extends State<SearchPage> {
           await Future.delayed(const Duration(milliseconds: 100));
           // ignore: use_build_context_synchronously
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => Profile()));
+              .push(MaterialPageRoute(builder: (context) => SearchPage()));
         }
       },
       itemBuilder: (context, item) {
@@ -284,8 +284,8 @@ class SearchStadium extends State<SearchPage> {
                                                     BorderRadius.circular(24),
                                                 child: Image.network(
                                                   'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
-                                                      jsonDecode(allStadiums[i][
-                                                          'stadium_map_picture']),
+                                                      jsonDecode(allStadiums[i]
+                                                          ['stadium_picture']),
                                                   fit: BoxFit
                                                       .cover, // You can use different BoxFit property as per your requirement
                                                 ),

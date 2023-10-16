@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.my_app-mergeDebugResources-14:/values-uz/values-uz.xml",
+            "outputFile": "com.example.my_app-mergeDebugResources-25:/values-uz/values-uz.xml",
             "map": [
                 {
                     "source": "/Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/res/values-uz/values-uz.xml",
@@ -13,11 +13,11 @@
                         "endOffsets": "152,254,355,455,563,667,786,887"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,31",
+                        "startLines": "2,3,4,5,6,7,8,40",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,157,259,360,460,568,672,3475",
+                        "startOffsets": "55,157,259,360,460,568,672,4163",
                         "endColumns": "101,101,100,99,107,103,118,100",
-                        "endOffsets": "152,254,355,455,563,667,786,3571"
+                        "endOffsets": "152,254,355,455,563,667,786,4259"
                     }
                 },
                 {
@@ -38,6 +38,23 @@
                     }
                 },
                 {
+                    "source": "/Users/reynaldi/.gradle/caches/transforms-3/e255c6ce9910a673f2619b479a7d74a8/transformed/jetified-exoplayer-core-2.18.7/res/values-uz/values-uz.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,120,186,256,320,399,467,569,663",
+                        "endColumns": "64,65,69,63,78,67,101,93,79",
+                        "endOffsets": "115,181,251,315,394,462,564,658,738"
+                    },
+                    "to": {
+                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3150,3215,3281,3351,3415,3494,3562,3664,3758",
+                        "endColumns": "64,65,69,63,78,67,101,93,79",
+                        "endOffsets": "3210,3276,3346,3410,3489,3557,3659,3753,3833"
+                    }
+                },
+                {
                     "source": "/Users/reynaldi/.gradle/caches/transforms-3/d12883dde0390e08dd2a1192741cec1b/transformed/browser-1.5.0/res/values-uz/values-uz.xml",
                     "from": {
                         "startLines": "2,3,4,5",
@@ -47,11 +64,11 @@
                         "endOffsets": "168,277,387,493"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
+                        "startLines": "27,37,38,39",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "3032,3150,3259,3369",
+                        "startOffsets": "3032,3838,3947,4057",
                         "endColumns": "117,108,109,105",
-                        "endOffsets": "3145,3254,3364,3470"
+                        "endOffsets": "3145,3942,4052,4158"
                     }
                 },
                 {

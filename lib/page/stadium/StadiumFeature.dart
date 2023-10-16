@@ -13,7 +13,8 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/link.dart';
 
 Future<Map<String, dynamic>> fetchStadium(int id) async {
-  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-detail-stadium/?input_id=$id';
+  String url =
+      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-detail-stadium/?input_id=$id';
 
   try {
     Map<String, String> headers = {
@@ -72,13 +73,13 @@ class StadiumFeature extends State<Stadium> {
     return Scaffold(
         backgroundColor: const Color(0xFFECECEC),
         appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFFECECEC),
-        elevation: 0,
-        leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => Navigator.of(context).pop()),
-      ),
+          automaticallyImplyLeading: false,
+          backgroundColor: const Color(0xFFECECEC),
+          elevation: 0,
+          leading: IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () => Navigator.of(context).pop()),
+        ),
         body: SingleChildScrollView(
             padding: const EdgeInsets.only(left: 15, right: 15),
             child: FutureBuilder(
@@ -132,80 +133,109 @@ class StadiumFeature extends State<Stadium> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(12))),
                                       child: Row(children: [
-                                        for (int i = 0; i < allStadium[0]["features"].take(3).length; i++)
+                                        for (int i = 0;
+                                            i <
+                                                allStadium[0]["features"]
+                                                    .take(3)
+                                                    .length;
+                                            i++)
                                           Padding(
-                                              padding: const EdgeInsets.fromLTRB(10,0,10,0),
-                                             child: 
-                                              ElevatedButton(
-                                          onPressed: () async {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => NavigationArrow(
-                                                  latitude: allStadium[0]["features"][i]["latitude"],
-                                                  longitude: allStadium[0]["features"][i]["longitude"],
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      10, 0, 10, 0),
+                                              child: ElevatedButton(
+                                                onPressed: () async {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          NavigationArrow(
+                                                        latitude: allStadium[0]
+                                                                ["features"][i]
+                                                            ["latitude"],
+                                                        longitude: allStadium[0]
+                                                                ["features"][i]
+                                                            ["longitude"],
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor: Colors.black,
+                                                  backgroundColor: Colors
+                                                      .white, // foreground
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12), // square shape
+                                                  ),
+                                                  padding: EdgeInsets.zero,
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                          
-                                          style: ElevatedButton.styleFrom(
-                                            foregroundColor: Colors.black, backgroundColor: Colors.white, // foreground
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(12), // square shape
-                                            ),
-                                            padding: EdgeInsets.zero,
-                                          ),
-                                          child: Container(
-                                            width: 82.0,
-                                            height: 82.0,
-                                            decoration: const BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                            ),
-                                            child:allStadium[0]["features"][i]["name"] == 'Toilet'
-                                                    ? Image.asset(
-                                                        'assets/images/toilet.png',
-                                                        width: 50,
-                                                        height: 50,
-                                                      )
-                                                    : allStadium[0]["features"][i]["name"] == 'Bus Stop'
-                                                        ? Image.asset(
-                                                            'assets/images/bus_stop.png',
-                                                            width: 50,
-                                                            height: 50,
-                                                          )
-                                                        : allStadium[0]["features"][i]["name"] == 'Taxi stand'
-                                                            ? Image.asset(
-                                                                'assets/images/taxi.png',
-                                                                width: 50,
-                                                                height: 50,
-                                                              )
-                                                            : allStadium[0]["features"][i]["name"] == 'Lift'
-                                                                ? Image.asset(
-                                                                    'assets/images/lift.png',
-                                                                    width: 50,
-                                                                    height: 50,
-                                                                  )
-                                                                : allStadium[0]["features"][i]["name"] == 'Entrance'
-                                                                    ? Image.asset(
-                                                                        'assets/images/entrance.png',
-                                                                        width: 50,
-                                                                        height: 50,
-                                                                      )
-                                                                    : allStadium[0]["features"][i]["name"] ==
-                                                                            'Food And Beverage'
-                                                                        ? Image.asset(
-                                                                            'assets/images/food.png',
-                                                                            width: 50,
-                                                                            height: 50,
-                                                                          )
-                                                                        : Text(allStadium[0]["features"][i]["name"]),
-                                              
-                                            ),
-                                        ))
-                                    ]),
+                                                child: Container(
+                                                  width: 82.0,
+                                                  height: 82.0,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                12)),
+                                                  ),
+                                                  child: allStadium[0]
+                                                                  ["features"]
+                                                              [i]["name"] ==
+                                                          'Toilet'
+                                                      ? Image.asset(
+                                                          'assets/images/toilet.png',
+                                                          width: 50,
+                                                          height: 50,
+                                                        )
+                                                      : allStadium[0]["features"]
+                                                                  [i]["name"] ==
+                                                              'Bus Stop'
+                                                          ? Image.asset(
+                                                              'assets/images/bus_stop.png',
+                                                              width: 50,
+                                                              height: 50,
+                                                            )
+                                                          : allStadium[0]["features"]
+                                                                          [i][
+                                                                      "name"] ==
+                                                                  'Taxi stand'
+                                                              ? Image.asset(
+                                                                  'assets/images/taxi.png',
+                                                                  width: 50,
+                                                                  height: 50,
+                                                                )
+                                                              : allStadium[0]["features"]
+                                                                              [i]
+                                                                          ["name"] ==
+                                                                      'Lift'
+                                                                  ? Image.asset(
+                                                                      'assets/images/lift.png',
+                                                                      width: 50,
+                                                                      height:
+                                                                          50,
+                                                                    )
+                                                                  : allStadium[0]["features"][i]["name"] == 'Entrance'
+                                                                      ? Image.asset(
+                                                                          'assets/images/entrance.png',
+                                                                          width:
+                                                                              50,
+                                                                          height:
+                                                                              50,
+                                                                        )
+                                                                      : allStadium[0]["features"][i]["name"] == 'Food And Beverage'
+                                                                          ? Image.asset(
+                                                                              'assets/images/food.png',
+                                                                              width: 50,
+                                                                              height: 50,
+                                                                            )
+                                                                          : Text(allStadium[0]["features"][i]["name"]),
+                                                ),
+                                              ))
+                                      ]),
                                     ),
                                     const SizedBox(
                                       height: 20,
@@ -259,121 +289,120 @@ class StadiumFeature extends State<Stadium> {
                                                 allStadium[0]["features"]
                                                     .length;
                                             i++)
-                                            Padding(padding: const EdgeInsets.all(10),
-                                            child: 
-                                          ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  minimumSize:
-                                                      const Size.fromHeight(48),
-                                                  elevation: 0,
-                                                  backgroundColor:
-                                                      const Color(0xFFECECEC),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            24),
-                                                  )),
-                                              onPressed: () async {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) => NavigationArrow(
-                                                            latitude: allStadium[
-                                                                        0]
-                                                                    ["features"]
-                                                                [i]["latitude"],
-                                                            longitude: allStadium[
-                                                                        0][
-                                                                    "features"][i]
-                                                                ["longitude"])));
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                    width: 85.0,
-                                                    height: 85.0,
-                                                    decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      color: Colors
-                                                          .white, // set this to your body background color
-                                                      border: Border.all(
+                                          Padding(
+                                            padding: const EdgeInsets.all(10),
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    minimumSize:
+                                                        const Size.fromHeight(
+                                                            48),
+                                                    elevation: 0,
+                                                    backgroundColor:
+                                                        const Color(0xFFECECEC),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24),
+                                                    )),
+                                                onPressed: () async {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) => NavigationArrow(
+                                                              latitude: allStadium[
+                                                                          0][
+                                                                      "features"][i]
+                                                                  ["latitude"],
+                                                              longitude: allStadium[
+                                                                          0][
+                                                                      "features"][i]
+                                                                  ["longitude"])));
+                                                },
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 85.0,
+                                                      height: 85.0,
+                                                      decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
                                                         color: Colors
-                                                            .orange, // set border color
-                                                        width:
-                                                            3.0, // set border width
+                                                            .white, // set this to your body background color
+                                                        border: Border.all(
+                                                          color: Colors
+                                                              .orange, // set border color
+                                                          width:
+                                                              3.0, // set border width
+                                                        ),
                                                       ),
-                                                    ),
-                                                    child: allStadium[0]
-                                                                    ["features"]
-                                                                [i]["name"] ==
-                                                            'Toilet'
-                                                        ? Image.asset(
-                                                            'assets/images/toilet.png',
-                                                            width: 50,
-                                                            height: 50,
-                                                          )
-                                                        : allStadium[0]["features"]
-                                                                        [i]
-                                                                    ["name"] ==
-                                                                'Bus Stop'
-                                                            ? Image.asset(
-                                                                'assets/images/bus_stop.png',
-                                                                width: 50,
-                                                                height: 50,
-                                                              )
-                                                            : allStadium[0]["features"]
-                                                                            [i][
-                                                                        "name"] ==
-                                                                    'Taxi stand'
-                                                                ? Image.asset(
-                                                                    'assets/images/taxi.png',
-                                                                    width: 50,
-                                                                    height: 50,
-                                                                  )
-                                                                : allStadium[0]["features"][i]
-                                                                            ["name"] ==
-                                                                        'Lift'
-                                                                    ? Image.asset(
-                                                                        'assets/images/lift.png',
-                                                                        width:
-                                                                            50,
-                                                                        height:
-                                                                            50,
-                                                                      )
-                                                                    : allStadium[0]["features"][i]["name"] == 'Entrance'
-                                                                        ? Image.asset(
-                                                                            'assets/images/entrance.png',
-                                                                            width:
-                                                                                50,
-                                                                            height:
-                                                                                50,
-                                                                          )
+                                                      child: allStadium[0]
+                                                                      ["features"]
+                                                                  [i]["name"] ==
+                                                              'Toilet'
+                                                          ? Image.asset(
+                                                              'assets/images/toilet.png',
+                                                              width: 50,
+                                                              height: 50,
+                                                            )
+                                                          : allStadium[0]["features"]
+                                                                          [i][
+                                                                      "name"] ==
+                                                                  'Bus Stop'
+                                                              ? Image.asset(
+                                                                  'assets/images/bus_stop.png',
+                                                                  width: 50,
+                                                                  height: 50,
+                                                                )
+                                                              : allStadium[0]["features"][i][
+                                                                          "name"] ==
+                                                                      'Taxi stand'
+                                                                  ? Image.asset(
+                                                                      'assets/images/taxi.png',
+                                                                      width: 50,
+                                                                      height:
+                                                                          50,
+                                                                    )
+                                                                  : allStadium[0]["features"][i]
+                                                                              ["name"] ==
+                                                                          'Lift'
+                                                                      ? Image.asset(
+                                                                          'assets/images/lift.png',
+                                                                          width:
+                                                                              50,
+                                                                          height:
+                                                                              50,
+                                                                        )
+                                                                      : allStadium[0]["features"][i]["name"] == 'Entrance'
+                                                                          ? Image.asset(
+                                                                              'assets/images/entrance.png',
+                                                                              width: 50,
+                                                                              height: 50,
+                                                                            )
                                                                           : allStadium[0]["features"][i]["name"] == 'Food And Beverages'
-                                                                        ? Image.asset(
-                                                                            'assets/images/food.png',
-                                                                            width:
-                                                                                50,
-                                                                            height:
-                                                                                50,
-                                                                          )
-                                                                        : Text(allStadium[0]["features"][i]["name"]),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 50,
-                                                  ),
-                                                  Text(
-                                                    allStadium[0]["features"][i]
-                                                        ["name"],
-                                                    style: const TextStyle(
-                                                        fontSize: 16,
-                                                        fontFamily: 'Inter',
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        color: Colors.black),
-                                                  )
-                                                ],
-                                              )),
-                                    )],
+                                                                              ? Image.asset(
+                                                                                  'assets/images/food.png',
+                                                                                  width: 50,
+                                                                                  height: 50,
+                                                                                )
+                                                                              : Text(allStadium[0]["features"][i]["name"]),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 50,
+                                                    ),
+                                                    Text(
+                                                      allStadium[0]["features"]
+                                                          [i]["name"],
+                                                      style: const TextStyle(
+                                                          fontSize: 16,
+                                                          fontFamily: 'Inter',
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          color: Colors.black),
+                                                    )
+                                                  ],
+                                                )),
+                                          )
+                                      ],
                                     )
                                   ],
                                 )),

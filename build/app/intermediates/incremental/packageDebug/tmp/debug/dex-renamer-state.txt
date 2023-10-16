@@ -1,4 +1,7 @@
-#Fri Oct 13 18:47:32 AEST 2023
+#Mon Oct 16 17:36:58 AEST 2023
+base.1=/Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/app/intermediates/dex/debug/mergeDexDebug/classes2.dex
+path.1=classes2.dex
 base.0=/Users/reynaldi/Documents/DECO/nontonnyaman-fe/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
 path.0=classes.dex

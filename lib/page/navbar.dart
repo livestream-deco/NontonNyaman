@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_app/models/user.dart';
 import 'package:my_app/page/HomePage.dart';
 import 'package:my_app/page/profile/profile.dart';
-import 'package:my_app/page/requestAssistance/RequestHomePage.dart';
 import 'package:my_app/page/emergency/emergency.dart';
+import 'package:my_app/page/requestAssistance/chooseStadium.dart';
 import 'package:my_app/page/stadium/searchingPage.dart';
 
 // ignore: must_be_immutable
@@ -25,8 +25,8 @@ class _NavbarPage extends State<Navbar> {
       HomeView(widget.user),
       const SearchPage(),
       const Emergency(),
-      const Request(),
-      const Profile()
+      ChoosePage(widget.user),
+      Profile(widget.user)
     ];
 
     return Scaffold(

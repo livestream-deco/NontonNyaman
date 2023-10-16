@@ -2,6 +2,8 @@
 // ignore_for_file: file_names, duplicate_ignore, unused_import
 
 import 'dart:convert';
+import 'package:my_app/page/navbarStaff.dart';
+import 'package:my_app/page/staff/HomeStaff.dart';
 import 'package:my_app/page/authentication/RegisterPage.dart';
 
 import '../navbar.dart';
@@ -16,7 +18,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Login extends StatefulWidget {
   const Login({super.key});
   Future<User> webServiceLogin(String telephone, String password) async {
-    var response = await post(Uri.parse("http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/flu-login/"),
+    var response = await post(
+        Uri.parse(
+            "http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/flu-login/"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -28,15 +32,21 @@ class Login extends StatefulWidget {
           datetime: userData["datetime"],
           sessionId: userData["session-id"],
           isCitizen: true,
+          isStaff: false,
           email: userData["email"],
-          name: userData["name"]);
-
+          name: userData["name"],
+          disability: userData["disability"]);
+      if (userData["is_staff"]) {
+        user.isStaff = true;
+      } else {
+        user.isStaff = false;
+      }
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('sessionId', userData["session-id"]);
       prefs.setBool('isCitizen', userData["role_users"]);
       prefs.setString('email', userData["email"]);
-      // prefs.setString('name', userData["name"]);
 
+      // prefs.setString('name', userData["name"]);
       return user;
     } else {
       return Future.error("Incorrect Login");
@@ -154,19 +164,28 @@ class LoginPage extends State<Login> {
                       setState(() {
                         loading = true;
                       });
-                      {
-                        User user = await widget.webServiceLogin(
-                            _email.text, _password.text);
-                        {
-                          SchedulerBinding.instance.addPostFrameCallback((_) {
-                            Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute<void>(
-                                    builder: (BuildContext context) =>
-                                        Navbar(user)),
-                                (Route<dynamic> route) => false);
-                          });
+                      User user = await widget.webServiceLogin(
+                          _email.text, _password.text);
+                      SchedulerBinding.instance.addPostFrameCallback((_) {
+                        if (user.isStaff) {
+                          // If user is a staff member, navigate to Home()
+                          Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => NavbarStaff(
+                                  user), // Replace Home() with your actual Home widget
+                            ),
+                            (Route<dynamic> route) => false,
+                          );
+                        } else {
+                          // If user is not a staff member, navigate to Navbar
+                          Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => Navbar(user),
+                            ),
+                            (Route<dynamic> route) => false,
+                          );
                         }
-                      }
+                      });
                       _email.clear();
                       _password.clear();
                     },

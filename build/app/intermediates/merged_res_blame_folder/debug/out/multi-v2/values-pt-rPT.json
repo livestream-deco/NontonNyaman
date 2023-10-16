@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.my_app-mergeDebugResources-14:/values-pt-rPT/values-pt-rPT.xml",
+            "outputFile": "com.example.my_app-mergeDebugResources-25:/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
                     "source": "/Users/reynaldi/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/res/values-pt-rPT/values.xml",
@@ -30,11 +30,11 @@
                         "endOffsets": "147,249,348,448,555,661,782,883"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,31",
+                        "startLines": "2,3,4,5,6,7,8,40",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,152,254,353,453,560,666,3551",
+                        "startOffsets": "55,152,254,353,453,560,666,4255",
                         "endColumns": "96,101,98,99,106,105,120,100",
-                        "endOffsets": "147,249,348,448,555,661,782,3647"
+                        "endOffsets": "147,249,348,448,555,661,782,4351"
                     }
                 },
                 {
@@ -47,11 +47,28 @@
                         "endOffsets": "166,265,377,480"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
+                        "startLines": "27,37,38,39",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "3121,3237,3336,3448",
+                        "startOffsets": "3121,3941,4040,4152",
                         "endColumns": "115,98,111,102",
-                        "endOffsets": "3232,3331,3443,3546"
+                        "endOffsets": "3232,4035,4147,4250"
+                    }
+                },
+                {
+                    "source": "/Users/reynaldi/.gradle/caches/transforms-3/e255c6ce9910a673f2619b479a7d74a8/transformed/jetified-exoplayer-core-2.18.7/res/values-pt-rPT/values-pt-rPT.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,130,194,261,332,414,496,591,680",
+                        "endColumns": "74,63,66,70,81,81,94,88,78",
+                        "endOffsets": "125,189,256,327,409,491,586,675,754"
+                    },
+                    "to": {
+                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3237,3312,3376,3443,3514,3596,3678,3773,3862",
+                        "endColumns": "74,63,66,70,81,81,94,88,78",
+                        "endOffsets": "3307,3371,3438,3509,3591,3673,3768,3857,3936"
                     }
                 },
                 {

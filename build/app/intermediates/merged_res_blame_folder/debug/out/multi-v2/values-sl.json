@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.my_app-mergeDebugResources-14:/values-sl/values-sl.xml",
+            "outputFile": "com.example.my_app-mergeDebugResources-25:/values-sl/values-sl.xml",
             "map": [
                 {
                     "source": "/Users/reynaldi/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/res/values-sl/values.xml",
@@ -30,11 +30,11 @@
                         "endOffsets": "147,249,347,451,554,656,773,874"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,31",
+                        "startLines": "2,3,4,5,6,7,8,40",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,152,254,352,456,559,661,3426",
+                        "startOffsets": "55,152,254,352,456,559,661,4102",
                         "endColumns": "96,101,97,103,102,101,116,100",
-                        "endOffsets": "147,249,347,451,554,656,773,3522"
+                        "endOffsets": "147,249,347,451,554,656,773,4198"
                     }
                 },
                 {
@@ -64,11 +64,28 @@
                         "endOffsets": "156,260,372,474"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
+                        "startLines": "27,37,38,39",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "3002,3108,3212,3324",
+                        "startOffsets": "3002,3784,3888,4000",
                         "endColumns": "105,103,111,101",
-                        "endOffsets": "3103,3207,3319,3421"
+                        "endOffsets": "3103,3883,3995,4097"
+                    }
+                },
+                {
+                    "source": "/Users/reynaldi/.gradle/caches/transforms-3/e255c6ce9910a673f2619b479a7d74a8/transformed/jetified-exoplayer-core-2.18.7/res/values-sl/values-sl.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,123,183,247,311,386,467,566,657",
+                        "endColumns": "67,59,63,63,74,80,98,90,73",
+                        "endOffsets": "118,178,242,306,381,462,561,652,726"
+                    },
+                    "to": {
+                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3108,3176,3236,3300,3364,3439,3520,3619,3710",
+                        "endColumns": "67,59,63,63,74,80,98,90,73",
+                        "endOffsets": "3171,3231,3295,3359,3434,3515,3614,3705,3779"
                     }
                 }
             ]
