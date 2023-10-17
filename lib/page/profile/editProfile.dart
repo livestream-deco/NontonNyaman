@@ -1,6 +1,6 @@
 // ignore: file_names
 // ignore: file_names
-// ignore_for_file: avoid_, file_names, duplicate_ignore
+// ignore_for_file: avoid_, file_names, duplicate_ignore, unnecessary_cast, prefer_interpolation_to_compose_strings
 
 import 'dart:convert';
 import 'dart:io';
@@ -175,6 +175,7 @@ class EditProfilePage extends State<EditProfile> {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image: _selectedImage == null
+                                  // ignore: unnecessary_cast
                                   ? NetworkImage(
                                       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                           jsonDecode(user[
@@ -191,7 +192,7 @@ class EditProfilePage extends State<EditProfile> {
                           right: -10,
                           bottom: 0,
                           child: IconButton(
-                            icon: Icon(Icons.edit),
+                            icon: const Icon(Icons.edit),
                             onPressed: _pickImage,
                           ),
                         ),

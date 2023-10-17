@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_adjacent_string_concatenation
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -60,7 +62,6 @@ class EmergencyPage extends State<Emergency> {
     }
   }
 
-  final String _phoneNumber = 'tel:+1911';
 
   @override
   Widget build(BuildContext context) {
