@@ -223,22 +223,51 @@ class RegisterPage extends State<Register> {
                 const SizedBox(
                   height: 32,
                 ),
-                ElevatedButton(
-                  onPressed: () async {
-                    File? image = await pickImage();
-                    setState(() {
-                      _selectedImage = image;
-                    });
-                  },
-                  child: const Text('Select Profile Picture'),
-                ),
-                if (_selectedImage != null)
-                  Image.file(_selectedImage!)
-                else
-                  const Text('No image selected.'),
-                const SizedBox(
-                  height: 20,
-                ),
+                SingleChildScrollView(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Container(
+                        height: 72,
+                        width: 500,
+                        alignment: Alignment.center,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              minimumSize: const Size.fromHeight(48),
+                              elevation: 0,
+                              backgroundColor: const Color(0XFFFF5C00),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              )),
+                          onPressed: () async {
+                            File? image = await pickImage();
+                            setState(() {
+                              _selectedImage = image;
+                            });
+                          },
+                          child: const Text(
+                            'Select Profile Picture',
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal, fontSize: 16),
+                          ),
+                        ),
+                      ),
+                      if (_selectedImage != null)
+                        Container(
+                            width: 500,
+                            height: 200,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Image.file(_selectedImage!))
+                      else
+                        const Text('No image selected.'),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ])),
                 SingleChildScrollView(
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

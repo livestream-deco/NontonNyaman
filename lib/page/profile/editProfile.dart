@@ -1,43 +1,51 @@
 // ignore: file_names
 // ignore: file_names
-// ignore_for_file: avoid_print, file_names, duplicate_ignore
+// ignore_for_file: avoid_, file_names, duplicate_ignore
 
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:my_app/models/user.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:my_app/page/navbar.dart';
+import 'package:image_picker/image_picker.dart';
 
-Future<Map<String, dynamic>> sendNewUser(String name, User user) async {
-
-  const url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/edit-user/';
-
+Future<Map<String, dynamic>> sendNewUser(
+  String name,
+  String description,
+  File? imageFile,
+  User user,
+) async {
   try {
-    final response = await http.post(
-      Uri.parse(url),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'name': name,
-        'session_id': user.sessionId,
-      }),
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse(
+          "http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/edit_user/"),
     );
+    request.fields['session_id'] = user.sessionId;
+    request.fields['name'] = name;
+    request.fields['disability'] = description;
 
-    Map<String, dynamic> result = jsonDecode(response.body);
+    // Only add the image file to the request if it's not null
+    if (imageFile != null) {
+      String fieldName = 'image'; // Field name for the image on the server.
+      request.files
+          .add(await http.MultipartFile.fromPath(fieldName, imageFile.path));
+    }
+
+    var response = await request.send();
 
     if (response.statusCode == 200) {
-      return result;
+      return {"isSuccessful": true, "error": null};
     } else {
-      return <String, dynamic>{'error': 'Web service is offline'};
+      return Future.error("internal");
     }
-  } catch (error) {
-    return {'isSuccessful': false, 'error': ''};
+  } catch (e) {
+    return Future.error("offline");
   }
 }
-
 
 Future<Map<String, dynamic>> fetchUser(User user) async {
   String url =
@@ -90,7 +98,21 @@ class EditProfilePage extends State<EditProfile> {
       user = response["data"];
       userName.text = user['name'];
       userDescription.text = user['disability'];
-      print(user);
+      (user);
+    }
+  }
+
+  final ImagePicker _picker = ImagePicker();
+  File? _selectedImage;
+
+  Future<void> _pickImage() async {
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _selectedImage = File(pickedFile.path);
+      });
     }
   }
 
@@ -123,15 +145,12 @@ class EditProfilePage extends State<EditProfile> {
               size: 25.0,
             ),
             onPressed: () async {
-              fetchedResult =
-                  await sendNewUser(userName.text, widget.user);
+              fetchedResult = await sendNewUser(userName.text,
+                  userDescription.text, _selectedImage, widget.user);
               // ignore: use_build_context_synchronously
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          Navbar(widget.user)));
-                },
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Navbar(widget.user)));
+            },
           ),
         ],
       ),
@@ -155,16 +174,27 @@ class EditProfilePage extends State<EditProfile> {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: NetworkImage(
-                                // ignore: prefer_interpolation_to_compose_strings
-                                'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
-                                    jsonDecode(user['user_picture']),
-                              ),
+                              image: _selectedImage == null
+                                  ? NetworkImage(
+                                      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                          jsonDecode(user[
+                                              'user_picture'])) as ImageProvider<
+                                      Object>
+                                  : FileImage(_selectedImage!)
+                                      as ImageProvider<Object>,
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
                         // The edit button
+                        Positioned(
+                          right: -10,
+                          bottom: 0,
+                          child: IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: _pickImage,
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -200,25 +230,26 @@ class EditProfilePage extends State<EditProfile> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(10),
-                                child:
-                              TextFormField(
-                                controller: userName,
-                                decoration: const InputDecoration(
-                                  hintText: 'Enter your name',
-                                  hintStyle: TextStyle(color: Colors.white),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white, width: 2),
+                                child: TextFormField(
+                                  controller: userName,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Enter your name',
+                                    hintStyle: TextStyle(color: Colors.white),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.white, width: 2),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.white, width: 2),
+                                    ),
                                   ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white, width: 2),
-                                  ),
+                                  style: const TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
                                 ),
-                                style: const TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                              ),
                               ),
                               const SizedBox(
                                 height: 15,
@@ -274,25 +305,26 @@ class EditProfilePage extends State<EditProfile> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(10),
-                                child:
-                              TextFormField(
-                                controller: userDescription,
-                                decoration: const InputDecoration(
-                                  hintText: 'Enter your Description',
-                                  hintStyle: TextStyle(color: Colors.white),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white, width: 2),
+                                child: TextFormField(
+                                  controller: userDescription,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Enter your Description',
+                                    hintStyle: TextStyle(color: Colors.white),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.white, width: 2),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.white, width: 2),
+                                    ),
                                   ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white, width: 2),
-                                  ),
+                                  style: const TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
                                 ),
-                                style: const TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                              ),
                               ),
                             ]),
                       ),

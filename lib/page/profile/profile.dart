@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_
 
 import 'dart:convert';
 
@@ -53,7 +53,7 @@ class ProfilePage extends State<Profile> {
     response = await fetchUser(widget.user);
     if (response["isSuccessful"]) {
       user = response["data"];
-      print(user);
+      (user);
     }
   }
 
@@ -99,90 +99,141 @@ class ProfilePage extends State<Profile> {
           child: FutureBuilder(
               future: _intializeData(),
               builder: (context, snapshot) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Stack(
-                      children: <Widget>[
-                        // The image
-                        Container(
-                          width: 140,
-                          height: 140,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                // ignore: prefer_interpolation_to_compose_strings
-                                'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
-                                    jsonDecode(user['user_picture']),
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        // The edit button
-                        Positioned(
-                          right: 0,
-                          bottom: 0,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => EditProfile(widget.user)), // Change NewPage to your target page
-                              );
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color(0XFFFF5C00), // Change this to the color you want for the background of the circle.
-                              ),
-                              alignment: Alignment.center,
-                              child: const Icon(
-                                Icons.edit, // Change this to the icon you want.
-                                color: Colors.black, // Change this to the color you want for the icon.
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else {
+                  // Data fetched successfully
+                  final data = snapshot.data;
+                  // Render the news carousel using the data
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Stack(
+                        children: <Widget>[
+                          // The image
+                          Container(
+                            width: 140,
+                            height: 140,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  // ignore: prefer_interpolation_to_compose_strings
+                                  'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                      jsonDecode(user['user_picture']),
+                                ),
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 80,
-                    ),
-                    Container(
-                      height: 500,
-                      width: 500,
-                      decoration: const BoxDecoration(
-                          color: Color(0XFFFF5C00),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(12),
-                            topRight: Radius.circular(12),
-                          )),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(10),
-                                child: Text(
-                                  'Fullname',
-                                  style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
+                          // The edit button
+                          Positioned(
+                            right: 0,
+                            bottom: 0,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => EditProfile(widget
+                                          .user)), // Change NewPage to your target page
+                                );
+                              },
+                              child: Container(
+                                width: 40,
+                                height: 40,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color(
+                                      0XFFFF5C00), // Change this to the color you want for the background of the circle.
+                                ),
+                                alignment: Alignment.center,
+                                child: const Icon(
+                                  Icons
+                                      .edit, // Change this to the icon you want.
+                                  color: Colors
+                                      .black, // Change this to the color you want for the icon.
                                 ),
                               ),
-                              Container(
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 80,
+                      ),
+                      Container(
+                        height: 500,
+                        width: 500,
+                        decoration: const BoxDecoration(
+                            color: Color(0XFFFF5C00),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              topRight: Radius.circular(12),
+                            )),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                    'Fullname',
+                                    style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                                Container(
+                                    height: 48,
+                                    width: 500,
+                                    decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(12)),
+                                      border: Border.all(
+                                        color: Colors
+                                            .white, // Specify the border color here.
+                                        width:
+                                            2, // Specify the border width here.
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Text(
+                                        user['name'],
+                                        style: const TextStyle(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
+                                      ),
+                                    )),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                    'Email',
+                                    style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                                Container(
                                   height: 48,
                                   width: 500,
                                   decoration: BoxDecoration(
@@ -198,94 +249,59 @@ class ProfilePage extends State<Profile> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Text(
-                                      user['name'],
+                                      user['email'],
                                       style: const TextStyle(
                                           fontFamily: 'Inter',
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white),
                                     ),
-                                  )),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(10),
-                                child: Text(
-                                  'Email',
-                                  style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                              ),
-                              Container(
-                                height: 48,
-                                width: 500,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(12)),
-                                  border: Border.all(
-                                    color: Colors
-                                        .white, // Specify the border color here.
-                                    width: 2, // Specify the border width here.
                                   ),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.all(10),
                                   child: Text(
-                                    user['email'],
-                                    style: const TextStyle(
+                                    'Description',
+                                    style: TextStyle(
                                         fontFamily: 'Inter',
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(10),
-                                child: Text(
-                                  'Description',
-                                  style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                              ),
-                              Container(
-                                height: 48,
-                                width: 500,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(12)),
-                                  border: Border.all(
-                                    color: Colors
-                                        .white, // Specify the border color here.
-                                    width: 2, // Specify the border width here.
+                                Container(
+                                  height: 48,
+                                  width: 500,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(12)),
+                                    border: Border.all(
+                                      color: Colors
+                                          .white, // Specify the border color here.
+                                      width:
+                                          2, // Specify the border width here.
+                                    ),
                                   ),
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Text(
+                                        user['disability'],
+                                        style: const TextStyle(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
+                                      )),
                                 ),
-                                child: Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Text(
-                                      user['disability'],
-                                      style: const TextStyle(
-                                          fontFamily: 'Inter',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    )),
-                              ),
-                            ]),
+                              ]),
+                        ),
                       ),
-                    ),
-                  ],
-                );
+                    ],
+                  );
+                }
               })),
     );
   }

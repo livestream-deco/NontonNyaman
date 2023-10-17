@@ -7,7 +7,7 @@
 // ignore: file_names
 // ignore: file_names
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore, unused_import, override_on_non_overriding_member, annotate_overrides, use_build_context_synchronously, prefer_const_constructors, prefer_adjacent_string_concatenation, avoid_print
+// ignore_for_file: file_names, duplicate_ignore, unused_import, override_on_non_overriding_member, annotate_overrides, use_build_context_synchronously, prefer_const_constructors, prefer_adjacent_string_concatenation, avoid_
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -256,6 +256,7 @@ class HomePage extends State<HomeView> {
   }
 
   Future<void> _intializeData() async {
+    ('test123');
     response = await fetchNews();
     if (response["isSuccessful"]) {
       allpocket = response["data"];
@@ -267,7 +268,6 @@ class HomePage extends State<HomeView> {
     response2 = await getUserInfo(widget.user);
     if (response2["isSuccessful"]) {
       thedata = response2["data"];
-      print(thedata);
     }
   }
 
@@ -313,32 +313,48 @@ class HomePage extends State<HomeView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 100.0,
-                        height: 100.0,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.blue,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      FutureBuilder(
-                          future: _intializeData(),
-                          builder: (context, snapshot) {
-                            return Text(
-                              "G'Day " + '${thedata["name"]}',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700),
-                            );
-                          }),
-                    ],
-                  ),
+                  FutureBuilder(
+                      future: _intializeData(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else {
+                          // Data fetched successfully
+                          final data = snapshot.data;
+                          // Render the news carousel using the data
+                          return Row(
+                            children: [
+                              Container(
+                                width: 100.0,
+                                height: 100.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                          jsonDecode(thedata['user_picture']),
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "G'Day " + '${thedata["name"]}',
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ],
+                          );
+                        }
+                      }),
                   const SizedBox(
                     height: 10,
                   ),
@@ -426,65 +442,74 @@ class HomePage extends State<HomeView> {
             FutureBuilder(
                 future: _intializeData(),
                 builder: (context, snapshot) {
-                  return CarouselSlider.builder(
-                    itemCount: allpocket.length,
-                    itemBuilder:
-                        (BuildContext context, int itemIndex, int realIndex) {
-                      return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(children: [
-                              Container(
-                                width: 500.0,
-                                height: 185.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  image: DecorationImage(
-                                    // ignore: prefer_interpolation_to_compose_strings
-                                    image: NetworkImage(
-                                        // ignore: prefer_interpolation_to_compose_strings
-                                        'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
-                                            jsonDecode(allpocket[itemIndex]
-                                                ['newsletter_picture'])),
-                                    fit: BoxFit.cover,
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    // Data fetched successfully
+                    final data = snapshot.data;
+                    // Render the news carousel using the data
+                    return CarouselSlider.builder(
+                      itemCount: allpocket.length,
+                      itemBuilder:
+                          (BuildContext context, int itemIndex, int realIndex) {
+                        return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Stack(children: [
+                                Container(
+                                  width: 500.0,
+                                  height: 185.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    image: DecorationImage(
+                                      // ignore: prefer_interpolation_to_compose_strings
+                                      image: NetworkImage(
+                                          // ignore: prefer_interpolation_to_compose_strings
+                                          'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                              jsonDecode(allpocket[itemIndex]
+                                                  ['newsletter_picture'])),
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                bottom: 10,
-                                left: 10,
-                                child: TextButton(
-                                  key: Key("title$itemIndex"),
-                                  child: Text(
-                                    allpocket[itemIndex]['newsletter_title'],
-                                    style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white),
+                                Positioned(
+                                  bottom: 10,
+                                  left: 10,
+                                  child: TextButton(
+                                    key: Key("title$itemIndex"),
+                                    child: Text(
+                                      allpocket[itemIndex]['newsletter_title'],
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white),
+                                    ),
+                                    onPressed: () async {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Newsletters(
+                                                  allpocket[itemIndex]
+                                                      ['newsletter_id'])));
+                                    },
                                   ),
-                                  onPressed: () async {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Newsletters(
-                                                allpocket[itemIndex]
-                                                    ['newsletter_id'])));
-                                  },
-                                ),
-                              )
-                            ])
-                          ]);
-                    },
-                    options: CarouselOptions(
-                      autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 3),
-                      enlargeCenterPage: true,
-                      aspectRatio: 1.0,
-                      viewportFraction: 1.0,
-                      height: 220,
-                    ),
-                  );
+                                )
+                              ])
+                            ]);
+                      },
+                      options: CarouselOptions(
+                        autoPlay: true,
+                        autoPlayInterval: const Duration(seconds: 3),
+                        enlargeCenterPage: true,
+                        aspectRatio: 1.0,
+                        viewportFraction: 1.0,
+                        height: 220,
+                      ),
+                    );
+                  }
                 }),
             const Text(
               'Accommodation Sugestion ',
@@ -494,64 +519,73 @@ class HomePage extends State<HomeView> {
             FutureBuilder(
                 future: _intializeData(),
                 builder: (context, snapshot) {
-                  return CarouselSlider.builder(
-                    itemCount: allAccom.length,
-                    itemBuilder:
-                        (BuildContext context, int itemIndex, int realIndex) {
-                      return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(children: [
-                              Container(
-                                width: 500.0,
-                                height: 185.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  image: DecorationImage(
-                                    // ignore: prefer_interpolation_to_compose_strings
-                                    image: NetworkImage(
-                                        // ignore: prefer_interpolation_to_compose_strings
-                                        'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
-                                            jsonDecode(allAccom[itemIndex]
-                                                ['accomodation_picture'])),
-                                    fit: BoxFit.cover,
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    // Data fetched successfully
+                    final data = snapshot.data;
+                    // Render the news carousel using the data
+                    return CarouselSlider.builder(
+                      itemCount: allAccom.length,
+                      itemBuilder:
+                          (BuildContext context, int itemIndex, int realIndex) {
+                        return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Stack(children: [
+                                Container(
+                                  width: 500.0,
+                                  height: 185.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    image: DecorationImage(
+                                      // ignore: prefer_interpolation_to_compose_strings
+                                      image: NetworkImage(
+                                          // ignore: prefer_interpolation_to_compose_strings
+                                          'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                              jsonDecode(allAccom[itemIndex]
+                                                  ['accomodation_picture'])),
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                bottom: 10,
-                                left: 10,
-                                child: TextButton(
-                                  key: Key("title$itemIndex"),
-                                  child: Text(
-                                    allAccom[itemIndex]['accomodation_name'],
-                                    style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white),
+                                Positioned(
+                                  bottom: 10,
+                                  left: 10,
+                                  child: TextButton(
+                                    key: Key("title$itemIndex"),
+                                    child: Text(
+                                      allAccom[itemIndex]['accomodation_name'],
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white),
+                                    ),
+                                    onPressed: () async {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Profile(widget.user)));
+                                    },
                                   ),
-                                  onPressed: () async {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                Profile(widget.user)));
-                                  },
-                                ),
-                              )
-                            ])
-                          ]);
-                    },
-                    options: CarouselOptions(
-                      autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 3),
-                      enlargeCenterPage: true,
-                      aspectRatio: 1.0,
-                      viewportFraction: 1.0,
-                      height: 220,
-                    ),
-                  );
+                                )
+                              ])
+                            ]);
+                      },
+                      options: CarouselOptions(
+                        autoPlay: true,
+                        autoPlayInterval: const Duration(seconds: 3),
+                        enlargeCenterPage: true,
+                        aspectRatio: 1.0,
+                        viewportFraction: 1.0,
+                        height: 220,
+                      ),
+                    );
+                  }
                 }),
           ],
         ),

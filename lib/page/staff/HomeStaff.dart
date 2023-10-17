@@ -1,5 +1,5 @@
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore, unused_import, avoid_print
+// ignore_for_file: file_names, duplicate_ignore, unused_import, avoid_
 
 import 'dart:convert';
 
@@ -46,14 +46,12 @@ Future<Map<String, dynamic>> fetchStadium(User user) async {
 Future<Map<String, dynamic>> fetchStaff(User user) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/info-staff/?session_id=${user.sessionId}';
-
   try {
     final response = await http.get(
       Uri.parse(url),
     );
-
     Map<String, dynamic> extractedData = jsonDecode(response.body);
-    print(extractedData);
+
     // await Future.delayed(Duration(seconds: 10));
     if (response.statusCode == 200) {
       return {"isSuccessful": true, "data": extractedData, "error": null};
@@ -112,10 +110,12 @@ class HomeStaff extends State<Home> {
     response = await fetchStadium(widget.user);
     if (response["isSuccessful"]) {
       allStaff = response["data"];
+      ('test123');
     }
     response2 = await fetchStaff(widget.user);
     if (response2["isSuccessful"]) {
       userData = response2["data"];
+      ('test234');
     }
   }
 
@@ -221,11 +221,22 @@ class HomeStaff extends State<Home> {
                                                                     width: 80.0,
                                                                     height:
                                                                         80.0,
-                                                                    decoration: const BoxDecoration(
-                                                                        color: Color(
-                                                                            0xffFF7D05),
-                                                                        borderRadius:
-                                                                            BorderRadius.all(Radius.circular(12))),
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                      image:
+                                                                          DecorationImage(
+                                                                        image:
+                                                                            NetworkImage(
+                                                                          // ignore: prefer_interpolation_to_compose_strings
+                                                                          'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                                                              jsonDecode(allStaff[i]['user_picture']),
+                                                                        ),
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
                                                                   ),
                                                                   const SizedBox(
                                                                     width: 25,

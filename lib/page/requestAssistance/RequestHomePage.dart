@@ -171,13 +171,24 @@ class RequestHome extends State<Request> {
                                                         Container(
                                                           width: 80.0,
                                                           height: 80.0,
-                                                          decoration: const BoxDecoration(
-                                                              color: Color(
-                                                                  0xffFF7D05),
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          12))),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            image:
+                                                                DecorationImage(
+                                                              image:
+                                                                  NetworkImage(
+                                                                // ignore: prefer_interpolation_to_compose_strings
+                                                                'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                                                    jsonDecode(
+                                                                        allStaff[i]
+                                                                            [
+                                                                            'userpicture']),
+                                                              ),
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
                                                         ),
                                                         const SizedBox(
                                                           width: 25,

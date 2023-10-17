@@ -24,7 +24,7 @@ class _NavbarPage extends State<Navbar> {
     final screens = [
       HomeView(widget.user),
       const SearchPage(),
-      const Emergency(),
+      Emergency(widget.user),
       ChoosePage(widget.user),
       Profile(widget.user)
     ];

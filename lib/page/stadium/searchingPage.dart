@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace, avoid_print, duplicate_ignore, file_names, prefer_interpolation_to_compose_strings, prefer_const_constructors, use_build_context_synchronously
+// ignore_for_file: sized_box_for_whitespace, avoid_, duplicate_ignore, file_names, prefer_interpolation_to_compose_strings, prefer_const_constructors, use_build_context_synchronously
 
 import 'dart:convert';
 
@@ -96,7 +96,7 @@ class SearchStadium extends State<SearchPage> {
         return a.stadiumName.compareTo(b.stadiumName);
       },
       itemSubmitted: (item) async {
-        print("Selected item: '${item.stadiumName}'");
+        ("Selected item: '${item.stadiumName}'");
         setState(() {
           if (searchTextField.textField != null &&
               searchTextField.textField!.controller != null) {

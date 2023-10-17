@@ -1,6 +1,6 @@
 // ignore: file_names
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore, prefer_interpolation_to_compose_strings, avoid_print
+// ignore_for_file: file_names, duplicate_ignore, prefer_interpolation_to_compose_strings, avoid_
 
 import 'dart:convert';
 
@@ -54,7 +54,7 @@ class ProfilePage extends State<ProfileStaff> {
     response = await fetchUser(widget.user);
     if (response["isSuccessful"]) {
       user = response["data"];
-      print(user);
+      (user);
     }
   }
 
@@ -120,26 +120,6 @@ class ProfilePage extends State<ProfileStaff> {
                                     jsonDecode(user['user_picture']),
                               ),
                               fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        // The edit button
-                        Positioned(
-                          right: 0,
-                          bottom: 0,
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color(
-                                  0XFFFF5C00), // Change this to the color you want for the background of the circle.
-                            ),
-                            alignment: Alignment.center,
-                            child: const Icon(
-                              Icons.edit, // Change this to the icon you want.
-                              color: Colors
-                                  .black, // Change this to the color you want for the icon.
                             ),
                           ),
                         ),
