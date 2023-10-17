@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_
+// ignore_for_file: avoid_, unused_local_variable
 
 import 'dart:convert';
 
@@ -100,7 +100,7 @@ class ProfilePage extends State<Profile> {
               future: _intializeData(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
