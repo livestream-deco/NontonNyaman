@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace, avoid_print, duplicate_ignore, file_names, prefer_interpolation_to_compose_strings, prefer_const_constructors, use_build_context_synchronously
+// ignore_for_file: sized_box_for_whitespace, avoid_, duplicate_ignore, file_names, prefer_interpolation_to_compose_strings, prefer_const_constructors, use_build_context_synchronously
 
 import 'dart:convert';
 
@@ -139,7 +139,7 @@ class ChooseStadium extends State<ChoosePage> {
         return a.stadiumName.compareTo(b.stadiumName);
       },
       itemSubmitted: (item) async {
-        print("Selected item: '${item.stadiumName}'");
+        ("Selected item: '${item.stadiumName}'");
         setState(() {
           if (searchTextField.textField != null &&
               searchTextField.textField!.controller != null) {
@@ -167,7 +167,7 @@ class ChooseStadium extends State<ChoosePage> {
     response2 = await fetchStaff(widget.user);
     if (response2["isSuccessful"]) {
       allStaff = response2["data"];
-      print(allStaff);
+      (allStaff);
     }
   }
 
@@ -355,7 +355,8 @@ class ChooseStadium extends State<ChoosePage> {
                                                                   Request(
                                                                       widget
                                                                           .user,
-                                                                      allStadiums[i]
+                                                                      allStadiums[
+                                                                              i]
                                                                           [
                                                                           'stadium_id'])));
                                                     },
@@ -438,30 +439,9 @@ class ChooseStadium extends State<ChoosePage> {
                                       image: NetworkImage(
                                         'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                             jsonDecode(
-                                                allStaff['user_picture']),
+                                                allStaff['staff_picture']),
                                       ),
                                       fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                // The edit button
-                                Positioned(
-                                  right: 0,
-                                  bottom: 0,
-                                  child: Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color(
-                                          0XFFFF5C00), // Change this to the color you want for the background of the circle.
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Icon(
-                                      Icons
-                                          .edit, // Change this to the icon you want.
-                                      color: Colors
-                                          .black, // Change this to the color you want for the icon.
                                     ),
                                   ),
                                 ),

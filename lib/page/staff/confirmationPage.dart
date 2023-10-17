@@ -1,5 +1,5 @@
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore, unused_import, avoid_print
+// ignore_for_file: file_names, duplicate_ignore, unused_import, avoid_
 
 import 'dart:convert';
 
@@ -58,6 +58,28 @@ Future<Map<String, dynamic>> pickStaff(User user, String email) async {
   Map<String, dynamic> body = {'session_id': user.sessionId, 'email': email};
 
   final response = await http.put(
+    Uri.parse(url),
+    headers: headers,
+    body: jsonEncode(body),
+  );
+  if (response.statusCode == 200) {
+    return {"isSuccessful": true, "error": null};
+  } else {
+    return {"isSuccessful": false, "error": "An error has occurred"};
+  }
+}
+
+Future<Map<String, dynamic>> declineUser(User user, String email) async {
+  String url =
+      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/decline-user/?session_id=${user.sessionId}&email=$email';
+
+  Map<String, String> headers = {
+    'Content-Type': 'application/json; charset=UTF-8',
+  };
+
+  Map<String, dynamic> body = {'session_id': user.sessionId, 'email': email};
+
+  final response = await http.delete(
     Uri.parse(url),
     headers: headers,
     body: jsonEncode(body),
@@ -163,10 +185,21 @@ class _UserDetailPage extends State<UserDetail> {
                                                           width: 80,
                                                           height: 80,
                                                           decoration:
-                                                              const BoxDecoration(
-                                                            color: Colors.black,
+                                                              BoxDecoration(
                                                             shape:
                                                                 BoxShape.circle,
+                                                            image:
+                                                                DecorationImage(
+                                                              image:
+                                                                  NetworkImage(
+                                                                // ignore: prefer_interpolation_to_compose_strings
+                                                                'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                                                    jsonDecode(
+                                                                        allStaff[
+                                                                            'user_picture']),
+                                                              ),
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                           ),
                                                         ),
                                                         const SizedBox(
@@ -272,8 +305,18 @@ class _UserDetailPage extends State<UserDetail> {
                                                         ),
                                                       ),
                                                       onPressed: () {
-                                                        print(
-                                                            'Cancel button pressed!');
+                                                        declineUser(widget.user,
+                                                            widget.email);
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder:
+                                                                  (context) =>
+                                                                      NavbarStaff(
+                                                                        widget
+                                                                            .user,
+                                                                      )),
+                                                        );
                                                       },
                                                     ),
                                                   ],

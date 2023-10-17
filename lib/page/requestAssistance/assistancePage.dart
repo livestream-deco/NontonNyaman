@@ -1,5 +1,5 @@
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore, unused_import, avoid_print
+// ignore_for_file: file_names, duplicate_ignore, unused_import, avoid_
 
 import 'dart:convert';
 
@@ -27,7 +27,7 @@ Future<Map<String, dynamic>> fetchStadium(int id) async {
       headers: headers,
       body: jsonEncode(body),
     );
-    print(jsonDecode(response.body));
+    (jsonDecode(response.body));
     List<dynamic> extractedData = jsonDecode(response.body);
 
     // await Future.delayed(Duration(seconds: 10));
@@ -162,10 +162,22 @@ class AssistanceDetail extends State<Assistance> {
                                                           width: 80,
                                                           height: 80,
                                                           decoration:
-                                                              const BoxDecoration(
-                                                            color: Colors.black,
+                                                              BoxDecoration(
                                                             shape:
                                                                 BoxShape.circle,
+                                                            image:
+                                                                DecorationImage(
+                                                              image:
+                                                                  NetworkImage(
+                                                                // ignore: prefer_interpolation_to_compose_strings
+                                                                'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                                                    jsonDecode(
+                                                                        allStaff[0]
+                                                                            [
+                                                                            'user_picture']),
+                                                              ),
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                           ),
                                                         ),
                                                         const SizedBox(

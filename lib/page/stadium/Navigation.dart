@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, library_private_types_in_public_api, empty_catches, prefer_const_constructors, avoid_print
+// ignore_for_file: file_names, library_private_types_in_public_api, empty_catches, prefer_const_constructors, avoid_
 
 import 'dart:async';
 
@@ -7,15 +7,12 @@ import 'package:geolocator/geolocator.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'dart:math';
 
-
-
-
-
 class NavigationArrow extends StatefulWidget {
   final double latitude;
   final double longitude;
 
-  const NavigationArrow({required this.latitude, required this.longitude, Key? key})
+  const NavigationArrow(
+      {required this.latitude, required this.longitude, Key? key})
       : super(key: key);
 
   @override
@@ -26,8 +23,6 @@ class _NavigationArrowState extends State<NavigationArrow> {
   StreamSubscription<Position>? _positionStreamSubscription;
   double? _arrowRotation;
   Position? _currentPosition;
-  
- 
 
   @override
   void initState() {
@@ -41,30 +36,33 @@ class _NavigationArrowState extends State<NavigationArrow> {
   }
 
   void _getCurrentLocation() {
-  Stream<Position> positionStream = Geolocator.getPositionStream(
-    desiredAccuracy: LocationAccuracy.high
-  );
+    Stream<Position> positionStream =
+        Geolocator.getPositionStream(desiredAccuracy: LocationAccuracy.high);
 
-  _positionStreamSubscription = positionStream.listen(
-    (Position position) {
+    _positionStreamSubscription = positionStream.listen((Position position) {
       if (_currentPosition == null ||
-          Geolocator.distanceBetween(_currentPosition!.latitude, _currentPosition!.longitude, position.latitude, position.longitude) > 10) {
+          Geolocator.distanceBetween(
+                  _currentPosition!.latitude,
+                  _currentPosition!.longitude,
+                  position.latitude,
+                  position.longitude) >
+              10) {
         setState(() {
           _currentPosition = position;
         });
       }
-    }
-  );
-}
+    });
+  }
 
   double _calculateArrowRotation(double? heading) {
     if (_currentPosition == null || heading == null) {
       return 0;
     }
 
-    double bearingToDestination = _calculateBearing(_currentPosition!.latitude, _currentPosition!.longitude, widget.latitude, widget.longitude);
+    double bearingToDestination = _calculateBearing(_currentPosition!.latitude,
+        _currentPosition!.longitude, widget.latitude, widget.longitude);
     double rotation = bearingToDestination - heading;
-  
+
     // Ensure rotation is within -180 to +180 degrees
     if (rotation > 180) {
       rotation -= 360;
@@ -112,11 +110,10 @@ class _NavigationArrowState extends State<NavigationArrow> {
     }
 
     double distanceInMeters = Geolocator.distanceBetween(
-      _currentPosition!.latitude,
-      _currentPosition!.longitude,
-      widget.latitude, 
-      widget.longitude
-    );
+        _currentPosition!.latitude,
+        _currentPosition!.longitude,
+        widget.latitude,
+        widget.longitude);
 
     if (distanceInMeters < 1000) {
       return '${distanceInMeters.toStringAsFixed(0)} m';
@@ -130,7 +127,7 @@ class _NavigationArrowState extends State<NavigationArrow> {
     _positionStreamSubscription?.cancel();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,11 +146,15 @@ class _NavigationArrowState extends State<NavigationArrow> {
           children: [
             Transform.rotate(
               angle: ((_arrowRotation ?? 0) * pi) / 180,
-              child: Icon(Icons.arrow_upward, color:  Color(0XFFFF5C00), size: 200),
+              child:
+                  Icon(Icons.arrow_upward, color: Color(0XFFFF5C00), size: 200),
             ),
             Text(
               _calculateDistance(),
-              style: TextStyle(fontSize: 24, fontFamily: 'Inter', fontWeight: FontWeight.w400),
+              style: TextStyle(
+                  fontSize: 24,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400),
             ),
           ],
         ),
