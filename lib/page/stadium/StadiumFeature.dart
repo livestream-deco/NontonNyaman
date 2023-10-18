@@ -207,7 +207,7 @@ class StadiumFeature extends State<Stadium> {
                   ),
                 ),
               )
-            : allStadium[0]["features"][i]["name"] == 'Taxi stand'
+            : allStadium[0]["features"][i]["name"] == 'Taxi Stand'
                 ? Center(
                     child: Container(
                       height: 50,
@@ -377,7 +377,7 @@ class StadiumFeature extends State<Stadium> {
                   ),
                 ),
               )
-            : allStadium[0]["features"][i]["name"] == 'Taxi stand'
+            : allStadium[0]["features"][i]["name"] == 'Taxi Stand'
                 ? Center(
                     child: Container(
                       height: 50,
