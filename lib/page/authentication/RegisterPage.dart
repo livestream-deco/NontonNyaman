@@ -297,7 +297,7 @@ class RegisterPage extends State<Register> {
                               context: context,
                               initialDate: DateTime.now(),
                               firstDate: DateTime(
-                                  2000), //DateTime.now() - not to allow to choose before today.
+                                  1950), //DateTime.now() - not to allow to choose before today.
                               lastDate: DateTime(2101));
                           if (pickedDate != null) {
                             String formattedDate =
