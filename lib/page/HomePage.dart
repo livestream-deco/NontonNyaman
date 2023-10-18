@@ -16,6 +16,7 @@ import 'package:my_app/models/user.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:my_app/page/accommodation/accommodation.dart';
 import 'package:my_app/page/navbar.dart';
 import 'package:my_app/page/newsletter/newsletter.dart';
 import 'package:my_app/page/profile/profile.dart';
@@ -569,7 +570,9 @@ class HomePage extends State<HomeView> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  Profile(widget.user)));
+                                                  Accommodation(allAccom[
+                                                          itemIndex]
+                                                      ['accomodation_id'])));
                                     },
                                   ),
                                 )
