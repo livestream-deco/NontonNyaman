@@ -38,19 +38,19 @@ class _NavigationArrowState extends State<NavigationArrow> {
     Stream<Position> positionStream = Geolocator.getPositionStream(desiredAccuracy: LocationAccuracy.high);
 
     _positionStreamSubscription = positionStream.listen((Position position) {
-      if (_currentPosition == null ||
-          Geolocator.distanceBetween(
-                  _currentPosition!.latitude,
-                  _currentPosition!.longitude,
-                  position.latitude,
-                  position.longitude) >
-              10) {
-        setState(() {
-          _currentPosition = position;
-          _distance = _calculateDistance();  // Update distance when position changes
-        });
-      }
-    });
+    if (_currentPosition == null ||
+        Geolocator.distanceBetween(
+                _currentPosition!.latitude,
+                _currentPosition!.longitude,
+                position.latitude,
+                position.longitude) >
+            10) {
+      setState(() {
+        _currentPosition = position;
+        _distance = _calculateDistance();  // Update distance when position changes
+      });
+    }
+  });
   }
 
   double _calculateArrowRotation(double? heading) {

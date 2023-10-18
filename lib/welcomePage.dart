@@ -36,7 +36,7 @@ class _WelcomePage extends State<WelcomPage> {
             
             const SizedBox(height: 170,),
            Container(
-            height: 150,
+            height: 170,
             width: 330,
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.1), // 90% opacity
