@@ -135,7 +135,7 @@ class AccommodationDetail extends State<Accommodation> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 25,
                                 ),
                                 Text(
