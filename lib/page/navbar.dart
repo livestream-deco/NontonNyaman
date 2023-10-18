@@ -43,14 +43,14 @@ class _NavbarPage extends State<Navbar> {
               padding: const EdgeInsets.only(),
               child: const Icon(Icons.house_outlined),
             ),
-            label: 'Home',
+            label: 'News',
           ),
           BottomNavigationBarItem(
             icon: Container(
               padding: const EdgeInsets.only(),
               child: const Icon(Icons.map),
             ),
-            label: 'Navigation',
+            label: 'Stadium',
           ),
           BottomNavigationBarItem(
             icon: Container(
@@ -72,7 +72,7 @@ class _NavbarPage extends State<Navbar> {
               padding: const EdgeInsets.only(),
               child: const Icon(Icons.call),
             ),
-            label: 'Request',
+            label: 'Assistance',
           ),
           BottomNavigationBarItem(
             icon: Container(

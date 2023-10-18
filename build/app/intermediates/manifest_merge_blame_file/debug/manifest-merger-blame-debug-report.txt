@@ -74,8 +74,8 @@
 46        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 46-->[androidx.core:core:1.10.1] /Users/reynaldi/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:28:18-86
 47        android:debuggable="true"
-48        android:icon="@mipmap/ic_launcher"
-49        android:label="my_app" >
+48        android:icon="@mipmap/launcher_icon"
+49        android:label="NontonNyaman" >
 50        <activity
 51            android:name="com.example.my_app.MainActivity"
 52            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

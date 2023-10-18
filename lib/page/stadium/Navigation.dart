@@ -1,7 +1,7 @@
-// ignore_for_file: file_names, library_private_types_in_public_api, empty_catches, prefer_const_constructors, avoid_
+// ignore: file_names
+// ignore_for_file: file_names, library_private_types_in_public_api, duplicate_ignore
 
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_compass/flutter_compass.dart';
@@ -11,9 +11,7 @@ class NavigationArrow extends StatefulWidget {
   final double latitude;
   final double longitude;
 
-  const NavigationArrow(
-      {required this.latitude, required this.longitude, Key? key})
-      : super(key: key);
+  const NavigationArrow({required this.latitude, required this.longitude, Key? key}) : super(key: key);
 
   @override
   _NavigationArrowState createState() => _NavigationArrowState();
@@ -23,6 +21,7 @@ class _NavigationArrowState extends State<NavigationArrow> {
   StreamSubscription<Position>? _positionStreamSubscription;
   double? _arrowRotation;
   Position? _currentPosition;
+  String _distance = 'Calculating...';   // New state variable for distance
 
   @override
   void initState() {
@@ -36,8 +35,7 @@ class _NavigationArrowState extends State<NavigationArrow> {
   }
 
   void _getCurrentLocation() {
-    Stream<Position> positionStream =
-        Geolocator.getPositionStream(desiredAccuracy: LocationAccuracy.high);
+    Stream<Position> positionStream = Geolocator.getPositionStream(desiredAccuracy: LocationAccuracy.high);
 
     _positionStreamSubscription = positionStream.listen((Position position) {
       if (_currentPosition == null ||
@@ -49,6 +47,7 @@ class _NavigationArrowState extends State<NavigationArrow> {
               10) {
         setState(() {
           _currentPosition = position;
+          _distance = _calculateDistance();  // Update distance when position changes
         });
       }
     });
@@ -103,7 +102,6 @@ class _NavigationArrowState extends State<NavigationArrow> {
     return radians * 180 / pi;
   }
 
-  // Calculate the distance between the current location and the destination
   String _calculateDistance() {
     if (_currentPosition == null) {
       return 'Calculating...';
@@ -131,10 +129,10 @@ class _NavigationArrowState extends State<NavigationArrow> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFECECEC),
+      backgroundColor: const Color(0xFFECECEC),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFFECECEC),
+        backgroundColor: const Color(0xFFECECEC),
         elevation: 0,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.black),
@@ -146,12 +144,11 @@ class _NavigationArrowState extends State<NavigationArrow> {
           children: [
             Transform.rotate(
               angle: ((_arrowRotation ?? 0) * pi) / 180,
-              child:
-                  Icon(Icons.arrow_upward, color: Color(0XFFFF5C00), size: 200),
+              child: const Icon(Icons.arrow_upward, color: Color(0XFFFF5C00), size: 200),
             ),
             Text(
-              _calculateDistance(),
-              style: TextStyle(
+              _distance,
+              style: const TextStyle(
                   fontSize: 24,
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w400),

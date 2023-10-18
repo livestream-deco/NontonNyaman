@@ -3,7 +3,7 @@
 // ignore: file_names
 // ignore: file_names
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore, prefer_interpolation_to_compose_strings
+// ignore_for_file: file_names, duplicate_ignore, prefer_interpolation_to_compose_strings, sized_box_for_whitespace
 
 import 'dart:convert';
 
@@ -182,57 +182,74 @@ class StadiumFeature extends State<Stadium> {
                                                             Radius.circular(
                                                                 12)),
                                                   ),
-                                                  child: allStadium[0]
-                                                                  ["features"]
-                                                              [i]["name"] ==
-                                                          'Toilet'
-                                                      ? Image.asset(
-                                                          'assets/images/toilet.png',
-                                                          width: 50,
-                                                          height: 50,
-                                                        )
-                                                      : allStadium[0]["features"]
-                                                                  [i]["name"] ==
-                                                              'Bus Stop'
-                                                          ? Image.asset(
-                                                              'assets/images/bus_stop.png',
-                                                              width: 50,
-                                                              height: 50,
-                                                            )
-                                                          : allStadium[0]["features"]
-                                                                          [i][
-                                                                      "name"] ==
-                                                                  'Taxi stand'
-                                                              ? Image.asset(
-                                                                  'assets/images/taxi.png',
-                                                                  width: 50,
-                                                                  height: 50,
-                                                                )
-                                                              : allStadium[0]["features"]
-                                                                              [i]
-                                                                          ["name"] ==
-                                                                      'Lift'
-                                                                  ? Image.asset(
-                                                                      'assets/images/lift.png',
-                                                                      width: 50,
-                                                                      height:
-                                                                          50,
-                                                                    )
-                                                                  : allStadium[0]["features"][i]["name"] == 'Entrance'
-                                                                      ? Image.asset(
-                                                                          'assets/images/entrance.png',
-                                                                          width:
-                                                                              50,
-                                                                          height:
-                                                                              50,
-                                                                        )
-                                                                      : allStadium[0]["features"][i]["name"] == 'Food And Beverage'
-                                                                          ? Image.asset(
-                                                                              'assets/images/food.png',
-                                                                              width: 50,
-                                                                              height: 50,
-                                                                            )
-                                                                          : Text(allStadium[0]["features"][i]["name"]),
+                                                  child: allStadium[0]["features"][i]["name"] == 'Toilet'
+        ? Center(
+            child: Container(
+              height: 50,
+              width: 50,
+              child: Image.asset(
+                'assets/images/toilet.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
+        : allStadium[0]["features"][i]["name"] == 'Bus Stop'
+            ? Center(
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  child: Image.asset(
+                    'assets/images/bus_stop.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              )
+            : allStadium[0]["features"][i]["name"] == 'Taxi stand'
+                ? Center(
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      child: Image.asset(
+                        'assets/images/taxi.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
+                : allStadium[0]["features"][i]["name"] == 'Lift'
+                    ? Center(
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          child: Image.asset(
+                            'assets/images/lift.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
+                    : allStadium[0]["features"][i]["name"] == 'Entrance'
+                        ? Center(
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              child: Image.asset(
+                                'assets/images/entrance.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          )
+                        : allStadium[0]["features"][i]["name"] == 'Food And Beverages'
+                            ? Center(
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset(
+                                    'assets/images/food.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              )
+                            : Text(allStadium[0]["features"][i]["name"]),
+
                                                 ),
                                               ))
                                       ]),
@@ -322,70 +339,87 @@ class StadiumFeature extends State<Stadium> {
                                                 child: Row(
                                                   children: [
                                                     Container(
-                                                      width: 85.0,
-                                                      height: 85.0,
-                                                      decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        color: Colors
-                                                            .white, // set this to your body background color
-                                                        border: Border.all(
-                                                          color: Colors
-                                                              .orange, // set border color
-                                                          width:
-                                                              3.0, // set border width
-                                                        ),
-                                                      ),
-                                                      child: allStadium[0]
-                                                                      ["features"]
-                                                                  [i]["name"] ==
-                                                              'Toilet'
-                                                          ? Image.asset(
-                                                              'assets/images/toilet.png',
-                                                              width: 50,
-                                                              height: 50,
-                                                            )
-                                                          : allStadium[0]["features"]
-                                                                          [i][
-                                                                      "name"] ==
-                                                                  'Bus Stop'
-                                                              ? Image.asset(
-                                                                  'assets/images/bus_stop.png',
-                                                                  width: 50,
-                                                                  height: 50,
-                                                                )
-                                                              : allStadium[0]["features"][i][
-                                                                          "name"] ==
-                                                                      'Taxi stand'
-                                                                  ? Image.asset(
-                                                                      'assets/images/taxi.png',
-                                                                      width: 50,
-                                                                      height:
-                                                                          50,
-                                                                    )
-                                                                  : allStadium[0]["features"][i]
-                                                                              ["name"] ==
-                                                                          'Lift'
-                                                                      ? Image.asset(
-                                                                          'assets/images/lift.png',
-                                                                          width:
-                                                                              50,
-                                                                          height:
-                                                                              50,
-                                                                        )
-                                                                      : allStadium[0]["features"][i]["name"] == 'Entrance'
-                                                                          ? Image.asset(
-                                                                              'assets/images/entrance.png',
-                                                                              width: 50,
-                                                                              height: 50,
-                                                                            )
-                                                                          : allStadium[0]["features"][i]["name"] == 'Food And Beverages'
-                                                                              ? Image.asset(
-                                                                                  'assets/images/food.png',
-                                                                                  width: 50,
-                                                                                  height: 50,
-                                                                                )
-                                                                              : Text(allStadium[0]["features"][i]["name"]),
-                                                    ),
+
+  width: 85.0,
+  height: 85.0,
+  decoration: BoxDecoration(
+    shape: BoxShape.circle,
+    color: Colors.white, // Set this to your body background color
+    border: Border.all(
+      color: Colors.orange, // Set border color
+      width: 3.0, // Set border width
+    ),
+  ),
+  child: ClipOval(
+    child: allStadium[0]["features"][i]["name"] == 'Toilet'
+        ? Center(
+            child: Container(
+              height: 50,
+              width: 50,
+              child: Image.asset(
+                'assets/images/toilet.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
+        : allStadium[0]["features"][i]["name"] == 'Bus Stop'
+            ? Center(
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  child: Image.asset(
+                    'assets/images/bus_stop.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              )
+            : allStadium[0]["features"][i]["name"] == 'Taxi stand'
+                ? Center(
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      child: Image.asset(
+                        'assets/images/taxi.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
+                : allStadium[0]["features"][i]["name"] == 'Lift'
+                    ? Center(
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          child: Image.asset(
+                            'assets/images/lift.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
+                    : allStadium[0]["features"][i]["name"] == 'Entrance'
+                        ? Center(
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              child: Image.asset(
+                                'assets/images/entrance.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          )
+                        : allStadium[0]["features"][i]["name"] == 'Food And Beverages'
+                            ? Center(
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset(
+                                    'assets/images/food.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              )
+                            : Text(allStadium[0]["features"][i]["name"]),
+  ),
+),
                                                     const SizedBox(
                                                       width: 50,
                                                     ),
