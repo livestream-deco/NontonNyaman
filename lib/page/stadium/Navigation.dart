@@ -35,23 +35,18 @@ class _NavigationArrowState extends State<NavigationArrow> {
   }
 
   void _getCurrentLocation() {
-    Stream<Position> positionStream = Geolocator.getPositionStream(desiredAccuracy: LocationAccuracy.high);
+  Stream<Position> positionStream = Geolocator.getPositionStream(
+    desiredAccuracy: LocationAccuracy.high,
+    distanceFilter: 1,  // Trigger updates every 1 meter the device moves
+  );
 
-    _positionStreamSubscription = positionStream.listen((Position position) {
-    if (_currentPosition == null ||
-        Geolocator.distanceBetween(
-                _currentPosition!.latitude,
-                _currentPosition!.longitude,
-                position.latitude,
-                position.longitude) >
-            10) {
-      setState(() {
-        _currentPosition = position;
-        _distance = _calculateDistance();  // Update distance when position changes
-      });
-    }
+  _positionStreamSubscription = positionStream.listen((Position position) {
+    setState(() {
+      _currentPosition = position;
+      _distance = _calculateDistance();  // Update distance when position changes
+    });
   });
-  }
+}
 
   double _calculateArrowRotation(double? heading) {
     if (_currentPosition == null || heading == null) {

@@ -125,14 +125,17 @@ class StadiumFeature extends State<Stadium> {
                                       height: 10,
                                     ),
                                     Container(
-                                      padding: const EdgeInsets.all(20),
-                                      width: 365,
-                                      height: 100,
-                                      decoration: const BoxDecoration(
-                                          color: Color(0xff292929),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12))),
+                                    padding: const EdgeInsets.all(20),
+                                    width: 365,
+                                    height: 100,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0xff292929),
+                                      borderRadius: BorderRadius.all(Radius.circular(12))
+                                    ),
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
                                       child: Row(children: [
+
                                         for (int i = 0;
                                             i <
                                                 allStadium[0]["features"]
@@ -253,6 +256,7 @@ class StadiumFeature extends State<Stadium> {
                                                 ),
                                               ))
                                       ]),
+                                    ),
                                     ),
                                     const SizedBox(
                                       height: 20,
