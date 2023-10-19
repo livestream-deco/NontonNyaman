@@ -91,13 +91,15 @@ class StadiumInformation extends State<StadiumInfo> {
                             width: 410.0,
                             height: 410.0,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Image.network(
-                              'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
-                                  jsonDecode(allStadium[0]['stadium_picture']),
-                              fit: BoxFit
-                                  .cover, // You can use different BoxFit property as per your requirement
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.network(
+                                'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
+                                    jsonDecode(allStadium[0]['stadium_picture']),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                           Positioned(

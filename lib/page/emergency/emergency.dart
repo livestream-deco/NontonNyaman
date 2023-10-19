@@ -73,7 +73,7 @@ class EmergencyPage extends State<Emergency> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 100,
+              height: 250,
             ),
             FutureBuilder(
                 future: _intializeData(),

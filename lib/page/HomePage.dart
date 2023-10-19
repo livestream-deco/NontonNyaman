@@ -7,7 +7,7 @@
 // ignore: file_names
 // ignore: file_names
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore, unused_import, override_on_non_overriding_member, annotate_overrides, use_build_context_synchronously, prefer_const_constructors, prefer_adjacent_string_concatenation, avoid_, unused_local_variable, prefer_interpolation_to_compose_strings
+// ignore_for_file: file_names, duplicate_ignore, unused_import, override_on_non_overriding_member, annotate_overrides, use_build_context_synchronously, prefer_const_constructors, prefer_adjacent_string_concatenation, avoid_, unused_local_variable, prefer_interpolation_to_compose_strings, sized_box_for_whitespace
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -343,13 +343,13 @@ class HomePage extends State<HomeView> {
                                 ),
                               ),
                               const SizedBox(
-                                width: 10,
+                                width: 20,
                               ),
                               Text(
                                 "G'Day " + '${thedata["name"]}',
                                 style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
+                                    fontSize: 20,
+                                    color: Colors.white,
                                     fontWeight: FontWeight.w700),
                               ),
                             ],
@@ -477,8 +477,12 @@ class HomePage extends State<HomeView> {
                                   ),
                                 ),
                                 Positioned(
-                                  bottom: 10,
+                                  bottom: -10,
                                   left: 10,
+                                  child: 
+                                  Container(
+                                    width: 350,
+                                    height: 100,
                                   child: TextButton(
                                     key: Key("title$itemIndex"),
                                     child: Text(
@@ -498,7 +502,7 @@ class HomePage extends State<HomeView> {
                                     },
                                   ),
                                 )
-                              ])
+                              )])
                             ]);
                       },
                       options: CarouselOptions(
@@ -513,7 +517,7 @@ class HomePage extends State<HomeView> {
                   }
                 }),
             const Text(
-              'Accommodation Sugestion ',
+              'Accommodation Suggestion ',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
             ),

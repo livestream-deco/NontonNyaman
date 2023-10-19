@@ -41,7 +41,7 @@ class _NavbarPage extends State<Navbar> {
           BottomNavigationBarItem(
             icon: Container(
               padding: const EdgeInsets.only(),
-              child: const Icon(Icons.house_outlined),
+              child: const Icon(Icons.newspaper_outlined),
             ),
             label: 'News',
           ),
