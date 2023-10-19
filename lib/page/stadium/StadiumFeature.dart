@@ -13,8 +13,7 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/link.dart';
 
 Future<Map<String, dynamic>> fetchStadium(int id) async {
-  String url =
-      'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-detail-stadium/?input_id=$id';
+  String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-detail-stadium/?input_id=$id';
 
   try {
     Map<String, String> headers = {
