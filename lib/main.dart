@@ -8,6 +8,7 @@ void main() {
   runApp(MyApp());
 }
 
+// this is the main app which return the application and we already set into always welcoming page
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

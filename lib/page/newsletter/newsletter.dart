@@ -10,7 +10,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-Future<Map<String, dynamic>> fetchStadium(int id) async {
+// fetch the newsletter based on the newsletter id
+Future<Map<String, dynamic>> fetchNews(int id) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/newsletter/view-detail-newsletter/?input_id=$id';
 
@@ -56,11 +57,12 @@ class Newsletters extends StatefulWidget {
 }
 
 class NewsletterDetail extends State<Newsletters> {
+  //make the list for store the data
   List<dynamic> allNewsletter = [];
   Map<String, dynamic> response = {};
 
   Future<void> _intializeData() async {
-    response = await fetchStadium(widget.id);
+    response = await fetchNews(widget.id);
     if (response["isSuccessful"]) {
       allNewsletter = response["data"];
     }
@@ -80,6 +82,7 @@ class NewsletterDetail extends State<Newsletters> {
         backgroundColor: const Color(0xFFECECEC),
         body: SingleChildScrollView(
             padding: const EdgeInsets.only(left: 15, right: 15),
+            // call the future builder for called the initialize data
             child: FutureBuilder(
               future: _intializeData(),
               builder: (context, snapshot) {
@@ -97,6 +100,7 @@ class NewsletterDetail extends State<Newsletters> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
                             ),
+                            // called the data from the list for show the picture of the news
                             child: Image.network(
                               'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                   jsonDecode(
@@ -116,6 +120,7 @@ class NewsletterDetail extends State<Newsletters> {
                                 const SizedBox(
                                   height: 20,
                                 ),
+                                // use the list for show the title and the text of the newsletter
                                 Text(
                                   allNewsletter[0]['newsletter_title'],
                                   style: const TextStyle(

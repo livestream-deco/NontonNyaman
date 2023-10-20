@@ -13,7 +13,8 @@ import 'package:my_app/page/requestAssistance/assistancePage.dart';
 import 'package:my_app/page/stadium/StadiumInfo.dart';
 import 'package:my_app/page/staff/confirmationPage.dart';
 
-Future<Map<String, dynamic>> fetchStadium(User user) async {
+// fetch the list of request based on user
+Future<Map<String, dynamic>> fetchRequest(User user) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/list-request/?session_id=${user.sessionId}';
 
@@ -71,6 +72,7 @@ Future<Map<String, dynamic>> fetchStaff(User user) async {
   }
 }
 
+// fetch the endTask only for button
 Future<Map<String, dynamic>> endTask(User user) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/end-task/?session_id=${user.sessionId}';
@@ -107,7 +109,7 @@ class HomeStaff extends State<Home> {
   Map<String, dynamic> userData = {};
 
   Future<void> _intializeData() async {
-    response = await fetchStadium(widget.user);
+    response = await fetchRequest(widget.user);
     if (response["isSuccessful"]) {
       allStaff = response["data"];
       ('test123');
@@ -125,6 +127,7 @@ class HomeStaff extends State<Home> {
         future: _intializeData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
+            // if the user does not have any user
             if (!userData["confirmed"]) {
               return Scaffold(
                   backgroundColor: const Color(0xFFECECEC),
@@ -275,6 +278,7 @@ class HomeStaff extends State<Home> {
                                       ])))
                         ]),
                   ));
+                  // if the staff already have the user, it will show end task page
             } else {
               return Scaffold(
                   backgroundColor: const Color(0xFFECECEC),

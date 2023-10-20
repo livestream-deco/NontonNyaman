@@ -4,13 +4,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:my_app/models/user.dart';
-import 'package:my_app/page/profile/profile.dart';
 
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:my_app/page/requestAssistance/RequestHomePage.dart';
 import 'package:my_app/page/stadium/StadiumInfo.dart';
 import 'package:http/http.dart' as http;
 
+// fetch the staff based on the user
 Future<Map<String, dynamic>> fetchStaff(User user) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/user_info/?session_id=${user.sessionId}';
@@ -29,7 +29,6 @@ Future<Map<String, dynamic>> fetchStaff(User user) async {
 
     Map<String, dynamic> extractedData = jsonDecode(response.body);
 
-    // await Future.delayed(Duration(seconds: 10));
     if (response.statusCode == 200) {
       return {"isSuccessful": true, "data": extractedData, "error": null};
     } else {
@@ -48,6 +47,7 @@ Future<Map<String, dynamic>> fetchStaff(User user) async {
   }
 }
 
+// fetch the stadiums so the user can choose the stadium
 Future<Map<String, dynamic>> fetchStadiums() async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-all-stadium/';
@@ -85,6 +85,7 @@ Future<Map<String, dynamic>> fetchStadiums() async {
   }
 }
 
+// class StadiumA for the item list of the search text field
 class StadiumA {
   final String stadiumName;
 
@@ -106,6 +107,7 @@ class ChoosePage extends StatefulWidget {
 }
 
 class ChooseStadium extends State<ChoosePage> {
+  // all the list and map that will be used in this page
   List<dynamic> allStadiums = [];
   Map<String, dynamic> allStaff = {};
   Map<String, dynamic> response2 = {};
@@ -114,6 +116,7 @@ class ChooseStadium extends State<ChoosePage> {
   GlobalKey<AutoCompleteTextFieldState<StadiumA>> key = GlobalKey();
   int selectedIndex = 0;
 
+  // initState for the search text field
   @override
   void initState() {
     super.initState();
@@ -146,12 +149,6 @@ class ChooseStadium extends State<ChoosePage> {
             searchTextField.textField!.controller!.text = item.stadiumName;
           }
         });
-        if (item.stadiumName == 'Suncorp Stadium') {
-          await Future.delayed(const Duration(milliseconds: 100));
-          // ignore: use_build_context_synchronously
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => Profile(widget.user)));
-        }
       },
       itemBuilder: (context, item) {
         return row(item);
@@ -159,6 +156,7 @@ class ChooseStadium extends State<ChoosePage> {
     );
   }
 
+  // all the initializeData that being used in this page (stadium and staff)
   Future<void> _intializeData() async {
     response = await fetchStadiums();
     if (response["isSuccessful"]) {
@@ -188,12 +186,13 @@ class ChooseStadium extends State<ChoosePage> {
 
   @override
   Widget build(BuildContext context) {
+    // using future builder to take the data
     return FutureBuilder(
       future: _intializeData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
+          // if the user not yet choose the stadium
           if (!allStaff["has_chose"]) {
-            // Your existing widget building logic here...
             return Scaffold(
                 backgroundColor: const Color(0xFFECECEC),
                 body: SingleChildScrollView(
@@ -269,7 +268,7 @@ class ChooseStadium extends State<ChoosePage> {
                                               }
                                             });
 
-                                            // Find the stadium that matches the selected name
+                                            // find the stadium that matches the selected name
                                             var selectedStadium =
                                                 allStadiums.firstWhere(
                                                     (stadium) =>
@@ -278,7 +277,7 @@ class ChooseStadium extends State<ChoosePage> {
                                                         item.stadiumName,
                                                     orElse: () => null);
 
-                                            // If a matching stadium is found, navigate to the StadiumInfo page
+                                            // if a matching stadium is found, navigate to the StadiumInfo page
                                             if (selectedStadium != null) {
                                               await Future.delayed(
                                                   const Duration(
@@ -313,6 +312,7 @@ class ChooseStadium extends State<ChoosePage> {
                                   const SizedBox(
                                     height: 25,
                                   ),
+                                  // future builder for showing all the list of the stadium
                                   FutureBuilder(
                                       future: _intializeData(),
                                       builder: (context, snapshot) {
@@ -381,7 +381,7 @@ class ChooseStadium extends State<ChoosePage> {
                                                                           [
                                                                           'stadium_picture']),
                                                               fit: BoxFit
-                                                                  .cover, // You can use different BoxFit property as per your requirement
+                                                                  .cover, 
                                                             ),
                                                           ),
                                                         ),
@@ -414,10 +414,13 @@ class ChooseStadium extends State<ChoosePage> {
                         )
                       ]),
                 ));
+
+          // the page if the user already have staff
           } else if (allStaff["staff"]) {
             return Scaffold(
               backgroundColor: const Color(0xffFF7D05),
               body: SingleChildScrollView(
+                // future builder for called the data
                   child: FutureBuilder(
                       future: _intializeData(),
                       builder: (context, snapshot) {
@@ -429,7 +432,7 @@ class ChooseStadium extends State<ChoosePage> {
                             ),
                             Stack(
                               children: <Widget>[
-                                // The image
+                                // the image using the staff picture
                                 Container(
                                   width: 140,
                                   height: 140,
@@ -488,9 +491,9 @@ class ChooseStadium extends State<ChoosePage> {
                                                     Radius.circular(12)),
                                             border: Border.all(
                                               color: Colors
-                                                  .black, // Specify the border color here.
+                                                  .black, 
                                               width:
-                                                  2, // Specify the border width here.
+                                                  2, 
                                             ),
                                           ),
                                           child: Padding(
@@ -588,6 +591,7 @@ class ChooseStadium extends State<ChoosePage> {
                         );
                       })),
             );
+            // if the staff does not yet accept the user booking, the user will see this page
           } else {
             return Scaffold(
               backgroundColor: const Color(0xffFF7D05),
@@ -618,7 +622,7 @@ class ChooseStadium extends State<ChoosePage> {
             );
           }
         } else {
-          // This will show while waiting for the future to complete
+          // this will show while waiting for the future to complete
           return Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );

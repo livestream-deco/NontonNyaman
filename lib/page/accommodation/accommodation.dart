@@ -10,7 +10,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-Future<Map<String, dynamic>> fetchStadium(int id) async {
+// future for fetch the accommodation details and using the id as the parameters
+Future<Map<String, dynamic>> fetchAccomm(int id) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/accomodationsuggestion/detail-accomodation/?input_id=$id';
 
@@ -56,13 +57,14 @@ class Accommodation extends StatefulWidget {
 }
 
 class AccommodationDetail extends State<Accommodation> {
-  List<dynamic> allNewsletter = [];
+  // list for put the data
+  List<dynamic> allAccom = [];
   Map<String, dynamic> response = {};
 
   Future<void> _intializeData() async {
-    response = await fetchStadium(widget.id);
+    response = await fetchAccomm(widget.id);
     if (response["isSuccessful"]) {
-      allNewsletter = response["data"];
+      allAccom = response["data"];
     }
   }
 
@@ -80,6 +82,7 @@ class AccommodationDetail extends State<Accommodation> {
         backgroundColor: const Color(0xFFECECEC),
         body: SingleChildScrollView(
             padding: const EdgeInsets.only(left: 15, right: 15),
+            // future builder for called the future void
             child: FutureBuilder(
               future: _intializeData(),
               builder: (context, snapshot) {
@@ -97,10 +100,11 @@ class AccommodationDetail extends State<Accommodation> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
                             ),
+                            // called the picture
                             child: Image.network(
                               'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                   jsonDecode(
-                                      allNewsletter[0]['accomodation_picture']),
+                                      allAccom[0]['accomodation_picture']),
                               fit: BoxFit
                                   .cover, // You can use different BoxFit property as per your requirement
                             ),
@@ -116,8 +120,9 @@ class AccommodationDetail extends State<Accommodation> {
                                 const SizedBox(
                                   height: 20,
                                 ),
+                                // showing the text that will be presented in this page (name, price, description)
                                 Text(
-                                  allNewsletter[0]['accomodation_name'],
+                                  allAccom[0]['accomodation_name'],
                                   style: const TextStyle(
                                       fontFamily: 'Inter',
                                       fontSize: 22,
@@ -128,7 +133,7 @@ class AccommodationDetail extends State<Accommodation> {
                                 ),
                                 Text(
                                   'Price :' +
-                                      allNewsletter[0]['accomodation_price']
+                                      allAccom[0]['accomodation_price']
                                           .toString(),
                                   style: const TextStyle(
                                       fontFamily: 'Inter',
@@ -139,7 +144,7 @@ class AccommodationDetail extends State<Accommodation> {
                                   height: 25,
                                 ),
                                 Text(
-                                  allNewsletter[0]['accomodation_description'],
+                                  allAccom[0]['accomodation_description'],
                                   style: const TextStyle(
                                       fontFamily: 'Inter',
                                       fontSize: 16,

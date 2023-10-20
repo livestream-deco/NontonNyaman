@@ -74,6 +74,7 @@ class StadiumInformation extends State<StadiumInfo> {
         backgroundColor: const Color(0xFFECECEC),
         body: SingleChildScrollView(
             padding: const EdgeInsets.only(left: 15, right: 15),
+            //future builder for take the information of the stadium
             child: FutureBuilder(
               future: _intializeData(),
               builder: (context, snapshot) {
@@ -103,8 +104,8 @@ class StadiumInformation extends State<StadiumInfo> {
                             ),
                           ),
                           Positioned(
-                            top: 320.0, // Adjust this as needed
-                            left: 20.0, // Adjust this as needed
+                            top: 320.0, 
+                            left: 20.0, 
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -112,7 +113,7 @@ class StadiumInformation extends State<StadiumInfo> {
                                   allStadium[0]['stadium_name'],
                                   style: const TextStyle(
                                     color: Colors
-                                        .white, // Choose a color that contrasts with your image
+                                        .white, 
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -121,22 +122,22 @@ class StadiumInformation extends State<StadiumInfo> {
                                   allStadium[0]['stadium_location'],
                                   style: const TextStyle(
                                     color: Colors
-                                        .white, // Choose a color that contrasts with your image
-                                    fontSize: 18.0, // Adjust the size as needed
+                                        .white, 
+                                    fontSize: 18.0,
                                     fontWeight: FontWeight
-                                        .w700, // Adjust the weight as needed
+                                        .w700, 
                                   ),
                                 ),
-                                // Add more Text widgets as needed
+                               
                               ],
                             ),
                           ),
                           Positioned(
-                            top: 30.0, // Adjust as needed
-                            left: 20.0, // Adjust as needed
+                            top: 30.0, 
+                            left: 20.0, 
                             child: Container(
                               padding: const EdgeInsets.all(
-                                  1), // Smaller padding for a smaller circle
+                                  1),
                               decoration: const BoxDecoration(
                                 color: Colors.white,
                                 shape: BoxShape.circle,
@@ -144,7 +145,7 @@ class StadiumInformation extends State<StadiumInfo> {
                               child: IconButton(
                                   icon: const Icon(Icons.arrow_back,
                                       color: Colors.black),
-                                  iconSize: 20.0, // Smaller icon size
+                                  iconSize: 20.0, 
                                   onPressed: () =>
                                       Navigator.pop(context, true)),
                             ),
@@ -157,6 +158,7 @@ class StadiumInformation extends State<StadiumInfo> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                // all the text was used from the list that we already fetched
                                 const Text(
                                   'Overview',
                                   style: TextStyle(

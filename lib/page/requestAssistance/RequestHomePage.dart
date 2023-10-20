@@ -11,7 +11,8 @@ import 'package:my_app/page/profile/profile.dart';
 import 'package:my_app/page/requestAssistance/assistancePage.dart';
 import 'package:my_app/page/stadium/StadiumInfo.dart';
 
-Future<Map<String, dynamic>> fetchStadium(int id) async {
+// fetch staff using the staff id
+Future<Map<String, dynamic>> fetchStaff(int id) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/list_staff/?input_id=$id';
 
@@ -58,13 +59,15 @@ class Request extends StatefulWidget {
 }
 
 class RequestHome extends State<Request> {
+  // list that will be used in this page
   List<dynamic> allStaff = [];
   List<dynamic> userData = [];
   Map<String, dynamic> response = {};
   Map<String, dynamic> response2 = {};
 
+  // initialize data for put the data in the list 
   Future<void> _intializeData() async {
-    response = await fetchStadium(widget.id);
+    response = await fetchStaff(widget.id);
     if (response["isSuccessful"]) {
       allStaff = response["data"];
     }
@@ -117,6 +120,7 @@ class RequestHome extends State<Request> {
                               Padding(
                                   padding:
                                       const EdgeInsets.only(top: 5, bottom: 5),
+                                      // using the for loop after taking the initializeData for showing all the list of staff that exist in that stadium
                                   child: FutureBuilder(
                                       future: _intializeData(),
                                       builder: (context, snapshot) {
@@ -177,6 +181,7 @@ class RequestHome extends State<Request> {
                                                                 BoxShape.circle,
                                                             image:
                                                                 DecorationImage(
+                                                                  // show the image of the staff
                                                               image:
                                                                   NetworkImage(
                                                                 // ignore: prefer_interpolation_to_compose_strings
@@ -211,7 +216,7 @@ class RequestHome extends State<Request> {
                                                         ),
                                                         const Icon(
                                                           Icons
-                                                              .arrow_forward, // This is the arrow
+                                                              .arrow_forward, 
                                                           color:
                                                               Color(0xffFF7D05),
                                                         ),
