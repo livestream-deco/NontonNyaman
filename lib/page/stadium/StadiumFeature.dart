@@ -12,6 +12,7 @@ import 'package:my_app/page/stadium/Navigation.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/link.dart';
 
+// fetch the stadium using stadium id
 Future<Map<String, dynamic>> fetchStadium(int id) async {
   String url = 'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-detail-stadium/?input_id=$id';
 
@@ -57,6 +58,8 @@ class Stadium extends StatefulWidget {
 }
 
 class StadiumFeature extends State<Stadium> {
+
+  // list and map for the stadium
   List<dynamic> allStadium = [];
   Map<String, dynamic> response = {};
 
@@ -171,7 +174,7 @@ class StadiumFeature extends State<Stadium> {
                                                         RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              12), // square shape
+                                                              12), 
                                                     ),
                                                     padding: EdgeInsets.zero,
                                                   ),
@@ -186,6 +189,7 @@ class StadiumFeature extends State<Stadium> {
                                                               Radius.circular(
                                                                   12)),
                                                     ),
+                                                    // if else for the image in the stadium feature
                                                     child: allStadium[0]["features"]
                                                                 [i]["name"] ==
                                                             'Toilet'
@@ -292,6 +296,7 @@ class StadiumFeature extends State<Stadium> {
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w700),
                                     ),
+                                    // link to the google maps based on the picture
                                     Link(
                                       uri: Uri.parse(
                                           'https://www.google.com/maps/search/?api=1&query=$formattedStadiumName'),

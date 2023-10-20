@@ -8,6 +8,7 @@ import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:my_app/page/stadium/StadiumInfo.dart';
 import 'package:http/http.dart' as http;
 
+// fetch the stadium
 Future<Map<String, dynamic>> fetchStadiums() async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-all-stadium/';
@@ -26,7 +27,6 @@ Future<Map<String, dynamic>> fetchStadiums() async {
 
     List<dynamic> extractedData = jsonDecode(response.body);
 
-    // await Future.delayed(Duration(seconds: 10));
     if (response.statusCode == 200) {
       return {"isSuccessful": true, "data": extractedData, "error": null};
     } else {
@@ -71,6 +71,7 @@ class SearchStadium extends State<SearchPage> {
   GlobalKey<AutoCompleteTextFieldState<StadiumA>> key = GlobalKey();
   int selectedIndex = 0;
 
+  // init state for the search text field
   @override
   void initState() {
     super.initState();
@@ -164,6 +165,7 @@ class SearchStadium extends State<SearchPage> {
                       const SizedBox(
                         height: 30,
                       ),
+                      // future builder for the auto complete text field
                       FutureBuilder(
                         future: _intializeData(),
                         builder: (context, snapshot) {
@@ -241,6 +243,7 @@ class SearchStadium extends State<SearchPage> {
                       const SizedBox(
                         height: 25,
                       ),
+                      // future builder for showing all the stadium list 
                       FutureBuilder(
                           future: _intializeData(),
                           builder: (context, snapshot) {
@@ -287,7 +290,7 @@ class SearchStadium extends State<SearchPage> {
                                                       jsonDecode(allStadiums[i]
                                                           ['stadium_picture']),
                                                   fit: BoxFit
-                                                      .cover, // You can use different BoxFit property as per your requirement
+                                                      .cover,
                                                 ),
                                               ),
                                             ),

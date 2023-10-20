@@ -12,7 +12,8 @@ import 'package:my_app/page/profile/profile.dart';
 import 'package:my_app/page/stadium/StadiumFeature.dart';
 import 'package:my_app/page/stadium/StadiumInfo.dart';
 
-Future<Map<String, dynamic>> fetchStadium(int id) async {
+// fetch the staff detail using their id
+Future<Map<String, dynamic>> fetchStaff(int id) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/staff-detail/?input_id=$id';
 
@@ -49,6 +50,7 @@ Future<Map<String, dynamic>> fetchStadium(int id) async {
   }
 }
 
+// this fetch will help for the button for booking the staff
 Future<Map<String, dynamic>> pickStaff(User user, String id) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/pick-staff/?session_id=${user.sessionId}&input_id=$id';
@@ -79,13 +81,16 @@ class Assistance extends StatefulWidget {
 }
 
 class AssistanceDetail extends State<Assistance> {
+  // all the list that will be used
   List<dynamic> allStaff = [];
   Map<String, dynamic> userData = {};
   Map<String, dynamic> response = {};
   Map<String, dynamic> response2 = {};
 
+
+  // set initialize data for fetch staff and put the data into the list
   Future<void> _intializeData() async {
-    response = await fetchStadium(widget.id);
+    response = await fetchStaff(widget.id);
     if (response["isSuccessful"]) {
       allStaff = response["data"];
     }
@@ -127,6 +132,7 @@ class AssistanceDetail extends State<Assistance> {
                               Padding(
                                   padding:
                                       const EdgeInsets.only(top: 5, bottom: 5),
+                                      // future builder for called the initialize data
                                   child: FutureBuilder(
                                       future: _intializeData(),
                                       builder: (context, snapshot) {
@@ -198,7 +204,7 @@ class AssistanceDetail extends State<Assistance> {
                                                         ),
                                                       ]),
                                                       const SizedBox(
-                                                        height: 10,
+                                                        height: 20,
                                                       ),
                                                       Text(
                                                         allStaff[0]
@@ -233,6 +239,7 @@ class AssistanceDetail extends State<Assistance> {
                                                           BorderRadius.circular(
                                                               24),
                                                     )),
+                                                  // if the button press, it will automatically fetch the pickStaff and also navigate back to the homepage
                                                 onPressed: () {
                                                   pickStaff(widget.user,
                                                       allStaff[0]['staff_id']);

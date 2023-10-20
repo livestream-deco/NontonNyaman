@@ -9,6 +9,8 @@ import 'package:my_app/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/page/profile/editProfile.dart';
 
+
+// fetch the user based on their user session id
 Future<Map<String, dynamic>> fetchUser(User user) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/user_info/?session_id=${user.sessionId}';
@@ -47,6 +49,8 @@ class Profile extends StatefulWidget {
 }
 
 class ProfilePage extends State<Profile> {
+
+  // for the user, we dont use the list but only map
   Map<String, dynamic> response = {};
   Map<String, dynamic> user = {};
   Future<void> _intializeData() async {
@@ -74,7 +78,7 @@ class ProfilePage extends State<Profile> {
             fontFamily: 'Inter',
             fontSize: 22,
             fontWeight: FontWeight.w700,
-            color: Colors.black, // Specify the color here.
+            color: Colors.black, 
           ),
         ),
         centerTitle: true,

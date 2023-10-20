@@ -12,9 +12,9 @@ import 'package:my_app/page/navbarStaff.dart';
 import 'package:my_app/page/profile/profile.dart';
 import 'package:my_app/page/stadium/StadiumFeature.dart';
 import 'package:my_app/page/stadium/StadiumInfo.dart';
-import 'package:my_app/page/staff/detailUser.dart';
 
-Future<Map<String, dynamic>> fetchStadium(String email) async {
+// fetch the user using their email
+Future<Map<String, dynamic>> fetchUser(String email) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/user-info-detail/?email=$email';
 
@@ -49,6 +49,8 @@ Future<Map<String, dynamic>> fetchStadium(String email) async {
   }
 }
 
+
+// fetch the user if confirm the user
 Future<Map<String, dynamic>> pickStaff(User user, String email) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/confirm-user/?session_id=${user.sessionId}&email=$email';
@@ -69,6 +71,7 @@ Future<Map<String, dynamic>> pickStaff(User user, String email) async {
   }
 }
 
+// the fetch for decline the user
 Future<Map<String, dynamic>> declineUser(User user, String email) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/decline-user/?session_id=${user.sessionId}&email=$email';
@@ -108,7 +111,7 @@ class _UserDetailPage extends State<UserDetail> {
   Map<String, dynamic> response2 = {};
 
   Future<void> _intializeData() async {
-    response = await fetchStadium(widget.email);
+    response = await fetchUser(widget.email);
     if (response["isSuccessful"]) {
       allStaff = response["data"];
     }

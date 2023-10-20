@@ -1,12 +1,4 @@
-// ignore: file_names
-// ignore: file_names
-// ignore: file_names
-// ignore: file_names
-// ignore: file_names
-// ignore: file_names
-// ignore: file_names
-// ignore: file_names
-// ignore: file_names
+
 // ignore_for_file: file_names, duplicate_ignore, unused_import, override_on_non_overriding_member, annotate_overrides, use_build_context_synchronously, prefer_const_constructors, prefer_adjacent_string_concatenation, avoid_, unused_local_variable, prefer_interpolation_to_compose_strings, sized_box_for_whitespace
 
 import 'package:carousel_slider/carousel_slider.dart';
@@ -23,8 +15,9 @@ import 'package:my_app/page/profile/profile.dart';
 import 'dart:async';
 
 import 'package:my_app/page/stadium/StadiumInfo.dart';
-// import the package
 
+
+// fecth the data for the Newsletter
 Future<Map<String, dynamic>> fetchNews() async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/newsletter/view-all-newsletter/';
@@ -43,7 +36,7 @@ Future<Map<String, dynamic>> fetchNews() async {
 
     List<dynamic> extractedData = jsonDecode(response.body);
 
-    // await Future.delayed(Duration(seconds: 10));
+    // put the data into list 
     if (response.statusCode == 200) {
       return {"isSuccessful": true, "data": extractedData, "error": null};
     } else {
@@ -62,6 +55,7 @@ Future<Map<String, dynamic>> fetchNews() async {
   }
 }
 
+// fetch the data for the accommodation suggestion
 Future<Map<String, dynamic>> fetchAccommodation() async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/accomodationsuggestion/view-accomodation/';
@@ -79,8 +73,7 @@ Future<Map<String, dynamic>> fetchAccommodation() async {
     );
 
     List<dynamic> extractedData = jsonDecode(response.body);
-
-    // await Future.delayed(Duration(seconds: 10));
+    // put the data into a list 
     if (response.statusCode == 200) {
       return {"isSuccessful": true, "data": extractedData, "error": null};
     } else {
@@ -99,6 +92,7 @@ Future<Map<String, dynamic>> fetchAccommodation() async {
   }
 }
 
+// fetch the data for the stadium
 Future<Map<String, dynamic>> fetchStadiums() async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/stadium/view-all-stadium/';
@@ -117,7 +111,7 @@ Future<Map<String, dynamic>> fetchStadiums() async {
 
     List<dynamic> extractedData = jsonDecode(response.body);
 
-    // await Future.delayed(Duration(seconds: 10));
+    
     if (response.statusCode == 200) {
       return {"isSuccessful": true, "data": extractedData, "error": null};
     } else {
@@ -136,6 +130,7 @@ Future<Map<String, dynamic>> fetchStadiums() async {
   }
 }
 
+//fetch the user information
 Future<Map<String, dynamic>> getUserInfo(User user) async {
   String url2 =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/user_info/?session_id=${user.sessionId}';
@@ -154,7 +149,6 @@ Future<Map<String, dynamic>> getUserInfo(User user) async {
 
     Map<String, dynamic> extractedData2 = jsonDecode(response2.body);
 
-    // await Future.delayed(Duration(seconds: 10));
     if (response2.statusCode == 200) {
       return {"isSuccessful": true, "data": extractedData2, "error": null};
     } else {
@@ -173,6 +167,7 @@ Future<Map<String, dynamic>> getUserInfo(User user) async {
   }
 }
 
+// class for the item in text search field for stadium
 class StadiumA {
   final String stadiumName;
 
@@ -185,6 +180,7 @@ class StadiumA {
   }
 }
 
+
 class HomeView extends StatefulWidget {
   final User user;
   const HomeView(this.user, {super.key});
@@ -194,6 +190,7 @@ class HomeView extends StatefulWidget {
 }
 
 class HomePage extends State<HomeView> {
+  // all the list and map that being used in the HomePage
   List<dynamic> allStadiums = [];
   List<dynamic> allpocket = [];
   List<dynamic> allAccom = [];
@@ -206,6 +203,7 @@ class HomePage extends State<HomeView> {
   int selectedIndex = 0;
 
   @override
+  // set the future for fetching the stadiums into intializeData2 and put the data in allStadiums
   Future<void> _intializeData2() async {
     response = await fetchStadiums();
     if (response["isSuccessful"]) {
@@ -213,6 +211,7 @@ class HomePage extends State<HomeView> {
     }
   }
 
+  //initState for controlling the search text field
   void initState() {
     super.initState();
     searchTextField = AutoCompleteTextField<StadiumA>(
@@ -243,12 +242,6 @@ class HomePage extends State<HomeView> {
             searchTextField.textField!.controller!.text = item.stadiumName;
           }
         });
-        if (item.stadiumName == 'Suncorp Stadium') {
-          await Future.delayed(const Duration(milliseconds: 100));
-          // ignore: use_build_context_synchronously
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => Navbar(widget.user)));
-        }
       },
       itemBuilder: (context, item) {
         return row(item);
@@ -256,6 +249,7 @@ class HomePage extends State<HomeView> {
     );
   }
 
+  // set the future for fetching the newsletter, user information, and accommodation into intializeData and put the data into different list.
   Future<void> _intializeData() async {
     ('test123');
     response = await fetchNews();
@@ -272,6 +266,7 @@ class HomePage extends State<HomeView> {
     }
   }
 
+  //calling the class StadiumA for showing the stadium name in the search text field
   Widget row(StadiumA item) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -287,12 +282,15 @@ class HomePage extends State<HomeView> {
     );
   }
 
+// the page of the Home
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        //setting the padding for maintain the clean of the design
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(
+          //make sure all the things start from the left to the right
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const SizedBox(
@@ -314,6 +312,7 @@ class HomePage extends State<HomeView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  //calling the intializeData for taking the data from fetched
                   FutureBuilder(
                       future: _intializeData(),
                       builder: (context, snapshot) {
@@ -334,6 +333,7 @@ class HomePage extends State<HomeView> {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
+                                    //take the user picture
                                     image: NetworkImage(
                                       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                           jsonDecode(thedata['user_picture']),
@@ -345,6 +345,7 @@ class HomePage extends State<HomeView> {
                               const SizedBox(
                                 width: 20,
                               ),
+                              //take the user name from the user information
                               Text(
                                 "G'Day " + '${thedata["name"]}',
                                 style: TextStyle(
@@ -367,6 +368,7 @@ class HomePage extends State<HomeView> {
                   const SizedBox(
                     height: 10,
                   ),
+                  // call another intializeData in the future builder for the search text field
                   FutureBuilder(
                     future: _intializeData2(),
                     builder: (context, snapshot) {
@@ -405,13 +407,13 @@ class HomePage extends State<HomeView> {
                               }
                             });
 
-                            // Find the stadium that matches the selected name
+                            // find the stadium that matches the selected name
                             var selectedStadium = allStadiums.firstWhere(
                                 (stadium) =>
                                     stadium['stadium_name'] == item.stadiumName,
                                 orElse: () => null);
 
-                            // If a matching stadium is found, navigate to the StadiumInfo page
+                            // if a matching stadium is found, navigate to the StadiumInfo page using stadium_id
                             if (selectedStadium != null) {
                               await Future.delayed(
                                   const Duration(milliseconds: 100));
@@ -440,6 +442,7 @@ class HomePage extends State<HomeView> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
             ),
+            // called the future builder for intializeData the newsletter in allpocket
             FutureBuilder(
                 future: _intializeData(),
                 builder: (context, snapshot) {
@@ -469,6 +472,7 @@ class HomePage extends State<HomeView> {
                                       // ignore: prefer_interpolation_to_compose_strings
                                       image: NetworkImage(
                                           // ignore: prefer_interpolation_to_compose_strings
+                                          // show the image of the newsletter picture
                                           'http://nonton-nyaman-cbfc2703b99d.herokuapp.com' +
                                               jsonDecode(allpocket[itemIndex]
                                                   ['newsletter_picture'])),
@@ -492,6 +496,7 @@ class HomePage extends State<HomeView> {
                                           fontWeight: FontWeight.w700,
                                           color: Colors.white),
                                     ),
+                                    //navigate the route for newletter details using the id
                                     onPressed: () async {
                                       Navigator.push(
                                           context,
@@ -521,6 +526,7 @@ class HomePage extends State<HomeView> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
             ),
+            //call the future builder again for initialize the accommodation suggestion
             FutureBuilder(
                 future: _intializeData(),
                 builder: (context, snapshot) {
@@ -560,6 +566,7 @@ class HomePage extends State<HomeView> {
                                 Positioned(
                                   bottom: 10,
                                   left: 10,
+                                  //show the name of the accomodation
                                   child: TextButton(
                                     key: Key("title$itemIndex"),
                                     child: Text(

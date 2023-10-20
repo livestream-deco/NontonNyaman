@@ -18,7 +18,7 @@ class Navbar extends StatefulWidget {
 
 class _NavbarPage extends State<Navbar> {
   int currentIndex = 0;
-
+  //there are 5 screen that need will be in the navigation bar
   @override
   Widget build(BuildContext context) {
     final screens = [
@@ -30,6 +30,7 @@ class _NavbarPage extends State<Navbar> {
     ];
 
     return Scaffold(
+      //the screen will show the first screen since the current index is set into 0
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -38,6 +39,7 @@ class _NavbarPage extends State<Navbar> {
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
         items: [
+          // first screen = news
           BottomNavigationBarItem(
             icon: Container(
               padding: const EdgeInsets.only(),
@@ -45,6 +47,7 @@ class _NavbarPage extends State<Navbar> {
             ),
             label: 'News',
           ),
+          // second screen stadium
           BottomNavigationBarItem(
             icon: Container(
               padding: const EdgeInsets.only(),
@@ -52,6 +55,7 @@ class _NavbarPage extends State<Navbar> {
             ),
             label: 'Stadium',
           ),
+          // third screen = emergency
           BottomNavigationBarItem(
             icon: Container(
               padding: const EdgeInsets.only(),
@@ -67,6 +71,7 @@ class _NavbarPage extends State<Navbar> {
             ),
             label: 'Emergency',
           ),
+          //fourth screen = assistance
           BottomNavigationBarItem(
             icon: Container(
               padding: const EdgeInsets.only(),
@@ -74,6 +79,7 @@ class _NavbarPage extends State<Navbar> {
             ),
             label: 'Assistance',
           ),
+          //fifth screen = profile
           BottomNavigationBarItem(
             icon: Container(
               padding: const EdgeInsets.only(),

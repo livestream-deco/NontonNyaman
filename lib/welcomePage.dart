@@ -22,7 +22,7 @@ class _WelcomePage extends State<WelcomPage> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/youssef-naddam-iJ2IG8ckCpA-unsplash 1.png'), // path to your image file
+            image: AssetImage('assets/images/youssef-naddam-iJ2IG8ckCpA-unsplash 1.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -39,20 +39,20 @@ class _WelcomePage extends State<WelcomPage> {
             height: 170,
             width: 330,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1), // 90% opacity
-              borderRadius: BorderRadius.circular(12), // Border radius of 12.
+              color: Colors.white.withOpacity(0.1), 
+              borderRadius: BorderRadius.circular(12),
             ),
             child: 
             Padding(
               padding: const EdgeInsets.fromLTRB(45,10,45,10),
               child: 
               Column(
-                mainAxisAlignment: MainAxisAlignment.center, // This will center the column children vertically.
+                mainAxisAlignment: MainAxisAlignment.center, 
                 children: [
-                  const Center(  // This will center the Text widget horizontally.
+                  const Center(  
                     child: Text(
                       'Brings equal enjoyment to all sports fans.',
-                      textAlign: TextAlign.center,  // This will center the text within the Text widget.
+                      textAlign: TextAlign.center,  
                       style: TextStyle(
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w700,
@@ -95,7 +95,7 @@ class _WelcomePage extends State<WelcomPage> {
             )
           )
         ],
-        ) // rest of your widgets go here
+        )
       ),
     );
   }

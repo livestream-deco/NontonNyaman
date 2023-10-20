@@ -10,6 +10,8 @@ import 'package:my_app/models/user.dart';
 
 import 'package:http/http.dart' as http;
 
+//fetch the staff profile
+
 Future<Map<String, dynamic>> fetchUser(User user) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/user_info/?session_id=${user.sessionId}';
@@ -48,6 +50,7 @@ class ProfileStaff extends StatefulWidget {
 }
 
 class ProfilePage extends State<ProfileStaff> {
+  // using mapping for the user fetch
   Map<String, dynamic> response = {};
   Map<String, dynamic> user = {};
   Future<void> _intializeData() async {
@@ -75,7 +78,7 @@ class ProfilePage extends State<ProfileStaff> {
             fontFamily: 'Inter',
             fontSize: 22,
             fontWeight: FontWeight.w700,
-            color: Colors.black, // Specify the color here.
+            color: Colors.black, 
           ),
         ),
         centerTitle: true,
@@ -108,7 +111,7 @@ class ProfilePage extends State<ProfileStaff> {
                     ),
                     Stack(
                       children: <Widget>[
-                        // The image
+                        
                         Container(
                           width: 140,
                           height: 140,
@@ -164,9 +167,9 @@ class ProfilePage extends State<ProfileStaff> {
                                         Radius.circular(12)),
                                     border: Border.all(
                                       color: Colors
-                                          .white, // Specify the border color here.
+                                          .white,
                                       width:
-                                          2, // Specify the border width here.
+                                          2,
                                     ),
                                   ),
                                   child: Padding(
@@ -202,8 +205,8 @@ class ProfilePage extends State<ProfileStaff> {
                                       Radius.circular(12)),
                                   border: Border.all(
                                     color: Colors
-                                        .white, // Specify the border color here.
-                                    width: 2, // Specify the border width here.
+                                        .white, 
+                                    width: 2, 
                                   ),
                                 ),
                                 child: Padding(
@@ -240,8 +243,8 @@ class ProfilePage extends State<ProfileStaff> {
                                       Radius.circular(12)),
                                   border: Border.all(
                                     color: Colors
-                                        .white, // Specify the border color here.
-                                    width: 2, // Specify the border width here.
+                                        .white, 
+                                    width: 2, 
                                   ),
                                 ),
                                 child: Padding(

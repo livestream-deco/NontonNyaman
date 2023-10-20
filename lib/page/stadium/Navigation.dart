@@ -21,7 +21,7 @@ class _NavigationArrowState extends State<NavigationArrow> {
   StreamSubscription<Position>? _positionStreamSubscription;
   double? _arrowRotation;
   Position? _currentPosition;
-  String _distance = 'Calculating...';   // New state variable for distance
+  String _distance = 'Calculating...';   
 
   @override
   void initState() {
@@ -37,13 +37,13 @@ class _NavigationArrowState extends State<NavigationArrow> {
   void _getCurrentLocation() {
   Stream<Position> positionStream = Geolocator.getPositionStream(
     desiredAccuracy: LocationAccuracy.high,
-    distanceFilter: 1,  // Trigger updates every 1 meter the device moves
+    distanceFilter: 1,  // trigger updates every 1 meter the device moves
   );
 
   _positionStreamSubscription = positionStream.listen((Position position) {
     setState(() {
       _currentPosition = position;
-      _distance = _calculateDistance();  // Update distance when position changes
+      _distance = _calculateDistance();  // update distance when position changes
     });
   });
 }
@@ -57,7 +57,7 @@ class _NavigationArrowState extends State<NavigationArrow> {
         _currentPosition!.longitude, widget.latitude, widget.longitude);
     double rotation = bearingToDestination - heading;
 
-    // Ensure rotation is within -180 to +180 degrees
+    // ensure rotation is within -180 to +180 degrees
     if (rotation > 180) {
       rotation -= 360;
     } else if (rotation < -180) {
@@ -80,10 +80,10 @@ class _NavigationArrowState extends State<NavigationArrow> {
 
     double bearing = (atan2(y, x));
 
-    // Convert from radians to degrees
+    // convert from radians to degrees
     bearing = _radiansToDegrees(bearing);
 
-    // Normalize to 0-360
+    // normalize to 0-360
     bearing = (bearing + 360) % 360;
 
     return bearing;

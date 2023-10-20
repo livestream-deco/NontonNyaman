@@ -7,6 +7,8 @@ import 'package:my_app/models/user.dart';
 import 'package:url_launcher/link.dart';
 import 'package:http/http.dart' as http;
 
+// future for fetch the staff with the parameter of the user
+
 Future<Map<String, dynamic>> fetchStaff(User user) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/user_info/?session_id=${user.sessionId}';
@@ -55,6 +57,7 @@ class EmergencyPage extends State<Emergency> {
   Map<String, dynamic> response = {};
   Map<String, dynamic> allStaff = {};
 
+  // create a future void for intializeData that take the staff data
   Future<void> _intializeData() async {
     response = await fetchStaff(widget.user);
     if (response["isSuccessful"]) {
@@ -75,10 +78,12 @@ class EmergencyPage extends State<Emergency> {
             const SizedBox(
               height: 250,
             ),
+            // using future builder for take the data from the fetch 
             FutureBuilder(
                 future: _intializeData(),
                 builder: (context, snapshot) {
                   return Link(
+                    // make the alert image can direct to the call app and directly call the staff
                     uri: Uri.parse('tel:' + '${allStaff['staff_number']}'),
                     builder: (context, followLink) {
                       return GestureDetector(

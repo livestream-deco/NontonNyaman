@@ -12,6 +12,8 @@ import 'package:http/http.dart' as http;
 import 'package:my_app/page/navbar.dart';
 import 'package:image_picker/image_picker.dart';
 
+// the fetch of sendNewUser only for the button to click save
+
 Future<Map<String, dynamic>> sendNewUser(
   String name,
   String description,
@@ -47,6 +49,7 @@ Future<Map<String, dynamic>> sendNewUser(
   }
 }
 
+// this fetch is for showing the existing data from database
 Future<Map<String, dynamic>> fetchUser(User user) async {
   String url =
       'http://nonton-nyaman-cbfc2703b99d.herokuapp.com/user/user_info/?session_id=${user.sessionId}';
@@ -85,10 +88,12 @@ class EditProfile extends StatefulWidget {
 }
 
 class EditProfilePage extends State<EditProfile> {
+  // using map for this page
   Map<String, dynamic> response = {};
   Map<String, dynamic> user = {};
   Map<String, dynamic>? fetchedResult;
 
+  // controller for editing the text
   TextEditingController userName = TextEditingController();
   TextEditingController userEmail = TextEditingController();
   TextEditingController userDescription = TextEditingController();
@@ -133,7 +138,7 @@ class EditProfilePage extends State<EditProfile> {
             fontFamily: 'Inter',
             fontSize: 22,
             fontWeight: FontWeight.w700,
-            color: Colors.black, // Specify the color here.
+            color: Colors.black, 
           ),
         ),
         centerTitle: true,
@@ -274,8 +279,8 @@ class EditProfilePage extends State<EditProfile> {
                                       Radius.circular(12)),
                                   border: Border.all(
                                     color: Colors
-                                        .white, // Specify the border color here.
-                                    width: 2, // Specify the border width here.
+                                        .white, 
+                                    width: 2, 
                                   ),
                                 ),
                                 child: Padding(
